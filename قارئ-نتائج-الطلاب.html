@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>قارئ نتائج الطلاب — المعلم عمر العيسى</title>
+<style>
+:root{
+ --green:#0b3d2e; --green2:#125743; --gold:#c8a24a; --gold2:#f0d99b;
+ --ink:#12211c; --paper:#fbf7ec; --paper2:#f3ecd9; --accent:#8c2f39;
+ --ok:#2e7d5b; --bad:#a8323c; --shadow:0 18px 50px rgba(9,35,27,.18);
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+body{
+ font-family:"Noto Naskh Arabic","Amiri","Traditional Arabic","Segoe UI",Tahoma,sans-serif;
+ background:
+  radial-gradient(circle at 12% 8%,rgba(200,162,74,.20),transparent 42%),
+  radial-gradient(circle at 88% 0%,rgba(18,87,67,.22),transparent 45%),
+  repeating-linear-gradient(135deg,rgba(11,61,46,.035) 0 2px,transparent 2px 7px),
+  linear-gradient(180deg,#0b3d2e 0%,#0e4a37 55%,#0a3327 100%);
+ color:var(--ink);min-height:100vh;direction:rtl;padding:16px;
+}
+.wrap{max-width:980px;margin:0 auto}
+.card{
+ background:linear-gradient(180deg,var(--paper),var(--paper2));
+ border:1px solid rgba(11,61,46,.18);border-radius:22px;box-shadow:var(--shadow);
+ padding:22px;position:relative;overflow:hidden
+}
+.card::before{content:"";position:absolute;inset:8px;border:1px solid rgba(200,162,74,.55);border-radius:16px;pointer-events:none}
+.brand{display:flex;gap:10px;align-items:center;justify-content:center;flex-wrap:wrap;margin-bottom:6px}
+.badge{font-size:12px;letter-spacing:.4px;color:#6b5a2a;background:linear-gradient(180deg,#fff8e3,#f2e4bd);border:1px solid #d8c07a;padding:4px 10px;border-radius:999px}
+h1{font-size:clamp(22px,4.4vw,36px);margin:6px 0 4px;color:var(--green);text-align:center;line-height:1.35}
+h2{font-size:clamp(18px,3vw,25px);color:var(--green);margin:0 0 10px}
+p.lead{text-align:center;color:#3c4b44;margin:2px 0 16px;font-size:15px}
+.gold{color:#a8842f;font-weight:700}
+.row{display:flex;gap:12px;flex-wrap:wrap}
+.row>*{flex:1 1 210px}
+label{display:block;font-size:13px;color:#4a5a52;margin:0 0 5px}
+input[type=text],select{
+ width:100%;padding:11px 13px;border-radius:12px;border:1.5px solid #cfc3a1;background:#fffdf6;font:inherit;font-size:15px;color:var(--ink)
+}
+input[type=text]:focus,select:focus{outline:none;border-color:var(--green2);box-shadow:0 0 0 3px rgba(18,87,67,.15)}
+button{font:inherit;cursor:pointer;border:none;border-radius:14px;padding:13px 22px;font-weight:700;transition:.18s transform,.18s box-shadow,.18s filter}
+button:active{transform:translateY(1px) scale(.995)}
+.btn-main{background:linear-gradient(180deg,#17795c,#0b3d2e);color:#fff;box-shadow:0 10px 24px rgba(11,61,46,.30)}
+.btn-main:hover{filter:brightness(1.08)}
+.btn-gold{background:linear-gradient(180deg,#e7c877,#c8a24a);color:#3a2c08;box-shadow:0 10px 22px rgba(200,162,74,.35)}
+.btn-ghost{background:#fffdf6;color:var(--green);border:1.5px solid #d5c9a6}
+.btn-mini{padding:8px 13px;font-size:13px;border-radius:11px}
+.center{text-align:center}
+.muted{color:#63716a;font-size:13px}
+.hidden{display:none!important}
+/* header bar */
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+.topbar .pill{background:rgba(255,255,255,.90);border:1px solid rgba(200,162,74,.6);border-radius:999px;padding:7px 14px;font-size:13px;color:var(--green);font-weight:700;white-space:nowrap}
+/* progress */
+.prog{height:12px;background:#e6dcc0;border-radius:999px;overflow:hidden;border:1px solid #d6c9a4;margin:10px 0 4px}
+.prog>i{display:block;height:100%;width:0;background:linear-gradient(90deg,#c8a24a,#17795c);transition:width .4s ease}
+/* question */
+.qmeta{display:flex;justify-content:space-between;font-size:13px;color:#5b6a62;margin-bottom:8px;flex-wrap:wrap;gap:6px}
+.qtext{font-size:clamp(18px,2.7vw,23px);line-height:1.75;color:#14261f;margin:6px 0 16px;font-weight:600}
+.ayah{font-family:"Amiri","Noto Naskh Arabic",serif;font-size:clamp(19px,2.9vw,25px);line-height:2.2;background:#fffdf3;border:1px solid #e0d4b0;border-right:5px solid var(--gold);border-radius:14px;padding:14px 16px;margin:0 0 14px;color:#1c2f27}
+.opts{display:grid;gap:11px}
+.opt{
+ display:flex;gap:11px;align-items:center;background:#fffdf6;border:1.6px solid #d8cbaa;
+ border-radius:14px;padding:12px 14px;font-size:16.5px;line-height:1.55;color:#17281f;cursor:pointer;text-align:right;
+ transition:.15s;width:100%;font-family:inherit
+}
+.opt>span:last-child{flex:1 1 auto;min-width:0;overflow-wrap:anywhere}
+.opt:hover{border-color:var(--green2);box-shadow:0 8px 18px rgba(11,61,46,.10);transform:translateY(-1px)}
+.opt .k{width:30px;height:30px;flex:0 0 30px;border-radius:9px;background:#f0e6c8;color:#6b5417;display:grid;place-items:center;font-weight:800;font-size:14px}
+.opt.correct{background:#e8f6ee;border-color:#2e7d5b;box-shadow:0 0 0 3px rgba(46,125,91,.15)}
+.opt.wrong{background:#fdecee;border-color:#a8323c;box-shadow:0 0 0 3px rgba(168,50,60,.13)}
+.opt.dim{opacity:.45;pointer-events:none}
+.fb{margin-top:14px;border-radius:14px;padding:13px 15px;font-size:15px;line-height:1.8;display:none}
+.fb.show{display:block;animation:pop .25s ease}
+.fb.ok{background:#e8f6ee;border:1px solid #b9dcc8;color:#14512f}
+.fb.bad{background:#fdecee;border:1px solid #f0c3c8;color:#7c2027}
+@keyframes pop{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.tools{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.chip{background:#fff9e8;border:1px dashed #cdb271;border-radius:999px;padding:8px 13px;font-size:13px;color:#6d5a24;cursor:pointer}
+.chip[disabled]{opacity:.45;cursor:not-allowed;text-decoration:line-through}
+/* result */
+.score-ring{width:150px;height:150px;margin:6px auto 12px;border-radius:50%;display:grid;place-items:center;position:relative;
+ background:conic-gradient(var(--gold) var(--p,0%),#e8dfc4 0);}
+.score-ring::after{content:"";position:absolute;inset:11px;background:var(--paper);border-radius:50%;box-shadow:inset 0 0 0 1px #ded1ab;z-index:0}
+.score-ring b{position:relative;z-index:2;font-size:38px;color:var(--green);display:block;text-align:center;line-height:1.1}
+.score-ring span{position:relative;z-index:2;font-size:12px;color:#7a6a3d;display:block;text-align:center;margin-top:2px}
+.stars{font-size:30px;letter-spacing:6px;color:#c8a24a;text-align:center;margin:2px 0 8px}
+table.rep{width:100%;border-collapse:collapse;font-size:14px;margin:10px 0}
+table.rep td,table.rep th{border-bottom:1px solid #e4d9bb;padding:9px 6px;text-align:right}
+table.rep th{color:#6b5a2a;font-weight:700;background:#f7f0da}
+.tag{display:inline-block;padding:2px 9px;border-radius:999px;font-size:12px}
+.tag.ok{background:#e3f3e9;color:#1d6a45}.tag.bad{background:#fbe6e8;color:#8c2f39}
+/* certificate */
+#certWrap{margin-top:16px}
+#certCanvas{width:100%;max-width:1000px;border-radius:14px;box-shadow:0 14px 40px rgba(0,0,0,.28);background:#fff}
+.qrbox{display:flex;gap:14px;align-items:center;justify-content:center;flex-wrap:wrap;margin-top:14px}
+.qrbox canvas{background:#fff;padding:6px;border-radius:10px;border:1px solid #ddd}
+.code{font-family:ui-monospace,Consolas,monospace;font-size:10.5px;word-break:break-all;background:#0f2b23;color:#d7f0e4;padding:10px;border-radius:10px;max-height:90px;overflow:auto;text-align:left;direction:ltr}
+footer{text-align:center;color:rgba(255,255,255,.72);font-size:12.5px;margin:22px 0 6px;line-height:1.9}
+a{color:#f0d99b}
+.flexcenter{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:16px}
+.timer{font-variant-numeric:tabular-nums}
+.alert{background:#fff4e0;border:1px solid #e7c98d;color:#7a5a12;padding:11px 14px;border-radius:12px;font-size:13.5px;line-height:1.8;margin-top:12px}
+@media (max-width:560px){ .card{padding:16px} .opt{font-size:15.4px;padding:12px} }
+@media print{
+ body{background:#fff;padding:0}
+ .noprint{display:none!important}
+ .card{box-shadow:none;border:none}
+ #certCanvas{box-shadow:none;width:100%}
+}
+
+.rd-hero{background:linear-gradient(135deg,#0b3d2e,#125743 60%,#0a3327);color:#f7f1de;border-radius:22px;padding:26px;box-shadow:var(--shadow);text-align:center}
+.rd-hero h1{color:#f6e6b8;margin:0 0 6px}
+.rd-hero p{color:#dcebe1;margin:0;font-size:14.5px}
+.scan-box{display:flex;gap:14px;flex-wrap:wrap;align-items:center;justify-content:center;direction:ltr;background:#fffdf6;border:1px dashed #c8a24a;border-radius:16px;padding:14px;margin:16px 0}
+#reader{width:260px;height:260px;border-radius:14px;overflow:hidden;background:#000;position:relative}
+#reader video,#reader canvas{width:100%!important;height:100%!important;object-fit:cover}
+textarea{width:100%;min-height:90px;border-radius:12px;border:1.5px solid #cfc3a1;padding:10px;font-family:ui-monospace,monospace;font-size:12px;direction:ltr}
+.report{background:#fffdf6;border:1px solid #e0d4b0;border-radius:16px;padding:18px;margin-top:16px}
+.report h2{border-bottom:2px solid #e6d4a2;padding-bottom:8px}
+.kv{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin:10px 0}
+.kv div{background:#f7f0da;border:1px solid #e6d9b6;border-radius:12px;padding:10px 12px;font-size:14px}
+.kv b{display:block;color:#6b5a2a;font-size:12px;margin-bottom:3px}
+.big{font-size:30px;font-weight:800;color:var(--green)}
+table.det{width:100%;border-collapse:collapse;font-size:14px;margin-top:10px}
+table.det th,table.det td{border:1px solid #e4d9bb;padding:8px;text-align:right;vertical-align:top}
+table.det th{background:#f7f0da;color:#6b5a2a}
+.ok{color:#1d6a45;font-weight:700}.bad{color:#8c2f39;font-weight:700}
+</style></head><body><div class="wrap">
+<div class="rd-hero">
+  <h1>قارئ نتائج الطلاب</h1>
+  <p>وجّه كاميرا الجوال إلى الباركود الموجود في شهادة الطالب، أو الصق رمز النتيجة لعرض تقرير كامل: الاسم، الصف، الدرجة، وتفصيل كل إجابة.</p>
+</div>
+
+<div class="card" style="margin-top:16px">
+  <h2>1) اقرأ الباركود</h2>
+  <div class="scan-box">
+    <div id="reader"></div>
+    <div style="flex:1 1 300px;min-width:260px;direction:rtl">
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px">
+        <button class="btn-main btn-mini" onclick="startScan()">تشغيل الكاميرا</button>
+        <button class="btn-ghost btn-mini" onclick="stopScan()">إيقاف</button>
+      </div>
+      <label>أو الصق رمز النتيجة (IOAQ1:...)</label>
+      <textarea id="codeInput" placeholder="IOAQ1:..."></textarea>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
+        <button class="btn-main" onclick="readCode()">عرض تقرير الطالب</button>
+        <button class="btn-ghost" onclick="document.getElementById('codeInput').value='';document.getElementById('out').innerHTML=''">تفريغ</button>
+      </div>
+    </div>
+  </div>
+  <p class="muted">ملاحظة: المسح التلقائي يعمل في متصفحات الجوال الحديثة (Chrome/Edge على أندرويد). وإلا يكفي أن يمسح المعلم الباركود بأي تطبيق ماسح ويقرأ النص ثم يلصقه هنا.</p>
+
+  <h2 style="margin-top:18px">2) توليد رمز تجريبي (للتجربة)</h2>
+  <div class="row">
+    <div><label>الوحدة</label><select id="unitSel" onchange="onUnit()"></select></div>
+    <div><label>النوع</label><select id="kindSel"></select></div>
+    <div style="display:flex;align-items:flex-end"><button class="btn-gold" style="width:100%" onclick="demoCode()">أنشئ رمزًا تجريبيًا</button></div>
+  </div>
+</div>
+
+<div class="card" style="margin-top:16px">
+  <h2>3) الوضع الجماعي (فصل كامل)</h2>
+  <p class="muted" style="margin-top:0">الصق رمز نتيجة كل طالب في سطر مستقل، ثم استخرج جدول الفصل جاهزًا للنسخ إلى Google Sheets أو للتنزيل CSV.</p>
+  <textarea id="batchInput" style="min-height:120px" placeholder="IOAQ1:...&#10;IOAQ1:...&#10;IOAQ1:..."></textarea>
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
+    <button class="btn-main" onclick="batchReport()">إنشاء جدول الفصل</button>
+    <button class="btn-ghost" onclick="downloadCSV()">تنزيل CSV</button>
+    <button class="btn-gold" onclick="copyCSV()">نسخ للصق في Sheets</button>
+  </div>
+  <div id="batchOut"></div>
+</div>
+
+<div id="out"></div>
+<footer>قارئ النتائج — منصة ألعاب الوحدات والاختبارات · إعداد المعلم عمر العيسى · الدراسات الإسلامية / القرآن الكريم وتفسيره ١٤٤٨هـ</footer>
+</div>
+<script src="manifest.js"></script>
+<script>
+var BANK = window.MANIFEST || {};  /* بنك الأسئلة — يُحمّل من manifest.js */
+var CHOSEN=null;
+
+function fillUnits(){
+  var sel=document.getElementById('unitSel');sel.innerHTML='';
+  var keys=Object.keys(BANK).sort(function(a,b){return a-b;});
+  keys.forEach(function(u){
+    var o=document.createElement('option');o.value=u;o.textContent='الوحدة '+u+' — '+BANK[u].name;sel.appendChild(o);
+  });
+  onUnit();
+}
+function onUnit(){
+  var u=document.getElementById('unitSel').value;
+  var sel=document.getElementById('kindSel');sel.innerHTML='';
+  var m=BANK[u]||{};
+  ['game','exam'].forEach(function(k){
+    if(!m[k])return;var o=document.createElement('option');o.value=k;
+    o.textContent=(k==='game'?'اللعبة التقييمية — ':'الاختبار الإلكتروني — ')+m[k].title;sel.appendChild(o);
+  });
+}
+function decode(code){
+  code=(code||'').trim();
+  var i=code.indexOf('IOAQ1:');
+  if(i<0)return null;
+  var b=code.slice(i+6).replace(/[^A-Za-z0-9+/=]/g,'');
+  var s;
+  try{s=decodeURIComponent(escape(atob(b)));}catch(e){return null;}
+  var p=s.split('|');
+  if(p.length<11)return null;
+  var sc=p[6].split('/');
+  var ans=(p[10]||'').split(',').filter(Boolean).map(function(x){var t=x.split(':');return {n:+t[0],pick:+t[1],ok:+t[2]};});
+  var d=p[7]||'';var date=d.length===6?('20'+d.slice(0,2)+'-'+d.slice(2,4)+'-'+d.slice(4,6)):d;
+  return {unit:+p[0],exam:p[1],student:p[2],grade:p[3],section:p[4],school:p[5],
+          score:+sc[0],max:+sc[1],pct:Math.round(+sc[0]/+sc[1]*100),date:date,passed:p[8]==='1',secs:+p[9],ans:ans};
+}
+function renderReport(r,examQuestions){
+  var u=BANK[r.unit]||{};var nm=u.name||'';
+  var h='<div class="report">';
+  h+='<h2>تقرير الطالب — '+esc(r.student)+'</h2>';
+  h+='<div class="kv">';
+  h+=kvb('الوحدة',u.name||('وحدة '+r.unit));
+  h+=kvb('الاختبار/اللعبة',(r.exam&&r.exam[0]==='G'?'اللعبة التقييمية':'الاختبار الإلكتروني')+' (رمز '+esc(r.exam)+')');
+  h+=kvb('الصف والشعبة',esc(r.grade)+(r.section?' / '+esc(r.section):''));
+  h+=kvb('المدرسة',esc(r.school||'—'));
+  h+=kvb('التاريخ',r.date);
+  h+=kvb('الزمن المستغرق',Math.floor(r.secs/60)+' د '+(r.secs%60)+' ث');
+  h+='</div>';
+  h+='<div class="kv"><div><b>الدرجة</b><span class="big">'+r.score+' / '+r.max+'</span></div>'+
+     '<div><b>النسبة</b><span class="big">'+r.pct+'%</span></div>'+
+     '<div><b>النتيجة</b><span class="'+(r.passed?'ok':'bad')+'" style="font-size:20px">'+(r.passed?'اجتياز':'لم يجتز')+'</span></div></div>';
+  // تحليل الأسئلة
+  if(examQuestions && examQuestions.length){
+    var rows='',weak=[];
+    r.ans.forEach(function(a){
+      var q=examQuestions[a.n-1];if(!q)return;
+      rows+='<tr><td>'+a.n+'</td><td>'+esc(q.t)+(q.o&&q.o[0]!==undefined?'<br><span style="color:#1d6a45">'+esc(q.o[q.a]||'')+'</span>':'')+'</td>'+
+            '<td>'+(a.pick>=0&&q.o?esc(q.o[a.pick]||''):'—')+'</td><td class="'+(a.ok?'ok':'bad')+'">'+(a.ok?'✓':'✕')+'</td></tr>';
+      if(!a.ok)weak.push(a.n);
+    });
+    h+='<h3 style="color:#0b3d2e;margin:16px 0 6px">تفصيل الإجابات</h3>';
+    h+='<table class="det"><thead><tr><th>#</th><th>نص السؤال / الإجابة الصحيحة</th><th>إجابة الطالب</th><th>النتيجة</th></tr></thead><tbody>'+rows+'</tbody></table>';
+    if(weak.length) h+='<p style="margin-top:10px;color:#8c2f39"><b>أسئلة تحتاج مراجعة:</b> '+weak.join('، ')+'</p>';
+    h+='<p style="margin-top:10px;color:#0b3d2e"><b>التوصية:</b> '+(r.passed?'يُشكر الطالب ويُحفّز على الاستمرار في التلاوة والتدبر.':'إعادة الشرح للدروس المرتبطة بالأسئلة أعلاه ثم إعادة الاختبار.')+'</p>';
+  } else {
+    var rows2='';
+    r.ans.forEach(function(a){rows2+='<tr><td>'+a.n+'</td><td>'+(a.pick>=0?a.pick+1:'—')+'</td><td class="'+(a.ok?'ok':'bad')+'">'+(a.ok?'صحيحة':'خطأ')+'</td></tr>';});
+    h+='<h3 style="color:#0b3d2e;margin:16px 0 6px">خريطة الإجابات</h3><table class="det"><thead><tr><th>#</th><th>رقم الاختيار</th><th>النتيجة</th></tr></thead><tbody>'+rows2+'</tbody></table>';
+  }
+  h+='<div style="margin-top:14px"><button class="btn-ghost btn-mini" onclick="window.print()">طباعة التقرير</button></div>';
+  h+='</div>';
+  document.getElementById('out').innerHTML=h;
+}
+var BATCH=[];
+function batchReport(){
+  BATCH=[];
+  var lines=document.getElementById('batchInput').value.split(/\n+/);
+  lines.forEach(function(l){var r=decode(l);if(r)BATCH.push(r);});
+  if(!BATCH.length){document.getElementById('batchOut').innerHTML='<p class="bad">لم يتم التعرف على أي رمز صحيح.</p>';return;}
+  var rows='',sum=0,pass=0;
+  BATCH.sort(function(a,b){return b.pct-a.pct;});
+  BATCH.forEach(function(r,i){
+    sum+=r.pct;if(r.passed)pass++;
+    rows+='<tr><td>'+(i+1)+'</td><td>'+esc(r.student)+'</td><td>'+esc(r.grade)+(r.section?'/'+esc(r.section):'')+
+      '</td><td>'+esc(r.school||'')+'</td><td>وحدة '+r.unit+'</td><td>'+r.exam+'</td><td>'+r.score+'/'+r.max+
+      '</td><td>'+r.pct+'%</td><td class="'+(r.passed?'ok':'bad')+'">'+(r.passed?'اجتياز':'لم يجتز')+'</td><td>'+r.date+'</td></tr>';
+  });
+  var avg=Math.round(sum/BATCH.length);
+  document.getElementById('batchOut').innerHTML=
+    '<div class="kv" style="margin-top:12px"><div><b>عدد الطلاب</b>'+BATCH.length+'</div><div><b>المتوسط</b>'+avg+'%</div>'+
+    '<div><b>الاجتياز</b>'+pass+'</div><div><b>لم يجتز</b>'+(BATCH.length-pass)+'</div></div>'+
+    '<table class="det"><thead><tr><th>#</th><th>الطالب</th><th>الصف/الشعبة</th><th>المدرسة</th><th>الوحدة</th><th>الرمز</th><th>الدرجة</th><th>النسبة</th><th>النتيجة</th><th>التاريخ</th></tr></thead><tbody>'+rows+'</tbody></table>';
+}
+function csvData(){
+  var head=['الطالب','الصف','الشعبة','المدرسة','الوحدة','رمز الاختبار','الدرجة','العظمى','النسبة','النتيجة','التاريخ','الأسئلة الخطأ'];
+  var lines=[head.join(',')];
+  BATCH.forEach(function(r){
+    var wrong=r.ans.filter(function(a){return !a.ok;}).map(function(a){return a.n;}).join(' ');
+    lines.push([r.student,r.grade,r.section,r.school,r.unit,r.exam,r.score,r.max,r.pct,r.passed?'اجتياز':'لم يجتز',r.date,wrong].map(function(v){return '"'+String(v).replace(/"/g,'""')+'"';}).join(','));
+  });
+  return '\ufeff'+lines.join('\n');
+}
+function downloadCSV(){
+  if(!BATCH.length){alert('أنشئ جدول الفصل أولًا');return;}
+  var a=document.createElement('a');
+  a.href='data:text/csv;charset=utf-8,'+encodeURIComponent(csvData());
+  a.download='نتائج-الفصل.csv';a.click();
+}
+function copyCSV(){ if(!BATCH.length){alert('أنشئ جدول الفصل أولًا');return;} navigator.clipboard.writeText(csvData()); alert('تم النسخ — الصقه في Google Sheets مباشرة'); }
+function kvb(k,v){return '<div><b>'+k+'</b>'+v+'</div>';}
+function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+
+function readCode(){
+  var c=document.getElementById('codeInput').value;
+  var r=decode(c);
+  if(!r){alert('الرمز غير صحيح. تأكد من نسخ رمز النتيجة كاملًا (يبدأ بـ IOAQ1:)');return;}
+  var bank=BANK[r.unit]||{};
+  var kind=(r.exam&&r.exam[0]==='G')?'game':'exam';
+  renderReport(r,(bank[kind]||{}).questions||null);
+}
+function demoCode(){
+  var u=document.getElementById('unitSel').value,k=document.getElementById('kindSel').value;
+  var m=BANK[u]&&BANK[u][k]; if(!m){alert('لا يوجد');return;}
+  /* توليد رمز تجريبي: إجابات صحيحة بالكامل */
+  var ans=m.questions.map(function(q,i){return (i+1)+':'+q.a+':1';}).join(',');
+  var s=[u,(k==='game'?'G':'E')+String(u).padStart(2,'0'),'محمد بن عبد الله العتيبي','أول ثانوي','أ','مدرسة ...............',
+         m.questions.reduce(function(a,q){return a+q.p;},0)+'/'+m.questions.reduce(function(a,q){return a+q.p;},0),
+         '261110',1,340,ans].join('|');
+  document.getElementById('codeInput').value='IOAQ1:'+btoa(unescape(encodeURIComponent(s))).replace(/=+$/,'');
+  readCode();
+}
+/* ===== ماسح QR ===== */
+var scanStream=null;
+async function startScan(){
+  var box=document.getElementById('reader');box.innerHTML='';
+  try{
+    scanStream=await navigator.mediaDevices.getUserMedia({video:{facingMode:'environment'}});
+  }catch(e){ alert('لم يتم السماح بالكاميرا. استخدم إدخال الرمز يدويًا أو تطبيق ماسح الباركود في الجوال.');return; }
+  var v=document.createElement('video');v.setAttribute('playsinline','');v.srcObject=scanStream;v.muted=true;box.appendChild(v);await v.play();
+  var cv=document.createElement('canvas');
+  var ctx=cv.getContext('2d',{willReadFrequently:true});
+  var detector=('BarcodeDetector' in window)?new BarcodeDetector({formats:['qr_code']}):null;
+  async function loop(){
+    if(!scanStream)return;
+    if(v.readyState===v.HAVE_ENOUGH_DATA){
+      cv.width=v.videoWidth;cv.height=v.videoHeight;ctx.drawImage(v,0,0,cv.width,cv.height);
+      if(detector){
+        var codes=await detector.detect(cv);
+        if(codes&&codes.length){ stopScan(); document.getElementById('codeInput').value=codes[0].rawValue; readCode(); return; }
+      } else { /* بدون BarcodeDetector: نعطي صورة للمستخدم */
+        if(!box.dataset.tip){ var p=document.createElement('p');p.style.cssText='color:#fff;font-size:12px;margin:6px';p.textContent='متصفحك لا يدعم المسح التلقائي — استخدم تطبيق الماسح في الجوال ثم الصق الرمز.';box.appendChild(p);box.dataset.tip=1; }
+      }
+    }
+    requestAnimationFrame(loop);
+  }
+  loop();
+}
+function stopScan(){
+  if(scanStream){scanStream.getTracks().forEach(function(t){t.stop();});scanStream=null;}
+  document.getElementById('reader').innerHTML='';
+}
+window.addEventListener('load',function(){ fillUnits(); stopScan(); });
+</script>
+</body></html>

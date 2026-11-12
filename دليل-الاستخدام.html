@@ -1,0 +1,184 @@
+<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>دليل الاستخدام — ألعاب الوحدات واختبارات القرآن الكريم وتفسيره</title>
+<style>
+:root{
+ --green:#0b3d2e; --green2:#125743; --gold:#c8a24a; --gold2:#f0d99b;
+ --ink:#12211c; --paper:#fbf7ec; --paper2:#f3ecd9; --accent:#8c2f39;
+ --ok:#2e7d5b; --bad:#a8323c; --shadow:0 18px 50px rgba(9,35,27,.18);
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+body{
+ font-family:"Noto Naskh Arabic","Amiri","Traditional Arabic","Segoe UI",Tahoma,sans-serif;
+ background:
+  radial-gradient(circle at 12% 8%,rgba(200,162,74,.20),transparent 42%),
+  radial-gradient(circle at 88% 0%,rgba(18,87,67,.22),transparent 45%),
+  repeating-linear-gradient(135deg,rgba(11,61,46,.035) 0 2px,transparent 2px 7px),
+  linear-gradient(180deg,#0b3d2e 0%,#0e4a37 55%,#0a3327 100%);
+ color:var(--ink);min-height:100vh;direction:rtl;padding:16px;
+}
+.wrap{max-width:980px;margin:0 auto}
+.card{
+ background:linear-gradient(180deg,var(--paper),var(--paper2));
+ border:1px solid rgba(11,61,46,.18);border-radius:22px;box-shadow:var(--shadow);
+ padding:22px;position:relative;overflow:hidden
+}
+.card::before{content:"";position:absolute;inset:8px;border:1px solid rgba(200,162,74,.55);border-radius:16px;pointer-events:none}
+.brand{display:flex;gap:10px;align-items:center;justify-content:center;flex-wrap:wrap;margin-bottom:6px}
+.badge{font-size:12px;letter-spacing:.4px;color:#6b5a2a;background:linear-gradient(180deg,#fff8e3,#f2e4bd);border:1px solid #d8c07a;padding:4px 10px;border-radius:999px}
+h1{font-size:clamp(22px,4.4vw,36px);margin:6px 0 4px;color:var(--green);text-align:center;line-height:1.35}
+h2{font-size:clamp(18px,3vw,25px);color:var(--green);margin:0 0 10px}
+p.lead{text-align:center;color:#3c4b44;margin:2px 0 16px;font-size:15px}
+.gold{color:#a8842f;font-weight:700}
+.row{display:flex;gap:12px;flex-wrap:wrap}
+.row>*{flex:1 1 210px}
+label{display:block;font-size:13px;color:#4a5a52;margin:0 0 5px}
+input[type=text],select{
+ width:100%;padding:11px 13px;border-radius:12px;border:1.5px solid #cfc3a1;background:#fffdf6;font:inherit;font-size:15px;color:var(--ink)
+}
+input[type=text]:focus,select:focus{outline:none;border-color:var(--green2);box-shadow:0 0 0 3px rgba(18,87,67,.15)}
+button{font:inherit;cursor:pointer;border:none;border-radius:14px;padding:13px 22px;font-weight:700;transition:.18s transform,.18s box-shadow,.18s filter}
+button:active{transform:translateY(1px) scale(.995)}
+.btn-main{background:linear-gradient(180deg,#17795c,#0b3d2e);color:#fff;box-shadow:0 10px 24px rgba(11,61,46,.30)}
+.btn-main:hover{filter:brightness(1.08)}
+.btn-gold{background:linear-gradient(180deg,#e7c877,#c8a24a);color:#3a2c08;box-shadow:0 10px 22px rgba(200,162,74,.35)}
+.btn-ghost{background:#fffdf6;color:var(--green);border:1.5px solid #d5c9a6}
+.btn-mini{padding:8px 13px;font-size:13px;border-radius:11px}
+.center{text-align:center}
+.muted{color:#63716a;font-size:13px}
+.hidden{display:none!important}
+/* header bar */
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+.topbar .pill{background:rgba(255,255,255,.90);border:1px solid rgba(200,162,74,.6);border-radius:999px;padding:7px 14px;font-size:13px;color:var(--green);font-weight:700;white-space:nowrap}
+/* progress */
+.prog{height:12px;background:#e6dcc0;border-radius:999px;overflow:hidden;border:1px solid #d6c9a4;margin:10px 0 4px}
+.prog>i{display:block;height:100%;width:0;background:linear-gradient(90deg,#c8a24a,#17795c);transition:width .4s ease}
+/* question */
+.qmeta{display:flex;justify-content:space-between;font-size:13px;color:#5b6a62;margin-bottom:8px;flex-wrap:wrap;gap:6px}
+.qtext{font-size:clamp(18px,2.7vw,23px);line-height:1.75;color:#14261f;margin:6px 0 16px;font-weight:600}
+.ayah{font-family:"Amiri","Noto Naskh Arabic",serif;font-size:clamp(19px,2.9vw,25px);line-height:2.2;background:#fffdf3;border:1px solid #e0d4b0;border-right:5px solid var(--gold);border-radius:14px;padding:14px 16px;margin:0 0 14px;color:#1c2f27}
+.opts{display:grid;gap:11px}
+.opt{
+ display:flex;gap:11px;align-items:center;background:#fffdf6;border:1.6px solid #d8cbaa;
+ border-radius:14px;padding:12px 14px;font-size:16.5px;line-height:1.55;color:#17281f;cursor:pointer;text-align:right;
+ transition:.15s;width:100%;font-family:inherit
+}
+.opt>span:last-child{flex:1 1 auto;min-width:0;overflow-wrap:anywhere}
+.opt:hover{border-color:var(--green2);box-shadow:0 8px 18px rgba(11,61,46,.10);transform:translateY(-1px)}
+.opt .k{width:30px;height:30px;flex:0 0 30px;border-radius:9px;background:#f0e6c8;color:#6b5417;display:grid;place-items:center;font-weight:800;font-size:14px}
+.opt.correct{background:#e8f6ee;border-color:#2e7d5b;box-shadow:0 0 0 3px rgba(46,125,91,.15)}
+.opt.wrong{background:#fdecee;border-color:#a8323c;box-shadow:0 0 0 3px rgba(168,50,60,.13)}
+.opt.dim{opacity:.45;pointer-events:none}
+.fb{margin-top:14px;border-radius:14px;padding:13px 15px;font-size:15px;line-height:1.8;display:none}
+.fb.show{display:block;animation:pop .25s ease}
+.fb.ok{background:#e8f6ee;border:1px solid #b9dcc8;color:#14512f}
+.fb.bad{background:#fdecee;border:1px solid #f0c3c8;color:#7c2027}
+@keyframes pop{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.tools{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.chip{background:#fff9e8;border:1px dashed #cdb271;border-radius:999px;padding:8px 13px;font-size:13px;color:#6d5a24;cursor:pointer}
+.chip[disabled]{opacity:.45;cursor:not-allowed;text-decoration:line-through}
+/* result */
+.score-ring{width:150px;height:150px;margin:6px auto 12px;border-radius:50%;display:grid;place-items:center;position:relative;
+ background:conic-gradient(var(--gold) var(--p,0%),#e8dfc4 0);}
+.score-ring::after{content:"";position:absolute;inset:11px;background:var(--paper);border-radius:50%;box-shadow:inset 0 0 0 1px #ded1ab;z-index:0}
+.score-ring b{position:relative;z-index:2;font-size:38px;color:var(--green);display:block;text-align:center;line-height:1.1}
+.score-ring span{position:relative;z-index:2;font-size:12px;color:#7a6a3d;display:block;text-align:center;margin-top:2px}
+.stars{font-size:30px;letter-spacing:6px;color:#c8a24a;text-align:center;margin:2px 0 8px}
+table.rep{width:100%;border-collapse:collapse;font-size:14px;margin:10px 0}
+table.rep td,table.rep th{border-bottom:1px solid #e4d9bb;padding:9px 6px;text-align:right}
+table.rep th{color:#6b5a2a;font-weight:700;background:#f7f0da}
+.tag{display:inline-block;padding:2px 9px;border-radius:999px;font-size:12px}
+.tag.ok{background:#e3f3e9;color:#1d6a45}.tag.bad{background:#fbe6e8;color:#8c2f39}
+/* certificate */
+#certWrap{margin-top:16px}
+#certCanvas{width:100%;max-width:1000px;border-radius:14px;box-shadow:0 14px 40px rgba(0,0,0,.28);background:#fff}
+.qrbox{display:flex;gap:14px;align-items:center;justify-content:center;flex-wrap:wrap;margin-top:14px}
+.qrbox canvas{background:#fff;padding:6px;border-radius:10px;border:1px solid #ddd}
+.code{font-family:ui-monospace,Consolas,monospace;font-size:10.5px;word-break:break-all;background:#0f2b23;color:#d7f0e4;padding:10px;border-radius:10px;max-height:90px;overflow:auto;text-align:left;direction:ltr}
+footer{text-align:center;color:rgba(255,255,255,.72);font-size:12.5px;margin:22px 0 6px;line-height:1.9}
+a{color:#f0d99b}
+.flexcenter{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:16px}
+.timer{font-variant-numeric:tabular-nums}
+.alert{background:#fff4e0;border:1px solid #e7c98d;color:#7a5a12;padding:11px 14px;border-radius:12px;font-size:13.5px;line-height:1.8;margin-top:12px}
+@media (max-width:560px){ .card{padding:16px} .opt{font-size:15.4px;padding:12px} }
+@media print{
+ body{background:#fff;padding:0}
+ .noprint{display:none!important}
+ .card{box-shadow:none;border:none}
+ #certCanvas{box-shadow:none;width:100%}
+}
+
+h1{color:#0b3d2e;text-align:center}
+h2{color:#0b3d2e;margin-top:22px;border-bottom:2px solid #e6d4a2;padding-bottom:6px}
+ol,ul{padding-inline-start:22px;line-height:2;font-size:15px}
+table{width:100%;border-collapse:collapse;font-size:13.5px;margin:10px 0;background:#fffdf6}
+th,td{border:1px solid #e0d4b0;padding:8px;text-align:right}
+th{background:#f7f0da;color:#6b5a2a}
+.note{background:#fff4e0;border:1px solid #e7c98d;border-radius:12px;padding:12px 14px;font-size:14px;line-height:1.9;margin:12px 0}
+code{background:#0f2b23;color:#d7f0e4;padding:2px 6px;border-radius:6px;font-size:12px}
+</style></head><body><div class="wrap">
+<div class="card">
+<h1>دليل الاستخدام للمعلم</h1>
+<p class="center muted">مادة الدراسات الإسلامية — القرآن الكريم وتفسيره ١ · السنة الأولى المشتركة · ١٤٤٨هـ<br>إعداد المعلم: عمر العيسى</p>
+
+<h2>١) محتويات الحزمة</h2>
+<table>
+<tr><th>المجلد</th><th>المحتوى</th></tr>
+<tr><td>ألعاب الوحدات</td><td>١٠ ملفات لعبة (HTML)، لكل وحدة لعبة تقييمية من ١٠ أسئلة متوسطة–صعبة، مع تلميحات وتفسير لكل إجابة، وشهادة اجتياز بباركود.</td></tr>
+<tr><td>الاختبارات الإلكترونية</td><td>١٠ اختبارات (HTML)، كل اختبار ١٠ أسئلة: صح/خطأ + اختيار من متعدد، بمؤقت ١٠ دقائق ودرجة اجتياز ٧٠٪.</td></tr>
+<tr><td>عروض البوربوينت للدروس</td><td>٢٥ عرضًا (PPTX)، لكل درس: الآيات مع تلاوة سعد الغامدي مضمّنة، ثم التمهيد بالصور الدالة، ثم الشرح والحوار والقصة والرحلة العلمية.</td></tr>
+<tr><td>الشهادات ولوحة المتابعة</td><td>صفحة قارئ نتائج الطلاب (مسح باركود/لصق رمز/وضع جماعي + CSV)، وهذا الدليل، والصفحة الرئيسية، والموقع كاملًا في ملف ZIP.</td></tr>
+</table>
+
+<h2>٢) كيف تشارك الطلاب؟</h2>
+<ol>
+<li><b>الأسهل:</b> ارفع ملفات الألعاب والاختبارات إلى خدمة استضافة مجانية مثل Netlify Drop (سحب وإفلات) أو GitHub Pages، ثم أرسل رابط الوحدة في مجموعة الصف.</li>
+<li><b>بدون استضافة:</b> أرسل ملف اللعبة للطالب عبر واتساب/درايف، ويفتحه من الجوال مباشرة — بعض المتصفحات تمنع الطباعة من داخل التطبيق، فيُفضّل فتحه من متصفح Chrome.</li>
+<li><b>على شبكة المدرسة:</b> ضع المجلد على جهاز المعلم وشارك رابط <code>index.html</code> عبر الشبكة الداخلية.</li>
+</ol>
+<div class="note">الملفات تعمل بلا إنترنت! مكتبة الباركود (qrcode.min.js) وملفات بنك الأسئلة (manifest.js) موجودة داخل نفس المجلد — احتفظ بها بجوار ملفات HTML.</div>
+
+<h2>٣) مسار الطالب</h2>
+<ol>
+<li>يكتب الاسم الثلاثي، ويختار الصف والشعبة، ويكتب اسم المدرسة.</li>
+<li>يبدأ اللعبة/الاختبار، ويجيب على ١٠ أسئلة، ويظهر له التفسير فور كل إجابة.</li>
+<li>عند بلوغ ٨٠٪ في اللعبة (٧٠٪ في الاختبار) تُفتح شهادة الاجتياز وتحمل: الاسم، الصف، الشعبة، المدرسة، الوحدة، الدرجة، التقدير، التاريخ، رقم الشهادة، وباركود.</li>
+<li>يضغط «تنزيل الشهادة صورة» أو «طباعة الشهادة» ويرسلها للمعلم.</li>
+</ol>
+
+<h2>٤) كيف يقرأ المعلم النتيجة من الباركود؟</h2>
+<ol>
+<li>افتح صفحة <b>قارئ نتائج الطلاب</b> على جوالك.</li>
+<li>اضغط «تشغيل الكاميرا» ووجّهها إلى باركود الشهادة، أو امسح الباركود بأي تطبيق ماسح ثم الصق الرمز (يبدأ بـ <code>IOAQ1:</code>).</li>
+<li>يظهر تقرير كامل: بيانات الطالب، الدرجة، النسبة، النتيجة، <b>وتفصيل كل إجابة</b> مع الدليل والتوصية.</li>
+<li>للفصل كاملًا: ألصق رموز الطلاب في «الوضع الجماعي» ثم «إنشاء جدول الفصل» ← «تنزيل CSV» أو «نسخ للصق في Google Sheets».</li>
+</ol>
+<div class="note">بديل سريع: أي تطبيق ماسح باركود يعرض نص الرمز، ويمكن للمعلم قراءة الاسم والدرجة منه مباشرة، لكن الصفحة تعطي التقرير المفصّل.</div>
+
+<h2>٥) عروض البوربوينت</h2>
+<ul>
+<li>كل عرض يبدأ بـ: شريحة تعريف، الأهداف، <b>شرائح الآيات مع أيقونة الصوت</b> (تلاوة سعد الغامدي مضمّنة داخل الملف — تعمل بلا إنترنت).</li>
+<li>ثم شريحة التمهيد بالصور الدالة على الآيات، ثم الشرح، ثم أسلوب الحوار، ثم القصة، ثم الرحلة العلمية، ثم النشاط والتقويم، ثم روابط اللعبة والاختبار.</li>
+<li>لتشغيل الصوت: في عرض الشرائح اضغط أيقونة 🔊 أسفل يسار شريحة الآيات.</li>
+<li>الملفات بصيغة PPTX قابلة للتحرير في PowerPoint أو Google Slides (Upload ← Open with Google Slides).</li>
+</ul>
+
+<h2>٦) خريطة الوحدات والأسئلة</h2>
+<table>
+<tr><th>الوحدة</th><th>الاسم</th><th>الدروس</th><th>أسئلة اللعبة</th><th>أسئلة الاختبار</th></tr>
+<tr><td>الوحدة 1</td><td>مقدمة في التفسير</td><td>التعريف بعلم التفسير ونشأته، أهمية علم التفسير وضوابطه، أبرز المؤلفات الموثوقة في التفسير، التقنية في خدمة القرآن الكريم وتفسيره</td><td>10</td><td>١٠</td></tr><tr><td>الوحدة 2</td><td>سورة الفاتحة</td><td>تفسير سورة الفاتحة</td><td>10</td><td>١٠</td></tr><tr><td>الوحدة 3</td><td>سورة يونس</td><td>تفسير سورة يونس (٣−١٠)، تفسير سورة يونس (٢٦−٣٣)، تفسير سورة يونس (٦٢−٧٠)</td><td>10</td><td>١٠</td></tr><tr><td>الوحدة 4</td><td>سورة هود</td><td>تفسير سورة هود (٩٦−١٠٨)، تفسير سورة هود (١١٢−١٢٣)</td><td>10</td><td>١٠</td></tr><tr><td>الوحدة 5</td><td>سورة يوسف</td><td>تفسير سورة يوسف (٤٦−٥٧)، تفسير سورة يوسف (١٠٢−١١١)</td><td>10</td><td>١٠</td></tr><tr><td>الوحدة 6</td><td>سورة الرعد</td><td>تفسير سورة الرعد (٨−١٥)، تفسير سورة الرعد (١٩−٢٩)</td><td>10</td><td>١٠</td></tr><tr><td>الوحدة 7</td><td>سورة إبراهيم</td><td>تفسير سورة إبراهيم (٢٤−٣١)، تفسير سورة إبراهيم (٤٢−٥٢)</td><td>10</td><td>١٠</td></tr><tr><td>الوحدة 8</td><td>سورة الحجر</td><td>تفسير سورة الحجر (٢٨−٥٠)، تفسير سورة الحجر (٨٥−٩٩)</td><td>10</td><td>١٠</td></tr><tr><td>الوحدة 9</td><td>سورة النحل</td><td>تفسير سورة النحل (١٠−١٨)، تفسير سورة النحل (١١٢−١١٧)، تفسير سورة النحل (١٢٠−١٢٨)</td><td>10</td><td>١٠</td></tr><tr><td>الوحدة 10</td><td>سورة الإسراء</td><td>تفسير سورة الإسراء (٢٣−٣٠)، تفسير سورة الإسراء (٣١−٣٩)، تفسير سورة الإسراء (٧٨−٨٧)، تفسير سورة الإسراء (١٠٥−١١١)</td><td>10</td><td>١٠</td></tr>
+</table>
+
+<h2>٧) ملاحظات تربوية</h2>
+<ul>
+<li>الأسئلة متوسطة إلى صعبة، وتشمل الاستنباط والمقارنة والفوائد البلاغية والعقدية.</li>
+<li>التلميح في اللعبة يُنقص درجة السؤال بمقدار درجة واحدة، لتشجيع المحاولة الذاتية أولًا.</li>
+<li>درجة الاجتياز في اللعبة ٨٠٪ لتشجيع الإتقان، وفي الاختبار ٧٠٪.</li>
+<li>يمكن للمعلم تعديل الأسئلة بفتح ملف HTML في محرر نصوص وتعديل مصفوفة <code>APP.questions</code>.</li>
+</ul>
+
+<p class="center" style="margin-top:24px"><a class="badge" href="index.html">← العودة إلى الصفحة الرئيسية</a></p>
+</div>
+<footer>إعداد المعلم: عمر العيسى — الدراسات الإسلامية / القرآن الكريم وتفسيره · ١٤٤٨هـ</footer>
+</div></body></html>

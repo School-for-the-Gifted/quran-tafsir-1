@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>الدروس — القرآن الكريم وتفسيره ١</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:"Traditional Arabic","Segoe UI",Tahoma,sans-serif;background:#fbf7ec;color:#13322a;line-height:1.7}
+  header{background:linear-gradient(135deg,#0b3d2e,#12513c);color:#f7f3e6;padding:34px 20px 28px;text-align:center;border-bottom:5px solid #c8a24a}
+  header h1{font-size:clamp(24px,4vw,34px);margin-bottom:6px}
+  header p{color:#e4d9b8;font-size:clamp(14px,2vw,17px)}
+  .wrap{max-width:1100px;margin:0 auto;padding:22px 16px 60px}
+  .bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:18px 0 24px}
+  .chip{background:#fff;border:1.5px solid #cfc6a8;color:#0b3d2e;border-radius:999px;padding:7px 16px;cursor:pointer;font-family:inherit;font-size:15px;font-weight:600}
+  .chip:hover{border-color:#c8a24a;background:#fdf9ee}
+  .chip.on{background:#0b3d2e;color:#fff;border-color:#0b3d2e}
+  .card{background:#fff;border:1px solid #e2dbc4;border-radius:14px;padding:16px 18px;margin-bottom:14px;box-shadow:0 2px 8px rgba(11,61,46,.05)}
+  .top{display:flex;gap:14px;align-items:center;margin-bottom:14px}
+  .card.hide{display:none}
+  .num{flex:0 0 46px;height:46px;border-radius:50%;background:#0b3d2e;color:#c8a24a;display:grid;place-items:center;font-size:19px;font-weight:700}
+  .meta{flex:1;min-width:0}
+  .unit{font-size:13px;color:#8a7c52;font-weight:700}
+  .meta h3{font-size:clamp(16px,2.2vw,20px);font-weight:700;color:#0b3d2e}
+  .acts{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}
+  .btn{display:flex;align-items:center;justify-content:center;gap:7px;text-decoration:none;border-radius:11px;padding:11px 10px;font-size:15px;font-weight:700;font-family:inherit;border:1.5px solid transparent;transition:transform .12s,box-shadow .12s;text-align:center}
+  .btn:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(11,61,46,.14)}
+  .btn .ic{font-size:17px;line-height:1}
+  .b-ppt{background:#0b3d2e;color:#fff}
+  .b-game{background:#1f6b4f;color:#fff}
+  .b-vid{background:#8b2f2f;color:#fff}
+  .b-exam{background:#c8a24a;color:#22180a}
+  .btn.off{background:#f1ece0;color:#9a9181;border-color:#e0d7c1;cursor:not-allowed;font-weight:600}
+  .btn.off:hover{transform:none;box-shadow:none}
+  .play{background:#0b3d2e;color:#fff}
+  .play:hover{background:#12513c}
+  .dl{background:#fbf7ec;color:#0b3d2e;border:1.5px solid #c8a24a}
+  .dl:hover{background:#f3ead2}
+  .note{background:#fff8e6;border:1px solid #e6d79f;border-right:5px solid #c8a24a;border-radius:10px;padding:14px 16px;margin-bottom:22px;font-size:15px}
+  .note b{color:#7a6416}
+  footer{text-align:center;color:#6b7a72;font-size:14px;padding:24px 16px 40px}
+  footer a{color:#0b3d2e;font-weight:700}
+  @media(max-width:760px){.acts{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:400px){.acts{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+  <h1>دروس المقرر — القرآن الكريم وتفسيره ١</h1>
+  <p>٢٥ درسًا · لكل درس: عرض البوربوينت · اللعبة · الفيديو · الاختبار</p>
+</header>
+<div class="wrap">
+
+  <div class="note">
+    <b>كل درس له أربعة أزرار:</b>
+    📊 عرض البوربوينت (من Google Drive — يشغّل الصوت) · 🎮 لعبة الوحدة · 🎬 الفيديو · 📝 اختبار الوحدة (١٠ أسئلة).
+    <br><small>الألعاب والاختبارات لكل <b>وحدة</b>، لذلك تتكرر نفسها عبر دروس الوحدة الواحدة.</small>
+  </div>
+
+  <div class="bar">
+    <button class="chip on" data-f="all">الكل (٢٥)</button>
+    <button class="chip" data-f="1">الوحدة 1</button><button class="chip" data-f="2">الوحدة 2</button><button class="chip" data-f="3">الوحدة 3</button><button class="chip" data-f="4">الوحدة 4</button><button class="chip" data-f="5">الوحدة 5</button><button class="chip" data-f="6">الوحدة 6</button><button class="chip" data-f="7">الوحدة 7</button><button class="chip" data-f="8">الوحدة 8</button><button class="chip" data-f="9">الوحدة 9</button><button class="chip" data-f="10">الوحدة 10</button>
+  </div>
+
+  <div id="list">
+    
+    <article class="card" data-unit="1">
+      <div class="top">
+        <div class="num">1</div>
+        <div class="meta">
+          <span class="unit">الوحدة 1 — مقدمة في التفسير</span>
+          <h3>الدرس 1 — التعريف بعلم التفسير ونشأته</h3>
+        </div>
+      </div>
+      <div class="acts">
+        <a class="btn b-ppt" href="https://drive.google.com/file/d/11_nie3F3nHA8w2zsbVxUYQuvHPr0adC6/preview" target="_blank" rel="noopener">
+          <span class="ic">📊</span><span class="tx">عرض البوربوينت</span></a>
+        <a class="btn b-game" href="لعبة-الوحدة-01-مقدمة-في-التفسير.html">
+          <span class="ic">🎮</span><span class="tx">عرض اللعبة</span></a>
+        <button class="btn b-vid off" type="button" title="لم يُضف فيديو لهذا الدرس بعد"><span class="ic">🎬</span><span class="tx">الفيديو — قريبًا</span></button>
+        <a class="btn b-exam" href="اختبار-الوحدة-01-مقدمة-في-التفسير.html">
+          <span class="ic">📝</span><span class="tx">اختبار الوحدة</span></a>
+      </div>
+    </article>
+    <article class="card" data-unit="1">
+      <div class="top">
+        <div class="num">2</div>
+        <div class="meta">
+          <span class="unit">الوحدة 1 — مقدمة في التفسير</span>
+          <h3>الدرس 2 — أهمية علم التفسير وضوابطه</h3>
+        </div>
+      </div>
+      <div class="acts">
+        <a class="btn b-ppt" href="https://drive.google.com/file/d/1_b85lnwUmQLYlMC_SIi7TazlW8O_RFrV/preview" target="_blank" rel="noopener">
+          <span class="ic">📊</span><span class="tx">عرض البوربوينت</span></a>
+        <a class="btn b-game" href="لعبة-الوحدة-01-مقدمة-في-التفسير.html">
+          <span class="ic">🎮</span><span class="tx">عرض اللعبة</span></a>
+        <button class="btn b-vid off" type="button" title="لم يُضف فيديو لهذا الدرس بعد"><span class="ic">🎬</span><span class="tx">الفيديو — قريبًا</span></button>
+        <a class="btn b-exam" href="اختبار-الوحدة-01-مقدمة-في-التفسير.html">
+          <span class="ic">📝</span><span class="tx">اختبار الوحدة</span></a>
+      </div>
+    </article>
+    <article class="card" data-unit="1">
+      <div class="top">
+        <div class="num">3</div>
+        <div class="meta">
+          <span class="unit">الوحدة 1 — مقدمة في التفسير</span>
+          <h3>الدرس 3 — أبرز المؤلفات الموثوقة في التفسير</h3>
+        </div>
+      </div>
+      <div class="acts">
+        <a class="btn b-ppt" href="https://drive.google.com/file/d/1xEfsfkRF8Fij_zlXuGsPyg-AHTuwogbS/preview" target="_blank" rel="noopener">
+          <span class="ic">📊</span><span class="tx">عرض البوربوينت</span></a>
+        <a class="btn b-game" href="لعبة-الوحدة-01-مقدمة-في-التفسير.html">
+          <span class="ic">🎮</span><span class="tx">عرض اللعبة</span></a>
+        <button class="btn b-vid off" type="button" title="لم يُضف فيديو لهذا الدرس بعد"><span class="ic">🎬</span><span class="tx">الفيديو — قريبًا</span></button>
+        <a class="btn b-exam" href="اختبار-الوحدة-01-مقدمة-في-التفسير.html">
+          <span class="ic">📝</span><span class="tx">اختبار الوحدة</span></a>
+      </div>
+    </article>
+    <article class="card" data-unit="1">
+      <div class="top">
+        <div class="num">4</div>
+        <div class="meta">
+          <span class="unit">الوحدة 1 — مقدمة في التفسير</span>
+          <h3>الدرس 4 — التقنية في خدمة القرآن الكريم وتفسيره</h3>
+        </div>
+      </div>
+      <div class="acts">
+        <a class="btn b-ppt" href="https://drive.google.com/file/d/1VtAFUPqIOjDLysCzLrfyLUyPRa3gCViO/preview" target="_blank" rel="noopener">
+          <span class="ic">📊</span><span class="tx">عرض البوربوينت</span></a>
+        <a class="btn b-game" href="لعبة-الوحدة-01-مقدمة-في-التفسير.html">
+          <span class="ic">🎮</span><span class="tx">عرض اللعبة</span></a>
+        <button class="btn b-vid off" type="button" title="لم يُضف فيديو لهذا الدرس بعد"><span class="ic">🎬</span><span class="tx">الفيديو — قريبًا</span></button>
+        <a class="btn b-exam" href="اختبار-الوحدة-01-مقدمة-في-التفسير.html">
+          <span class="ic">📝</span><span class="tx">اختبار الوحدة</span></a>
+      </div>
+    </article>
+    <article class="card" data-unit="2">
+      <div class="top">
+        <div class="num">5</div>
+        <div class="meta">
+          <span class="unit">الوحدة 2 — سورة الفاتحة</span>
+          <h3>الدرس 5 — تفسير سورة الفاتحة</h3>
+        </div>
+      </div>
+      <div class="acts">
+        <a class="btn b-ppt" href="https://drive.google.com/file/d/1DInmDNL7vTJs2q64o20cIEQY7DaNcBC1/preview" target="_blank" rel="noopener">
+          <span class="ic">📊</span><span class="tx">عرض البوربوينت</span></a>
+        <a class="btn b-game" href="لعبة-الوحدة-02-سورة-الفاتحة.html">
+          <span class="ic">🎮</span><span class="tx">عرض اللعبة</span></a>
+        <button class="btn b-vid off" type="button" title="لم يُضف فيديو لهذا الدرس بعد"><span class="ic">🎬</span><span class="tx">الفيديو — قريبًا</span></button>
+        <a class="btn b-exam" href="اختبار-الوحدة-02-سورة-الفاتحة.html">
+          <span class="ic">📝</span><span class="tx">اختبار الوحدة</span></a>
+      </div>
+    </article>
+    <article class="card" data-unit="3">
+      <div class="top">
+        <div class="num">6</div>
+        <div class="meta">
+          <span class="unit">الوحدة 3 — سورة يونس</span>
+          <h3>الدرس 6 — تفسير سورة يونس (3-10)</h3>
+        </div>
+      </div>
+      <div class="acts">
+        <a class="btn b-ppt" href="https://drive.google.com/file/d/1TQPcyl_oCWepCBGLMCzYS_c7SRKeq_DG/preview" target="_blank" rel="noopener">
+          <span class="ic">📊</span><span class="tx">عرض البوربوينت</span></a>
+        <a class="btn b-game" href="لعبة-الوحدة-03-سورة-يونس.html">
+          <span class="ic">🎮</span><span class="tx">عرض اللعبة</span></a>
+        <button class="btn b-vid off" type="button" title="لم يُضف فيديو لهذا الدرس بعد"><span class="ic">🎬</span><span class="tx">الفيديو — قريبًا</span></button>
+        <a class="btn b-exam" href="اختبار-الوحدة-03-سورة-يونس.html">
+          <span class="ic">📝</span><span class="tx">اختبار الوحدة</span></a>
+      </div>
+    </article>
+    <article class="card" data-unit="3">
+      <div class="top">
+        <div class="num">7</div>
+        <div class="meta">
+          <span class="unit">الوحدة 3 — سورة يونس</span>
+          <h3>الدرس 7 — تفسير سورة يونس (26-33)</h3>
+        </div>
+      </div>
+      <div class="acts">
+        <a class="btn b-ppt" href="https://drive.google.com/file/d/1Eo8fpxAdVN55f50_BB1CWteOKFdVIw6O/preview" target="_blank" rel="noopener">
+          <span class="ic">📊</span><span class="tx">عرض البوربوينت</span></a>
+        <a class="btn b-game" href="لعبة-الوحدة-03-سورة-يونس.html">
+          <span class="ic">🎮</span><span class="tx">عرض اللعبة</span></a>
+        <button class="btn b-vid off" type="button" title="لم يُضف فيديو لهذا الدرس بعد"><span class="ic">🎬</span><span class="tx">الفيديو — قريبًا</span></button>
+        <a class="btn b-exam" href="اختبار-الوحدة-03-سورة-يونس.html">
+          <span class="ic">📝</span><span class="tx">اختبار الوحدة</span></a>
+      </div>
+    </article>
+    <article class="card" data-unit="3">
+      <div class="top">
+        <div class="num">8</div>
+        <div class="meta">
+          <span class="unit">الوحدة 3 — سورة يونس</span>
+          <h3>الدرس 8 — تفسير سورة يونس (62-70)</h3>
+        </div>
+      </div>
+      <div class="acts">
+        <a class="btn b-ppt" href="https://drive.google.com/file/d/1WToyYJIKnRuRyY4KNLZUMay_UmZetXrD/preview" target="_blank" rel="noopener">
+          <span class="ic">📊</span><span class="tx">عرض البوربوينت</span></a>
+        <a class="btn b-game" href="لعبة-الوحدة-03-سورة-يونس.html">
+          <span class="ic">🎮</span><span class="tx">عرض اللعبة</span></a>
+        <button class="btn b-vid off" type="button" title="لم يُضف فيديو لهذا الدرس بعد"><span class="ic">🎬</span><span class="tx">الفيديو — قريبًا</span></button>
+        <a class="btn b-exam" href="اختبار-الوحدة-03-سورة-يونس.html">
+          <span class="ic">📝</span><span class="tx">اختبار الوحدة</span></a>
+      </div>
+    </article>
+    <article class="card" data-unit="4">
+      <div class="top">
+        <div class="num">9</div>
+        <div class="meta">
+          <span class="unit">الوحدة 4 — سورة هود</span>
+          <h3>الدرس 9 — تفسير سورة هود (96-108)</h3>
+        </div>
+      </div>
+      <div class="acts">
+        <a class="btn b-ppt" href="https://drive.google.com/file/d/1lIOigMSn-4tE7PruolKUYNdMpFAWAyEW/preview" target="_blank" rel="noopener">
+          <span class="ic">📊</span><span class="tx">عرض البوربوينت</span></a>
+        <a class="btn b-game" href="لعبة-الوحدة-04-سورة-هود.html">
+          <span class="ic">🎮</span><span class="tx">عرض اللعبة</span></a>
+        <button class="btn b-vid off" type="button" title="لم يُضف فيديو لهذا الدرس بعد"><span class="ic">🎬</span><span class="tx">الفيديو — قريبًا</span></button>
+        <a class="btn b-exam" href="اختبار-الوحدة-04-سورة-هود.html">
+          <span class="ic">📝</span><span class="tx">اختبار الوحدة</span></a>
+      </div>
+    </article>
+    <article class="card" data-unit="4">
+      <div class="top">
+        <div class="num">10</div>
+        <div class="meta">
+          <span class="unit">الوحدة 4 — سورة هود</span>
+          <h3>الدرس 10 — تفسير سورة هود (112-123)</h3>
+        </div>
+      </div>
+      <div class="acts">
+        <a class="btn b-ppt" href="https://drive.google.com/file/d/15gqxRaefsVOtfpFIbEVQO5bsmDjzLHiR/preview" target="_blank" rel="noopener">
+          <span class="ic">📊</span><span class="tx">عرض البوربوينت</span></a>
+        <a class="btn b-game" href="لعبة-الوحدة-04-سورة-هود.html">
+          <span class="ic">🎮</span><span class="tx">عرض اللعبة</span></a>
+        <button class="btn b-vid off" type="button" title="لم يُضف فيديو لهذا الدرس بعد"><span class="ic">🎬</span><span class="tx">الفيديو — قريبًا</span></button>
+        <a class="btn b-exam" href="اختبار-الوحدة-04-سورة-هود.html">
+          <span class="ic">📝</span><span class="tx">اختبار الوحدة</span></a>
+      </div>
+    </article>
+    <article class="card" data-unit="5">
+      <div class="top">
+        <div class="num">11</div>
+        <div class="meta">
+          <span class="unit">الوحدة 5 — سورة يوسف</span>
+          <h3>الدرس 11 — تفسير سورة يوسف (46-57)</h3>
+        </div>
+      </div>
+      <div class="acts">
+        <a class="btn b-ppt" href="https://drive.google.com/file/d/1i0H3yqsudZA8trHKAnb9NQuhOSTXQEIb/preview" target="_blank" rel="noopener">
+          <span class="ic">📊</span><span class="tx">عرض البوربوينت</span></a>
+        <a class="btn b-game" href="لعبة-الوحدة-05-سورة-يوسف.html">
+          <span class="ic">🎮</span><span class="tx">عرض اللعبة</span></a>
+        <a class="btn b-vid" href="https://drive.google.com/file/d/12J8pFfgA8kr2lKHKY9tRr67uV214XtJ3/preview" target="_blank" rel="noopener"><span class="ic">🎬</span><span class="tx">عرض الفيديو</span></a>
+        <a class="btn b-exam" href="اختبار-الوحدة-05-سورة-يوسف.html">
+          <span class="ic">📝</span><span class="tx">اختبار الوحدة</span></a>
+      </div>
+    </article>
+    <article class="card" data-unit="5">
+      <div class="top">
+        <div class="num">12</div>
+        <div class="meta">
+          <span class="unit">الوحدة 5 — سورة يوسف</span>
+          <h3>الدرس 12 — تفسير سورة يوسف (102-111)</h3>
+        </div>
+      </div>
+      <div class="acts">
+        <a class="btn b-ppt" href="https://drive.google.com/file/d/1mywOE6EraBOT43M6BY94fuqpkO8o5xwN/preview" target="_blank" rel="noopener">
+          <span class="ic">📊</span><span class="tx">عرض البوربوينت</span></a>
+        <a class="btn b-game" href="لعبة-الوحدة-05-سورة-يوسف.html">
+          <span class="ic">🎮</span><span class="tx">عرض اللعبة</span></a>
+        <button class="btn b-vid off" type="button" title="لم يُضف فيديو لهذا الدرس بعد"><span class="ic">🎬</span><span class="tx">الفيديو — قريبًا</span></button>
+        <a class="btn b-exam" href="اختبار-الوحدة-05-سورة-يوسف.html">
+          <span class="ic">📝</span><span class="tx">اختبار الوحدة</span></a>
+      </div>
+    </article>
+    <article class="card" data-unit="6">
+      <div class="top">
+        <div class="num">13</div>
+        <div class="meta">
+          <span class="unit">الوحدة 6 — سورة الرعد</span>
+          <h3>الدرس 13 — تفسير سورة الرعد (8-15)</h3>
+        </div>
+      </div>
+      <div class="acts">
+        <a class="btn b-ppt" href="https://drive.google.com/file/d/1joN0H1_z2cb4RbYQ5M6TcxB_Cf1BpJ4r/preview" target="_blank" rel="noopener">
+          <span class="ic">📊</span><span class="tx">عرض البوربوينت</span></a>
+        <a class="btn b-game" href="لعبة-الوحدة-06-سورة-الرعد.html">
+          <span class="ic">🎮</span><span class="tx">عرض اللعبة</span></a>
+        <button class="btn b-vid off" type="button" title="لم يُضف فيديو لهذا الدرس بعد"><span class="ic">🎬</span><span class="tx">الفيديو — قريبًا</span></button>
+        <a class="btn b-exam" href="اختبار-الوحدة-06-سورة-الرعد.html">
+          <span class="ic">📝</span><span class="tx">اختبار الوحدة</span></a>
+      </div>
+    </article>
+    <article class="card" data-unit="6">
+      <div class="top">
+        <div class="num">14</div>
+        <div class="meta">
+          <span class="unit">الوحدة 6 — سورة الرعد</span>
+          <h3>الدرس 14 — تفسير سورة الرعد (19-29)</h3>
+        </div>
+      </div>
+      <div class="acts">
+        <a class="btn b-ppt" href="https://drive.google.com/file/d/17oweoGJrTY1YET-E-WV9bKxxXEeZ39id/preview" target="_blank" rel="noopener">
+          <span class="ic">📊</span><span class="tx">عرض البوربوينت</span></a>
+        <a class="btn b-game" href="لعبة-الوحدة-06-سورة-الرعد.html">
+          <span class="ic">🎮</span><span class="tx">عرض اللعبة</span></a>
+        <button class="btn b-vid off" type="button" title="لم يُضف فيديو لهذا الدرس بعد"><span class="ic">🎬</span><span class="tx">الفيديو — قريبًا</span></button>
+        <a class="btn b-exam" href="اختبار-الوحدة-06-سورة-الرعد.html">
+          <span class="ic">📝</span><span class="tx">اختبار الوحدة</span></a>
+      </div>
+    </article>
+    <article class="card" data-unit="7">
+      <div class="top">
+        <div class="num">15</div>
+        <div class="meta">
+          <span class="unit">الوحدة 7 — سورة إبراهيم</span>
+          <h3>الدرس 15 — تفسير سورة إبراهيم (24-31)</h3>
+        </div>
+      </div>
+      <div class="acts">
+        <a class="btn b-ppt" href="https://drive.google.com/file/d/1YmMgqC82qZBdNRSYrk-zewwdHOYUlLfo/preview" target="_blank" rel="noopener">
+          <span class="ic">📊</span><span class="tx">عرض البوربوينت</span></a>
+        <a class="btn b-game" href="لعبة-الوحدة-07-سورة-إبراهيم.html">
+          <span class="ic">🎮</span><span class="tx">عرض اللعبة</span></a>
+        <button class="btn b-vid off" type="button" title="لم يُضف فيديو لهذا الدرس بعد"><span class="ic">🎬</span><span class="tx">الفيديو — قريبًا</span></button>
+        <a class="btn b-exam" href="اختبار-الوحدة-07-سورة-إبراهيم.html">
+          <span class="ic">📝</span><span class="tx">اختبار الوحدة</span></a>
+      </div>
+    </article>
+    <article class="card" data-unit="7">
+      <div class="top">
+        <div class="num">16</div>
+        <div class="meta">
+          <span class="unit">الوحدة 7 — سورة إبراهيم</span>
+          <h3>الدرس 16 — تفسير سورة إبراهيم (42-52)</h3>
+        </div>
+      </div>
+      <div class="acts">
+        <a class="btn b-ppt" href="https://drive.google.com/file/d/1y1P92Kw6w-RQ0IyHWkaKlQ5-mUckUV38/preview" target="_blank" rel="noopener">
+          <span class="ic">📊</span><span class="tx">عرض البوربوينت</span></a>
+        <a class="btn b-game" href="لعبة-الوحدة-07-سورة-إبراهيم.html">
+          <span class="ic">🎮</span><span class="tx">عرض اللعبة</span></a>
+        <button class="btn b-vid off" type="button" title="لم يُضف فيديو لهذا الدرس بعد"><span class="ic">🎬</span><span class="tx">الفيديو — قريبًا</span></button>
+        <a class="btn b-exam" href="اختبار-الوحدة-07-سورة-إبراهيم.html">
+          <span class="ic">📝</span><span class="tx">اختبار الوحدة</span></a>
+      </div>
+    </article>
+    <article class="card" data-unit="8">
+      <div class="top">
+        <div class="num">17</div>
+        <div class="meta">
+          <span class="unit">الوحدة 8 — سورة الحجر</span>
+          <h3>الدرس 17 — تفسير سورة الحجر (28-50)</h3>
+        </div>
+      </div>
+      <div class="acts">
+        <a class="btn b-ppt" href="https://drive.google.com/file/d/1GDdokDX_oPBfoyg_07goS5wVV0C_Z0eI/preview" target="_blank" rel="noopener">
+          <span class="ic">📊</span><span class="tx">عرض البوربوينت</span></a>
+        <a class="btn b-game" href="لعبة-الوحدة-08-سورة-الحجر.html">
+          <span class="ic">🎮</span><span class="tx">عرض اللعبة</span></a>
+        <button class="btn b-vid off" type="button" title="لم يُضف فيديو لهذا الدرس بعد"><span class="ic">🎬</span><span class="tx">الفيديو — قريبًا</span></button>
+        <a class="btn b-exam" href="اختبار-الوحدة-08-سورة-الحجر.html">
+          <span class="ic">📝</span><span class="tx">اختبار الوحدة</span></a>
+      </div>
+    </article>
+    <article class="card" data-unit="8">
+      <div class="top">
+        <div class="num">18</div>
+        <div class="meta">
+          <span class="unit">الوحدة 8 — سورة الحجر</span>
+          <h3>الدرس 18 — تفسير سورة الحجر (85-99)</h3>
+        </div>
+      </div>
+      <div class="acts">
+        <a class="btn b-ppt" href="https://drive.google.com/file/d/1OwsLkRR96BmyNBGTLKBishwWbmE47C6N/preview" target="_blank" rel="noopener">
+          <span class="ic">📊</span><span class="tx">عرض البوربوينت</span></a>
+        <a class="btn b-game" href="لعبة-الوحدة-08-سورة-الحجر.html">
+          <span class="ic">🎮</span><span class="tx">عرض اللعبة</span></a>
+        <button class="btn b-vid off" type="button" title="لم يُضف فيديو لهذا الدرس بعد"><span class="ic">🎬</span><span class="tx">الفيديو — قريبًا</span></button>
+        <a class="btn b-exam" href="اختبار-الوحدة-08-سورة-الحجر.html">
+          <span class="ic">📝</span><span class="tx">اختبار الوحدة</span></a>
+      </div>
+    </article>
+    <article class="card" data-unit="9">
+      <div class="top">
+        <div class="num">19</div>
+        <div class="meta">
+          <span class="unit">الوحدة 9 — سورة النحل</span>
+          <h3>الدرس 19 — تفسير سورة النحل (10-18)</h3>
+        </div>
+      </div>
+      <div class="acts">
+        <a class="btn b-ppt" href="https://drive.google.com/file/d/1hF9Jp27F8kVEJoQoTMMFsNuEWpKbrxQT/preview" target="_blank" rel="noopener">
+          <span class="ic">📊</span><span class="tx">عرض البوربوينت</span></a>
+        <a class="btn b-game" href="لعبة-الوحدة-09-سورة-النحل.html">
+          <span class="ic">🎮</span><span class="tx">عرض اللعبة</span></a>
+        <button class="btn b-vid off" type="button" title="لم يُضف فيديو لهذا الدرس بعد"><span class="ic">🎬</span><span class="tx">الفيديو — قريبًا</span></button>
+        <a class="btn b-exam" href="اختبار-الوحدة-09-سورة-النحل.html">
+          <span class="ic">📝</span><span class="tx">اختبار الوحدة</span></a>
+      </div>
+    </article>
+    <article class="card" data-unit="9">
+      <div class="top">
+        <div class="num">20</div>
+        <div class="meta">
+          <span class="unit">الوحدة 9 — سورة النحل</span>
+          <h3>الدرس 20 — تفسير سورة النحل (112-117)</h3>
+        </div>
+      </div>
+      <div class="acts">
+        <a class="btn b-ppt" href="https://drive.google.com/file/d/1EY32ZrqyB-9HFRhc6VExorOhdnScmi9L/preview" target="_blank" rel="noopener">
+          <span class="ic">📊</span><span class="tx">عرض البوربوينت</span></a>
+        <a class="btn b-game" href="لعبة-الوحدة-09-سورة-النحل.html">
+          <span class="ic">🎮</span><span class="tx">عرض اللعبة</span></a>
+        <button class="btn b-vid off" type="button" title="لم يُضف فيديو لهذا الدرس بعد"><span class="ic">🎬</span><span class="tx">الفيديو — قريبًا</span></button>
+        <a class="btn b-exam" href="اختبار-الوحدة-09-سورة-النحل.html">
+          <span class="ic">📝</span><span class="tx">اختبار الوحدة</span></a>
+      </div>
+    </article>
+    <article class="card" data-unit="9">
+      <div class="top">
+        <div class="num">21</div>
+        <div class="meta">
+          <span class="unit">الوحدة 9 — سورة النحل</span>
+          <h3>الدرس 21 — تفسير سورة النحل (120-128)</h3>
+        </div>
+      </div>
+      <div class="acts">
+        <a class="btn b-ppt" href="https://drive.google.com/file/d/1Ulyz4PSmtNC3aLAZ6iWi8E-CYm-URbEz/preview" target="_blank" rel="noopener">
+          <span class="ic">📊</span><span class="tx">عرض البوربوينت</span></a>
+        <a class="btn b-game" href="لعبة-الوحدة-09-سورة-النحل.html">
+          <span class="ic">🎮</span><span class="tx">عرض اللعبة</span></a>
+        <button class="btn b-vid off" type="button" title="لم يُضف فيديو لهذا الدرس بعد"><span class="ic">🎬</span><span class="tx">الفيديو — قريبًا</span></button>
+        <a class="btn b-exam" href="اختبار-الوحدة-09-سورة-النحل.html">
+          <span class="ic">📝</span><span class="tx">اختبار الوحدة</span></a>
+      </div>
+    </article>
+    <article class="card" data-unit="10">
+      <div class="top">
+        <div class="num">22</div>
+        <div class="meta">
+          <span class="unit">الوحدة 10 — سورة الإسراء</span>
+          <h3>الدرس 22 — تفسير سورة الإسراء (23-30)</h3>
+        </div>
+      </div>
+      <div class="acts">
+        <a class="btn b-ppt" href="https://drive.google.com/file/d/1O7owSJE0-3rhSQ6ue98Uy41O45IjWn3V/preview" target="_blank" rel="noopener">
+          <span class="ic">📊</span><span class="tx">عرض البوربوينت</span></a>
+        <a class="btn b-game" href="لعبة-الوحدة-10-سورة-الإسراء.html">
+          <span class="ic">🎮</span><span class="tx">عرض اللعبة</span></a>
+        <button class="btn b-vid off" type="button" title="لم يُضف فيديو لهذا الدرس بعد"><span class="ic">🎬</span><span class="tx">الفيديو — قريبًا</span></button>
+        <a class="btn b-exam" href="اختبار-الوحدة-10-سورة-الإسراء.html">
+          <span class="ic">📝</span><span class="tx">اختبار الوحدة</span></a>
+      </div>
+    </article>
+    <article class="card" data-unit="10">
+      <div class="top">
+        <div class="num">23</div>
+        <div class="meta">
+          <span class="unit">الوحدة 10 — سورة الإسراء</span>
+          <h3>الدرس 23 — تفسير سورة الإسراء (31-39)</h3>
+        </div>
+      </div>
+      <div class="acts">
+        <a class="btn b-ppt" href="https://drive.google.com/file/d/1OjX5HVGXEPPE12bx8CkIKNmwvP-lvmDl/preview" target="_blank" rel="noopener">
+          <span class="ic">📊</span><span class="tx">عرض البوربوينت</span></a>
+        <a class="btn b-game" href="لعبة-الوحدة-10-سورة-الإسراء.html">
+          <span class="ic">🎮</span><span class="tx">عرض اللعبة</span></a>
+        <button class="btn b-vid off" type="button" title="لم يُضف فيديو لهذا الدرس بعد"><span class="ic">🎬</span><span class="tx">الفيديو — قريبًا</span></button>
+        <a class="btn b-exam" href="اختبار-الوحدة-10-سورة-الإسراء.html">
+          <span class="ic">📝</span><span class="tx">اختبار الوحدة</span></a>
+      </div>
+    </article>
+    <article class="card" data-unit="10">
+      <div class="top">
+        <div class="num">24</div>
+        <div class="meta">
+          <span class="unit">الوحدة 10 — سورة الإسراء</span>
+          <h3>الدرس 24 — تفسير سورة الإسراء (78-87)</h3>
+        </div>
+      </div>
+      <div class="acts">
+        <a class="btn b-ppt" href="https://drive.google.com/file/d/10HWQG7sXuRB7-QgeHzUnFgSkxOrY7R-8/preview" target="_blank" rel="noopener">
+          <span class="ic">📊</span><span class="tx">عرض البوربوينت</span></a>
+        <a class="btn b-game" href="لعبة-الوحدة-10-سورة-الإسراء.html">
+          <span class="ic">🎮</span><span class="tx">عرض اللعبة</span></a>
+        <button class="btn b-vid off" type="button" title="لم يُضف فيديو لهذا الدرس بعد"><span class="ic">🎬</span><span class="tx">الفيديو — قريبًا</span></button>
+        <a class="btn b-exam" href="اختبار-الوحدة-10-سورة-الإسراء.html">
+          <span class="ic">📝</span><span class="tx">اختبار الوحدة</span></a>
+      </div>
+    </article>
+    <article class="card" data-unit="10">
+      <div class="top">
+        <div class="num">25</div>
+        <div class="meta">
+          <span class="unit">الوحدة 10 — سورة الإسراء</span>
+          <h3>الدرس 25 — تفسير سورة الإسراء (105-111)</h3>
+        </div>
+      </div>
+      <div class="acts">
+        <a class="btn b-ppt" href="https://drive.google.com/file/d/1WDUNbN8rLkWOqxdJ-kj5XIuXS9EpeMq-/preview" target="_blank" rel="noopener">
+          <span class="ic">📊</span><span class="tx">عرض البوربوينت</span></a>
+        <a class="btn b-game" href="لعبة-الوحدة-10-سورة-الإسراء.html">
+          <span class="ic">🎮</span><span class="tx">عرض اللعبة</span></a>
+        <button class="btn b-vid off" type="button" title="لم يُضف فيديو لهذا الدرس بعد"><span class="ic">🎬</span><span class="tx">الفيديو — قريبًا</span></button>
+        <a class="btn b-exam" href="اختبار-الوحدة-10-سورة-الإسراء.html">
+          <span class="ic">📝</span><span class="tx">اختبار الوحدة</span></a>
+      </div>
+    </article>
+  </div>
+</div>
+<footer>
+  <a href="index.html">← العودة إلى الصفحة الرئيسية</a> · <a href="دليل-الاستخدام.html">دليل الاستخدام</a>
+</footer>
+<script>
+(function(){
+  var chips = document.querySelectorAll('.chip');
+  var cards = document.querySelectorAll('.card');
+  chips.forEach(function(c){
+    c.addEventListener('click', function(){
+      chips.forEach(function(x){x.classList.remove('on')});
+      c.classList.add('on');
+      var f = c.dataset.f;
+      var shown = 0;
+      cards.forEach(function(card){
+        var show = (f === 'all' || card.dataset.unit === f);
+        card.classList.toggle('hide', !show);
+        if (show) shown++;
+      });
+    });
+  });
+})();
+</script>
+</body>
+</html>
