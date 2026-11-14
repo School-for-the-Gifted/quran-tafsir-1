@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>دخول الطالب — القرآن الكريم وتفسيره ١</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{--green:#0b3d2e;--green2:#12513c;--gold:#c8a24a;--gold2:#f0d99b;--paper:#fbf7ec;--ink:#13322a;--line:#e2dbc4}
+  body{font-family:"Traditional Arabic","Noto Naskh Arabic","Segoe UI",Tahoma,sans-serif;
+       background:radial-gradient(circle at 15% 5%,rgba(200,162,74,.22),transparent 45%),
+                  linear-gradient(180deg,#0b3d2e,#0a3327);min-height:100vh;color:var(--ink);
+       line-height:1.7;display:grid;place-items:center;padding:16px}
+  .card{background:var(--paper);border-radius:20px;border:2px solid var(--gold);max-width:520px;width:100%;
+        padding:24px 22px;box-shadow:0 24px 60px rgba(0,0,0,.35)}
+  .brand{display:flex;gap:7px;justify-content:center;flex-wrap:wrap;margin-bottom:10px}
+  .badge{font-size:11.5px;color:#6b5a2a;background:linear-gradient(180deg,#fff8e3,#f2e4bd);
+         border:1px solid #d8c07a;padding:3px 9px;border-radius:999px;font-weight:700}
+  h1{font-size:clamp(20px,4.4vw,26px);color:var(--green);text-align:center;margin-bottom:4px}
+  p.lead{text-align:center;color:#5f6f67;font-size:14px;margin-bottom:16px}
+  .fld{margin-bottom:12px}
+  .fld label{display:block;font-size:13px;color:#4a5a52;margin-bottom:5px;font-weight:800}
+  input,select{width:100%;padding:12px 13px;border-radius:12px;border:1.5px solid #cfc3a1;background:#fffdf6;
+               font:inherit;font-size:16px;color:var(--ink)}
+  input:focus,select:focus{outline:none;border-color:var(--green2);box-shadow:0 0 0 3px rgba(18,87,67,.14)}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  button{font:inherit;cursor:pointer;border:none;border-radius:13px;padding:14px 20px;font-weight:800;transition:.15s}
+  .btn-main{background:linear-gradient(180deg,#17795c,#0b3d2e);color:#fff;width:100%;font-size:17px;
+            box-shadow:0 10px 24px rgba(11,61,46,.28)}
+  .btn-main:hover{filter:brightness(1.08)}
+  .btn-ghost{background:#fffdf6;border:1.5px solid #d5c9a6;color:var(--green)}
+  .foot{display:flex;justify-content:space-between;align-items:center;margin-top:14px;font-size:13.5px}
+  .foot a{color:#6b5a2a;text-decoration:none;font-weight:800}
+  .msg{font-size:13.5px;border-radius:10px;padding:9px 12px;margin-top:10px;display:none}
+  .msg.on{display:block;background:#fbeceb;color:#8b2f2f;border:1px solid #e8c3c0}
+  .hint{font-size:12.5px;color:#7b8a82;text-align:center;margin-top:10px}
+  .noList{background:#fff8e3;border:1px solid #e5d3a1;border-radius:10px;padding:8px 11px;
+         font-size:12.8px;color:#6b5a2a;margin-bottom:12px}
+</style>
+</head>
+<body>
+<form class="card" id="f">
+  <div class="brand">
+    <span class="badge">الدراسات الإسلامية</span>
+    <span class="badge">القرآن الكريم وتفسيره ١</span>
+    <span class="badge">أول ثانوي</span>
+  </div>
+  <h1>🎒 دخول الطالب</h1>
+  <p class="lead">اختر اسمك من القائمة، وتأكد من شعبتك، ثم ابدأ.</p>
+
+  <div class="noList" id="noList" style="display:none">
+    لم يضف المعلم أسماء الطلاب بعد — يمكنك كتابة اسمك يدويًا.
+  </div>
+
+  <div class="fld"><label for="nameSel">اسم الطالب</label>
+    <select id="nameSel"><option value="__manual">— كتابة الاسم يدويًا —</option></select></div>
+
+  <div class="fld" id="manualWrap" style="display:none"><label for="nameIn">اكتب اسمك الثلاثي</label>
+    <input id="nameIn" type="text" placeholder="الاسم الثلاثي" autocomplete="name"></div>
+
+  <div class="two">
+    <div class="fld"><label for="cls">الصف</label>
+      <select id="cls"><option>أول ثانوي</option></select></div>
+    <div class="fld"><label for="sec">الشعبة</label>
+      <select id="sec"><option>101</option><option>102</option><option>103</option></select></div>
+  </div>
+
+  <div class="fld"><label for="school">المدرسة</label>
+    <input id="school" type="text" placeholder="اسم المدرسة"></div>
+
+  <button class="btn-main" type="submit">ابدأ الآن ←</button>
+  <div class="msg" id="msg"></div>
+  <div class="hint">بياناتك تُستخدم في الشهادات وفي لوحة المعلم فقط.</div>
+
+  <div class="foot">
+    <a href="index.html">← رجوع</a>
+    <a href="العروض.html">📚 دروس المقرر</a>
+  </div>
+</form>
+
+<script src="platform.js"></script>
+<script>
+(function(){
+  var $ = function(s){ return document.querySelector(s); };
+  var sel = $("#nameSel");
+
+  function fill(list){
+    var bySec = {};
+    list.forEach(function(s){
+      var k = s.section || "101";
+      (bySec[k] = bySec[k] || []).push(s);
+    });
+    var html = '<option value="__manual">— كتابة الاسم يدويًا —</option>';
+    var order = ["101", "102", "103"];
+    var keys = order.filter(function(k){ return bySec[k]; })
+      .concat(Object.keys(bySec).filter(function(k){ return order.indexOf(k) < 0; }));
+    keys.forEach(function(k){
+      html += '<optgroup label="شعبة ' + k + '">';
+      bySec[k].forEach(function(s){
+        html += '<option value="' + s.id + '" data-n="' + esc(s.name) + '" data-c="' + esc(s.class) +
+                '" data-s="' + esc(s.section) + '">' + esc(s.name) + "</option>";
+      });
+      html += "</optgroup>";
+    });
+    sel.innerHTML = html;
+    if (!keys.length){
+      $("#noList").style.display = "block";
+      $("#manualWrap").style.display = "block";
+    } else {
+      $("#noList").style.display = "none";
+    }
+  }
+  function esc(t){ return String(t == null ? "" : t).replace(/[&<>"']/g, function(c){
+    return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]; }); }
+
+  sel.addEventListener("change", function(){
+    var o = sel.options[sel.selectedIndex];
+    $("#manualWrap").style.display = (sel.value === "__manual") ? "block" : "none";
+    if (sel.value !== "__manual"){
+      if (o.dataset.s) $("#sec").value = o.dataset.s;
+      $("#nameIn").value = o.dataset.n;
+    }
+  });
+
+  // القيم المحفوظة سابقًا
+  var savedName = PF.name();
+  if (savedName) $("#nameIn").value = savedName;
+  $("#sec").value = PF.section();
+  $("#school").value = PF.school();
+
+  PF.studentsPublic().then(fill).catch(function(){
+    $("#noList").style.display = "block";
+    $("#manualWrap").style.display = "block";
+  });
+
+  $("#f").addEventListener("submit", function(e){
+    e.preventDefault();
+    var name;
+    if (sel.value === "__manual") name = $("#nameIn").value.trim();
+    else {
+      var o = sel.options[sel.selectedIndex];
+      name = (o.dataset.n || "").trim();
+      if (o.dataset.s) $("#sec").value = o.dataset.s;
+    }
+    if (name.length < 3){
+      var m = $("#msg"); m.className = "msg on";
+      m.textContent = "اختر اسمك من القائمة أو اكتبه (٣ أحرف على الأقل).";
+      return;
+    }
+    PF.setStudent(name);
+    PF.setClass($("#cls").value, $("#sec").value);
+    PF.school($("#school").value.trim());
+    location.href = "بوابة-الطالب.html";
+  });
+})();
+</script>
+</body>
+</html>

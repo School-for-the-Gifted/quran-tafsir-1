@@ -1,256 +1,186 @@
-<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="utf-8">
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ألعاب الوحدات واختبارات القرآن الكريم وتفسيره — إعداد المعلم عمر العيسى</title>
+<title>منصة القرآن الكريم وتفسيره ١ — إعداد المعلم عمر العيسى</title>
 <style>
-:root{
- --green:#0b3d2e; --green2:#125743; --gold:#c8a24a; --gold2:#f0d99b;
- --ink:#12211c; --paper:#fbf7ec; --paper2:#f3ecd9; --accent:#8c2f39;
- --ok:#2e7d5b; --bad:#a8323c; --shadow:0 18px 50px rgba(9,35,27,.18);
-}
-*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html,body{margin:0;padding:0}
-body{
- font-family:"Noto Naskh Arabic","Amiri","Traditional Arabic","Segoe UI",Tahoma,sans-serif;
- background:
-  radial-gradient(circle at 12% 8%,rgba(200,162,74,.20),transparent 42%),
-  radial-gradient(circle at 88% 0%,rgba(18,87,67,.22),transparent 45%),
-  repeating-linear-gradient(135deg,rgba(11,61,46,.035) 0 2px,transparent 2px 7px),
-  linear-gradient(180deg,#0b3d2e 0%,#0e4a37 55%,#0a3327 100%);
- color:var(--ink);min-height:100vh;direction:rtl;padding:16px;
-}
-.wrap{max-width:980px;margin:0 auto}
-.card{
- background:linear-gradient(180deg,var(--paper),var(--paper2));
- border:1px solid rgba(11,61,46,.18);border-radius:22px;box-shadow:var(--shadow);
- padding:22px;position:relative;overflow:hidden
-}
-.card::before{content:"";position:absolute;inset:8px;border:1px solid rgba(200,162,74,.55);border-radius:16px;pointer-events:none}
-.brand{display:flex;gap:10px;align-items:center;justify-content:center;flex-wrap:wrap;margin-bottom:6px}
-.badge{font-size:12px;letter-spacing:.4px;color:#6b5a2a;background:linear-gradient(180deg,#fff8e3,#f2e4bd);border:1px solid #d8c07a;padding:4px 10px;border-radius:999px}
-h1{font-size:clamp(22px,4.4vw,36px);margin:6px 0 4px;color:var(--green);text-align:center;line-height:1.35}
-h2{font-size:clamp(18px,3vw,25px);color:var(--green);margin:0 0 10px}
-p.lead{text-align:center;color:#3c4b44;margin:2px 0 16px;font-size:15px}
-.gold{color:#a8842f;font-weight:700}
-.row{display:flex;gap:12px;flex-wrap:wrap}
-.row>*{flex:1 1 210px}
-label{display:block;font-size:13px;color:#4a5a52;margin:0 0 5px}
-input[type=text],select{
- width:100%;padding:11px 13px;border-radius:12px;border:1.5px solid #cfc3a1;background:#fffdf6;font:inherit;font-size:15px;color:var(--ink)
-}
-input[type=text]:focus,select:focus{outline:none;border-color:var(--green2);box-shadow:0 0 0 3px rgba(18,87,67,.15)}
-button{font:inherit;cursor:pointer;border:none;border-radius:14px;padding:13px 22px;font-weight:700;transition:.18s transform,.18s box-shadow,.18s filter}
-button:active{transform:translateY(1px) scale(.995)}
-.btn-main{background:linear-gradient(180deg,#17795c,#0b3d2e);color:#fff;box-shadow:0 10px 24px rgba(11,61,46,.30)}
-.btn-main:hover{filter:brightness(1.08)}
-.btn-gold{background:linear-gradient(180deg,#e7c877,#c8a24a);color:#3a2c08;box-shadow:0 10px 22px rgba(200,162,74,.35)}
-.btn-ghost{background:#fffdf6;color:var(--green);border:1.5px solid #d5c9a6}
-.btn-mini{padding:8px 13px;font-size:13px;border-radius:11px}
-.center{text-align:center}
-.muted{color:#63716a;font-size:13px}
-.hidden{display:none!important}
-/* header bar */
-.topbar{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px}
-.topbar .pill{background:rgba(255,255,255,.90);border:1px solid rgba(200,162,74,.6);border-radius:999px;padding:7px 14px;font-size:13px;color:var(--green);font-weight:700;white-space:nowrap}
-/* progress */
-.prog{height:12px;background:#e6dcc0;border-radius:999px;overflow:hidden;border:1px solid #d6c9a4;margin:10px 0 4px}
-.prog>i{display:block;height:100%;width:0;background:linear-gradient(90deg,#c8a24a,#17795c);transition:width .4s ease}
-/* question */
-.qmeta{display:flex;justify-content:space-between;font-size:13px;color:#5b6a62;margin-bottom:8px;flex-wrap:wrap;gap:6px}
-.qtext{font-size:clamp(18px,2.7vw,23px);line-height:1.75;color:#14261f;margin:6px 0 16px;font-weight:600}
-.ayah{font-family:"Amiri","Noto Naskh Arabic",serif;font-size:clamp(19px,2.9vw,25px);line-height:2.2;background:#fffdf3;border:1px solid #e0d4b0;border-right:5px solid var(--gold);border-radius:14px;padding:14px 16px;margin:0 0 14px;color:#1c2f27}
-.opts{display:grid;gap:11px}
-.opt{
- display:flex;gap:11px;align-items:center;background:#fffdf6;border:1.6px solid #d8cbaa;
- border-radius:14px;padding:12px 14px;font-size:16.5px;line-height:1.55;color:#17281f;cursor:pointer;text-align:right;
- transition:.15s;width:100%;font-family:inherit
-}
-.opt>span:last-child{flex:1 1 auto;min-width:0;overflow-wrap:anywhere}
-.opt:hover{border-color:var(--green2);box-shadow:0 8px 18px rgba(11,61,46,.10);transform:translateY(-1px)}
-.opt .k{width:30px;height:30px;flex:0 0 30px;border-radius:9px;background:#f0e6c8;color:#6b5417;display:grid;place-items:center;font-weight:800;font-size:14px}
-.opt.correct{background:#e8f6ee;border-color:#2e7d5b;box-shadow:0 0 0 3px rgba(46,125,91,.15)}
-.opt.wrong{background:#fdecee;border-color:#a8323c;box-shadow:0 0 0 3px rgba(168,50,60,.13)}
-.opt.dim{opacity:.45;pointer-events:none}
-.fb{margin-top:14px;border-radius:14px;padding:13px 15px;font-size:15px;line-height:1.8;display:none}
-.fb.show{display:block;animation:pop .25s ease}
-.fb.ok{background:#e8f6ee;border:1px solid #b9dcc8;color:#14512f}
-.fb.bad{background:#fdecee;border:1px solid #f0c3c8;color:#7c2027}
-@keyframes pop{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-.tools{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
-.chip{background:#fff9e8;border:1px dashed #cdb271;border-radius:999px;padding:8px 13px;font-size:13px;color:#6d5a24;cursor:pointer}
-.chip[disabled]{opacity:.45;cursor:not-allowed;text-decoration:line-through}
-/* result */
-.score-ring{width:150px;height:150px;margin:6px auto 12px;border-radius:50%;display:grid;place-items:center;position:relative;
- background:conic-gradient(var(--gold) var(--p,0%),#e8dfc4 0);}
-.score-ring::after{content:"";position:absolute;inset:11px;background:var(--paper);border-radius:50%;box-shadow:inset 0 0 0 1px #ded1ab;z-index:0}
-.score-ring b{position:relative;z-index:2;font-size:38px;color:var(--green);display:block;text-align:center;line-height:1.1}
-.score-ring span{position:relative;z-index:2;font-size:12px;color:#7a6a3d;display:block;text-align:center;margin-top:2px}
-.stars{font-size:30px;letter-spacing:6px;color:#c8a24a;text-align:center;margin:2px 0 8px}
-table.rep{width:100%;border-collapse:collapse;font-size:14px;margin:10px 0}
-table.rep td,table.rep th{border-bottom:1px solid #e4d9bb;padding:9px 6px;text-align:right}
-table.rep th{color:#6b5a2a;font-weight:700;background:#f7f0da}
-.tag{display:inline-block;padding:2px 9px;border-radius:999px;font-size:12px}
-.tag.ok{background:#e3f3e9;color:#1d6a45}.tag.bad{background:#fbe6e8;color:#8c2f39}
-/* certificate */
-#certWrap{margin-top:16px}
-#certCanvas{width:100%;max-width:1000px;border-radius:14px;box-shadow:0 14px 40px rgba(0,0,0,.28);background:#fff}
-.qrbox{display:flex;gap:14px;align-items:center;justify-content:center;flex-wrap:wrap;margin-top:14px}
-.qrbox canvas{background:#fff;padding:6px;border-radius:10px;border:1px solid #ddd}
-.code{font-family:ui-monospace,Consolas,monospace;font-size:10.5px;word-break:break-all;background:#0f2b23;color:#d7f0e4;padding:10px;border-radius:10px;max-height:90px;overflow:auto;text-align:left;direction:ltr}
-footer{text-align:center;color:rgba(255,255,255,.72);font-size:12.5px;margin:22px 0 6px;line-height:1.9}
-a{color:#f0d99b}
-.flexcenter{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:16px}
-.timer{font-variant-numeric:tabular-nums}
-.alert{background:#fff4e0;border:1px solid #e7c98d;color:#7a5a12;padding:11px 14px;border-radius:12px;font-size:13.5px;line-height:1.8;margin-top:12px}
-@media (max-width:560px){ .card{padding:16px} .opt{font-size:15.4px;padding:12px} }
-@media print{
- body{background:#fff;padding:0}
- .noprint{display:none!important}
- .card{box-shadow:none;border:none}
- #certCanvas{box-shadow:none;width:100%}
-}
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{--green:#0b3d2e;--green2:#12513c;--gold:#c8a24a;--gold2:#f0d99b;--paper:#fbf7ec;--ink:#13322a;--line:#e2dbc4}
+  body{font-family:"Traditional Arabic","Noto Naskh Arabic","Segoe UI",Tahoma,sans-serif;
+       background:#f4efe1;color:var(--ink);line-height:1.7}
+  header{background:radial-gradient(circle at 12% 0%,rgba(200,162,74,.28),transparent 48%),
+          linear-gradient(135deg,#0b3d2e,#12513c);color:#f7f3e6;padding:26px 16px 22px;border-bottom:5px solid var(--gold)}
+  .hin{max-width:1050px;margin:0 auto;text-align:center}
+  .badges{display:flex;gap:7px;justify-content:center;flex-wrap:wrap;margin-bottom:12px}
+  .badge{font-size:11.5px;color:#3f3512;background:linear-gradient(180deg,#fff8e3,#f2e4bd);
+          border:1px solid #d8c07a;padding:3px 10px;border-radius:999px;font-weight:800}
+  header h1{font-size:clamp(21px,4.2vw,32px);line-height:1.35;margin-bottom:6px}
+  header p{color:#e4d9b8;font-size:clamp(13px,2vw,15px)}
+  .wrap{max-width:1050px;margin:0 auto;padding:0 16px 60px}
+  /* بطاقتا الدخول */
+  .entries{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:-26px 0 8px}
+  .entry{display:block;text-decoration:none;color:inherit;background:var(--paper);border-radius:18px;
+          padding:20px 18px;border:2px solid var(--gold);box-shadow:0 16px 40px rgba(9,35,27,.22);
+          transition:transform .15s,box-shadow .15s;position:relative;overflow:hidden}
+  .entry:hover{transform:translateY(-3px);box-shadow:0 22px 50px rgba(9,35,27,.3)}
+  .entry .ic{font-size:34px;line-height:1}
+  .entry h2{font-size:clamp(17px,2.6vw,22px);color:var(--green);margin:6px 0 4px}
+  .entry p{font-size:14px;color:#5f6f67}
+  .entry .go{display:inline-block;margin-top:11px;background:linear-gradient(180deg,#17795c,#0b3d2e);color:#fff;
+              border-radius:11px;padding:9px 18px;font-size:14.5px;font-weight:800}
+  .entry.stu .go{background:linear-gradient(180deg,#e7c877,#c8a24a);color:#3a2c08}
+  .entry .tag{position:absolute;top:12px;left:12px;font-size:11px;font-weight:800;background:#0b3d2e;color:#f0d99b;
+               border-radius:999px;padding:2px 9px}
+  .entry.stu .tag{background:#8b6a1f}
+  /* شريط الأدوات */
+  .tools{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px;margin:18px 0 6px}
+  .tool{display:block;background:#fff;border:1px solid var(--line);border-radius:13px;padding:13px 14px;
+         text-decoration:none;color:var(--ink);transition:.15s}
+  .tool:hover{border-color:var(--gold);box-shadow:0 6px 18px rgba(11,61,46,.1)}
+  .tool b{display:block;color:var(--green);font-size:15.5px;margin-bottom:2px}
+  .tool span{font-size:12.8px;color:#6d7c74}
+  h2.sec{font-size:19px;color:var(--green);margin:24px 0 10px;display:flex;align-items:center;gap:8px}
+  h2.sec::after{content:"";flex:1;height:1px;background:var(--line)}
+  .units{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}
+  .unit{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 15px}
+  .uh{display:flex;gap:9px;align-items:center;margin-bottom:5px;flex-wrap:wrap}
+  .un{background:var(--green);color:var(--gold);border-radius:999px;font-size:11.5px;padding:2px 9px;font-weight:800}
+  .unit h3{font-size:16px;color:var(--green)}
+  .ul{font-size:12.6px;color:#6d7c74;margin:0 0 10px;min-height:34px}
+  .ub{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .b{display:block;text-align:center;text-decoration:none;border-radius:10px;padding:9px;font-size:14px;font-weight:800}
+  .bg{background:#1f6b4f;color:#fff}
+  .be{background:var(--gold);color:#22180a}
+  footer{max-width:1050px;margin:26px auto 0;padding:0 16px;text-align:center;color:#7b8a82;font-size:13px}
+  @media(max-width:640px){.entries{grid-template-columns:1fr;margin-top:-18px}}
+</style>
+</head>
+<body>
 
-.hero{background:linear-gradient(135deg,#0b3d2e,#125743 55%,#0a3327);border-radius:24px;padding:34px 24px;text-align:center;box-shadow:var(--shadow);position:relative;overflow:hidden}
-.hero::after{content:"";position:absolute;inset:10px;border:1px solid rgba(200,162,74,.5);border-radius:18px;pointer-events:none}
-.hero h1{color:#f6e6b8;margin:6px 0 8px;font-size:clamp(24px,4vw,38px)}
-.hero p{color:#d9ebdf;margin:0 auto;max-width:760px;font-size:15px;line-height:1.9}
-.hero .tags{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:14px}
-.hero .tags span{background:rgba(255,255,255,.12);border:1px solid rgba(240,217,155,.5);color:#f3e6c2;padding:5px 12px;border-radius:999px;font-size:12.5px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px;margin-top:18px}
-.unit{background:linear-gradient(180deg,#fbf7ec,#f4eddc);border:1px solid #e0d4b0;border-radius:18px;padding:16px;box-shadow:0 10px 26px rgba(9,35,27,.14)}
-.uhead{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-.unum{background:#0b3d2e;color:#f0d99b;font-size:12px;padding:3px 10px;border-radius:999px}
-.unit h3{margin:2px 0;color:#0b3d2e;font-size:19px}
-.uintro{font-size:13.5px;color:#41524a;line-height:1.75;margin:8px 0}
-.uless{margin:0 0 10px 0;padding-inline-start:18px;font-size:12.5px;color:#5b6a62;line-height:1.8}
-.ubtns{display:flex;gap:8px;flex-wrap:wrap}
-.ubtns .b{flex:1 1 140px;text-align:center;text-decoration:none;padding:10px 12px;border-radius:12px;font-size:13.5px;font-weight:700}
-.b-main{background:linear-gradient(180deg,#17795c,#0b3d2e);color:#fff}
-.b-gold{background:linear-gradient(180deg,#e7c877,#c8a24a);color:#3a2c08}
-.tools{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin-top:16px}
-.tool{background:#fffdf6;border:1px dashed #c8a24a;border-radius:16px;padding:14px;text-decoration:none;color:#14261f;display:block}
-.tool b{color:#0b3d2e;display:block;margin-bottom:4px}
-.tool span{font-size:12.5px;color:#5b6a62;line-height:1.7}
-.steps{background:#fffdf6;border:1px solid #e0d4b0;border-radius:16px;padding:16px;margin-top:16px}
-.steps ol{margin:8px 18px 0 0;padding:0;font-size:14px;line-height:2}
-</style></head><body><div class="wrap">
-<div class="hero">
-  <div class="brand"><span class="badge">الدراسات الإسلامية</span><span class="badge">القرآن الكريم وتفسيره ١</span><span class="badge">السنة الأولى المشتركة</span><span class="badge">١٤٤٨هـ</span></div>
-  <h1>ألعاب الوحدات واختبارات القرآن الكريم وتفسيره</h1>
-  <p>عشر وحدات، لكل وحدة لعبة تقييمية واختبار إلكتروني من عشرة أسئلة (صح/خطأ واختيار من متعدد)، وبعد إتمام اللعبة يحصل الطالب على شهادة اجتياز تحمل اسمه وصفّه وباركودًا يقرأه المعلم ليطّلع على الدرجة وتفصيل كل إجابة.</p>
-  <div class="tags"><span>أسئلة متوسطة إلى صعبة</span><span>تفسير لكل إجابة</span><span>تلميحات تُنقص الدرجة</span><span>شهادة + باركود</span><span>قارئ نتائج للمعلم</span></div>
-</div>
+<header>
+  <div class="hin">
+    <div class="badges">
+      <span class="badge">الدراسات الإسلامية</span>
+      <span class="badge">القرآن الكريم وتفسيره ١</span>
+      <span class="badge">أول ثانوي — 101 · 102 · 103</span>
+      <span class="badge">١٤٤٨هـ</span>
+    </div>
+    <h1>منصة القرآن الكريم وتفسيره ١</h1>
+    <p>١٠ وحدات · ٢٥ درسًا · ألعاب تفاعلية · اختبارات إلكترونية · شهادات بباركود · لوحة متابعة للمعلم</p>
+  </div>
+</header>
 
-<div class="grid">
+<div class="wrap">
+  <div class="entries">
+    <a class="entry" href="صفحة-المعلم.html">
+      <span class="tag">الصفحة الأساسية</span>
+      <div class="ic">🧑‍🏫</div>
+      <h2>صفحة المعلم</h2>
+      <p>إضافة أسماء الطلاب (أول ثانوي — شعبة 101 · 102 · 103)، متابعة النتائج فور وصولها، تصديرها إلى Excel، إدارة الفيديوهات وبنك الأسئلة.</p>
+      <span class="go">دخول المعلم ←</span>
+    </a>
+    <a class="entry stu" href="دخول-الطالب.html">
+      <span class="tag">رابط فرعي</span>
+      <div class="ic">🎒</div>
+      <h2>صفحة الطالب</h2>
+      <p>يدخل الطالب برابط مباشر بلا كلمة مرور: يختار اسمه من قائمة المعلم، يحدد الشعبة، ثم يبدأ اللعبة أو الاختبار.</p>
+      <span class="go">دخول الطالب ←</span>
+    </a>
+  </div>
 
-    <div class="unit">
-      <div class="uhead"><span class="unum">الوحدة 1</span><h3>مقدمة في التفسير</h3></div>
-      <p class="uintro">علم يُبيّن معاني كلام الله تعالى؛ نتعرف نشأته، وأهميته، وضوابطه، وأبرز المؤلفات الموثوقة، وكيف نستخدم التقنية في خدمته.</p>
-      <ul class="uless"><li>التعريف بعلم التفسير ونشأته</li><li>أهمية علم التفسير وضوابطه</li><li>أبرز المؤلفات الموثوقة في التفسير</li><li>التقنية في خدمة القرآن الكريم وتفسيره</li></ul>
-      <div class="ubtns">
-        <a class="b b-main" href="لعبة-الوحدة-01-مقدمة-في-التفسير.html">🎮 اللعبة التقييمية</a>
-        <a class="b b-gold" href="اختبار-الوحدة-01-مقدمة-في-التفسير.html">📝 الاختبار (١٠ أسئلة)</a>
-      </div>
-    </div>
-    <div class="unit">
-      <div class="uhead"><span class="unum">الوحدة 2</span><h3>سورة الفاتحة</h3></div>
-      <p class="uintro">سورة أمّ الكتاب؛ سبع آيات تجمع أصول التوحيد والعبادة والاستعانة وطلب الهداية.</p>
-      <ul class="uless"><li>تفسير سورة الفاتحة</li></ul>
-      <div class="ubtns">
-        <a class="b b-main" href="لعبة-الوحدة-02-سورة-الفاتحة.html">🎮 اللعبة التقييمية</a>
-        <a class="b b-gold" href="اختبار-الوحدة-02-سورة-الفاتحة.html">📝 الاختبار (١٠ أسئلة)</a>
-      </div>
-    </div>
-    <div class="unit">
-      <div class="uhead"><span class="unum">الوحدة 3</span><h3>سورة يونس</h3></div>
-      <p class="uintro">آيات في قدرة الله على الخلق والتدبير، وفي جزاء المؤمنين وأولياء الله، وبطلان دعوى الشريك.</p>
-      <ul class="uless"><li>تفسير سورة يونس (٣−١٠)</li><li>تفسير سورة يونس (٢٦−٣٣)</li><li>تفسير سورة يونس (٦٢−٧٠)</li></ul>
-      <div class="ubtns">
-        <a class="b b-main" href="لعبة-الوحدة-03-سورة-يونس.html">🎮 اللعبة التقييمية</a>
-        <a class="b b-gold" href="اختبار-الوحدة-03-سورة-يونس.html">📝 الاختبار (١٠ أسئلة)</a>
-      </div>
-    </div>
-    <div class="unit">
-      <div class="uhead"><span class="unum">الوحدة 4</span><h3>سورة هود</h3></div>
-      <p class="uintro">مواقف الرسالات، وسنة الله في إهلاك الأمم، والأمر بالاستقامة وصلاح القلب والعمل.</p>
-      <ul class="uless"><li>تفسير سورة هود (٩٦−١٠٨)</li><li>تفسير سورة هود (١١٢−١٢٣)</li></ul>
-      <div class="ubtns">
-        <a class="b b-main" href="لعبة-الوحدة-04-سورة-هود.html">🎮 اللعبة التقييمية</a>
-        <a class="b b-gold" href="اختبار-الوحدة-04-سورة-هود.html">📝 الاختبار (١٠ أسئلة)</a>
-      </div>
-    </div>
-    <div class="unit">
-      <div class="uhead"><span class="unum">الوحدة 5</span><h3>سورة يوسف</h3></div>
-      <p class="uintro">قصة الرؤيا والتمكين، وأدب الداعية، وعِبَر القصص القرآني.</p>
-      <ul class="uless"><li>تفسير سورة يوسف (٤٦−٥٧)</li><li>تفسير سورة يوسف (١٠٢−١١١)</li></ul>
-      <div class="ubtns">
-        <a class="b b-main" href="لعبة-الوحدة-05-سورة-يوسف.html">🎮 اللعبة التقييمية</a>
-        <a class="b b-gold" href="اختبار-الوحدة-05-سورة-يوسف.html">📝 الاختبار (١٠ أسئلة)</a>
-      </div>
-    </div>
-    <div class="unit">
-      <div class="uhead"><span class="unum">الوحدة 6</span><h3>سورة الرعد</h3></div>
-      <p class="uintro">علم الله المحيط، وتغيير الأمم بأفعالها، وأثر ذكر الله في طمأنينة القلوب، وسنة الهداية.</p>
-      <ul class="uless"><li>تفسير سورة الرعد (٨−١٥)</li><li>تفسير سورة الرعد (١٩−٢٩)</li></ul>
-      <div class="ubtns">
-        <a class="b b-main" href="لعبة-الوحدة-06-سورة-الرعد.html">🎮 اللعبة التقييمية</a>
-        <a class="b b-gold" href="اختبار-الوحدة-06-سورة-الرعد.html">📝 الاختبار (١٠ أسئلة)</a>
-      </div>
-    </div>
-    <div class="unit">
-      <div class="uhead"><span class="unum">الوحدة 7</span><h3>سورة إبراهيم</h3></div>
-      <p class="uintro">مثل الكلمة الطيبة والخبيثة، وشكر النعم، وإمهال الظالمين ويوم الحساب.</p>
-      <ul class="uless"><li>تفسير سورة إبراهيم (٢٤−٣١)</li><li>تفسير سورة إبراهيم (٤٢−٥٢)</li></ul>
-      <div class="ubtns">
-        <a class="b b-main" href="لعبة-الوحدة-07-سورة-إبراهيم.html">🎮 اللعبة التقييمية</a>
-        <a class="b b-gold" href="اختبار-الوحدة-07-سورة-إبراهيم.html">📝 الاختبار (١٠ أسئلة)</a>
-      </div>
-    </div>
-    <div class="unit">
-      <div class="uhead"><span class="unum">الوحدة 8</span><h3>سورة الحجر</h3></div>
-      <p class="uintro">خلق آدم والسجود له، ومصير إبليس وجحوده، ونعيم المتقين ووعيد المستهزئين.</p>
-      <ul class="uless"><li>تفسير سورة الحجر (٢٨−٥٠)</li><li>تفسير سورة الحجر (٨٥−٩٩)</li></ul>
-      <div class="ubtns">
-        <a class="b b-main" href="لعبة-الوحدة-08-سورة-الحجر.html">🎮 اللعبة التقييمية</a>
-        <a class="b b-gold" href="اختبار-الوحدة-08-سورة-الحجر.html">📝 الاختبار (١٠ أسئلة)</a>
-      </div>
-    </div>
-    <div class="unit">
-      <div class="uhead"><span class="unum">الوحدة 9</span><h3>سورة النحل</h3></div>
-      <p class="uintro">نعم الله في الكون والأنعام والثمار، ومَثَلُ القلعة الآمنة، ودعوة الله إلى التوحيد والهدى.</p>
-      <ul class="uless"><li>تفسير سورة النحل (١٠−١٨)</li><li>تفسير سورة النحل (١١٢−١١٧)</li><li>تفسير سورة النحل (١٢٠−١٢٨)</li></ul>
-      <div class="ubtns">
-        <a class="b b-main" href="لعبة-الوحدة-09-سورة-النحل.html">🎮 اللعبة التقييمية</a>
-        <a class="b b-gold" href="اختبار-الوحدة-09-سورة-النحل.html">📝 الاختبار (١٠ أسئلة)</a>
-      </div>
-    </div>
-    <div class="unit">
-      <div class="uhead"><span class="unum">الوحدة 10</span><h3>سورة الإسراء</h3></div>
-      <p class="uintro">آداب وأخلاق عظيمة: بر الوالدين، وإيتاء ذي القربى، وحرمة القتل، وفضل القرآن والصلاة.</p>
-      <ul class="uless"><li>تفسير سورة الإسراء (٢٣−٣٠)</li><li>تفسير سورة الإسراء (٣١−٣٩)</li><li>تفسير سورة الإسراء (٧٨−٨٧)</li><li>تفسير سورة الإسراء (١٠٥−١١١)</li></ul>
-      <div class="ubtns">
-        <a class="b b-main" href="لعبة-الوحدة-10-سورة-الإسراء.html">🎮 اللعبة التقييمية</a>
-        <a class="b b-gold" href="اختبار-الوحدة-10-سورة-الإسراء.html">📝 الاختبار (١٠ أسئلة)</a>
-      </div>
-    </div>
-</div>
+  <div class="tools">
+    <a class="tool" href="العروض.html"><b>📚 دروس المقرر (٢٥)</b><span>بوربوينت · فيديو · لعبة · اختبار — داخل المنصة</span></a>
+    <a class="tool" href="قارئ-نتائج-الطلاب.html"><b>🔎 قارئ نتائج الشهادات</b><span>امسح الباركود أو الصق رمز النتيجة</span></a>
+    <a class="tool" href="دليل-الاستخدام.html"><b>📘 دليل الاستخدام</b><span>خطوات المشاركة وطباعة الشهادات</span></a>
+    <a class="tool" href="صفحة-المعلم.html"><b>📊 لوحة النتائج</b><span>متابعة مباشرة + تصدير CSV</span></a>
+  </div>
 
-<h2 style="color:#f0d99b;margin:26px 0 4px">أدوات المعلم</h2>
-<div class="tools">
-  <a class="tool" href="قارئ-نتائج-الطلاب.html"><b>🔎 قارئ نتائج الطلاب</b><span>امسح باركود الشهادة بكاميرا الجوال أو الصق رمز النتيجة لعرض تقرير كامل: الاسم، الصف، الدرجة، وتفصيل الإجابات. ويحتوي وضعًا جماعيًا لتحويل نتائج الفصل إلى جدول CSV/Google Sheets.</span></a>
-  <a class="tool" href="#" onclick="alert('افتح اللعبة ثم اطبع الشهادة من زر الطباعة، أو نزّلها صورة PNG.');return false;"><b>🎓 شهادات الاجتياز</b><span>تُصدر تلقائيًا بعد اجتياز اللعبة بنسبة ٨٠٪ أو أكثر، وتُطبع أو تُحفظ صورة.</span></a>
-  <a class="tool" href="العروض.html"><b>📚 دروس المقرر (٢٥ درسًا)</b><span>لكل درس أربعة أزرار: عرض البوربوينت (من درايف، يشغّل تلاوة سعد الغامدي) · لعبة الوحدة · الفيديو · اختبار الوحدة.</span></a>
-  <a class="tool" href="دليل-الاستخدام.html"><b>📘 دليل الاستخدام</b><span>خطوات المشاركة مع الطلاب، وطباعة الشهادات، وجمع النتائج في درايف.</span></a>
-</div>
-
-<div class="steps">
-  <b style="color:#0b3d2e">كيف تشارك الطلاب؟</b>
-  <ol>
-    <li>ارفع مجلد الموقع كاملًا على خدمة استضافة (Netlify Drop أو GitHub Pages) أو ضعه على الشبكة الداخلية للمدرسة.</li>
-    <li>أرسل رابط صفحة اللعبة للوحدة المطلوبة في مجموعة الصف.</li>
-    <li>يكتب الطالب اسمه وصفّه، ثم يبدأ اللعبة، وفي النهاية يطبع الشهادة أو يحفظها صورة ويرسلها للمعلم.</li>
-    <li>المعلم يفتح «قارئ نتائج الطلاب» ويمسح الباركود للتأكد من صحة النتيجة وتفصيل الإجابات.</li>
-  </ol>
+  <h2 class="sec">الوحدات العشر</h2>
+  <div class="units">
+    <article class="unit" data-u="1">
+      <div class="uh"><span class="un">الوحدة 1</span><h3>مقدمة في التفسير</h3></div>
+      <p class="ul">التعريف بعلم التفسير ونشأته · أهمية علم التفسير وضوابطه · أبرز المؤلفات الموثوقة في التفسير · التقنية في خدمة القرآن الكريم وتفسيره</p>
+      <div class="ub">
+        <a class="b bg" href="لعبة-الوحدة-01-مقدمة-في-التفسير.html">🎮 اللعبة</a>
+        <a class="b be" href="اختبار-الوحدة-01-مقدمة-في-التفسير.html">📝 الاختبار</a>
+      </div>
+    </article>
+    <article class="unit" data-u="2">
+      <div class="uh"><span class="un">الوحدة 2</span><h3>سورة الفاتحة</h3></div>
+      <p class="ul">تفسير سورة الفاتحة</p>
+      <div class="ub">
+        <a class="b bg" href="لعبة-الوحدة-02-سورة-الفاتحة.html">🎮 اللعبة</a>
+        <a class="b be" href="اختبار-الوحدة-02-سورة-الفاتحة.html">📝 الاختبار</a>
+      </div>
+    </article>
+    <article class="unit" data-u="3">
+      <div class="uh"><span class="un">الوحدة 3</span><h3>سورة يونس</h3></div>
+      <p class="ul">تفسير سورة يونس (3-10) · تفسير سورة يونس (26-33) · تفسير سورة يونس (62-70)</p>
+      <div class="ub">
+        <a class="b bg" href="لعبة-الوحدة-03-سورة-يونس.html">🎮 اللعبة</a>
+        <a class="b be" href="اختبار-الوحدة-03-سورة-يونس.html">📝 الاختبار</a>
+      </div>
+    </article>
+    <article class="unit" data-u="4">
+      <div class="uh"><span class="un">الوحدة 4</span><h3>سورة هود</h3></div>
+      <p class="ul">تفسير سورة هود (96-108) · تفسير سورة هود (112-123)</p>
+      <div class="ub">
+        <a class="b bg" href="لعبة-الوحدة-04-سورة-هود.html">🎮 اللعبة</a>
+        <a class="b be" href="اختبار-الوحدة-04-سورة-هود.html">📝 الاختبار</a>
+      </div>
+    </article>
+    <article class="unit" data-u="5">
+      <div class="uh"><span class="un">الوحدة 5</span><h3>سورة يوسف</h3></div>
+      <p class="ul">تفسير سورة يوسف (46-57) · تفسير سورة يوسف (102-111)</p>
+      <div class="ub">
+        <a class="b bg" href="لعبة-الوحدة-05-سورة-يوسف.html">🎮 اللعبة</a>
+        <a class="b be" href="اختبار-الوحدة-05-سورة-يوسف.html">📝 الاختبار</a>
+      </div>
+    </article>
+    <article class="unit" data-u="6">
+      <div class="uh"><span class="un">الوحدة 6</span><h3>سورة الرعد</h3></div>
+      <p class="ul">تفسير سورة الرعد (8-15) · تفسير سورة الرعد (19-29)</p>
+      <div class="ub">
+        <a class="b bg" href="لعبة-الوحدة-06-سورة-الرعد.html">🎮 اللعبة</a>
+        <a class="b be" href="اختبار-الوحدة-06-سورة-الرعد.html">📝 الاختبار</a>
+      </div>
+    </article>
+    <article class="unit" data-u="7">
+      <div class="uh"><span class="un">الوحدة 7</span><h3>سورة إبراهيم</h3></div>
+      <p class="ul">تفسير سورة إبراهيم (24-31) · تفسير سورة إبراهيم (42-52)</p>
+      <div class="ub">
+        <a class="b bg" href="لعبة-الوحدة-07-سورة-إبراهيم.html">🎮 اللعبة</a>
+        <a class="b be" href="اختبار-الوحدة-07-سورة-إبراهيم.html">📝 الاختبار</a>
+      </div>
+    </article>
+    <article class="unit" data-u="8">
+      <div class="uh"><span class="un">الوحدة 8</span><h3>سورة الحجر</h3></div>
+      <p class="ul">تفسير سورة الحجر (28-50) · تفسير سورة الحجر (85-99)</p>
+      <div class="ub">
+        <a class="b bg" href="لعبة-الوحدة-08-سورة-الحجر.html">🎮 اللعبة</a>
+        <a class="b be" href="اختبار-الوحدة-08-سورة-الحجر.html">📝 الاختبار</a>
+      </div>
+    </article>
+    <article class="unit" data-u="9">
+      <div class="uh"><span class="un">الوحدة 9</span><h3>سورة النحل</h3></div>
+      <p class="ul">تفسير سورة النحل (10-18) · تفسير سورة النحل (112-117) · تفسير سورة النحل (120-128)</p>
+      <div class="ub">
+        <a class="b bg" href="لعبة-الوحدة-09-سورة-النحل.html">🎮 اللعبة</a>
+        <a class="b be" href="اختبار-الوحدة-09-سورة-النحل.html">📝 الاختبار</a>
+      </div>
+    </article>
+    <article class="unit" data-u="10">
+      <div class="uh"><span class="un">الوحدة 10</span><h3>سورة الإسراء</h3></div>
+      <p class="ul">تفسير سورة الإسراء (23-30) · تفسير سورة الإسراء (31-39) · تفسير سورة الإسراء (78-87) · تفسير سورة الإسراء (105-111)</p>
+      <div class="ub">
+        <a class="b bg" href="لعبة-الوحدة-10-سورة-الإسراء.html">🎮 اللعبة</a>
+        <a class="b be" href="اختبار-الوحدة-10-سورة-الإسراء.html">📝 الاختبار</a>
+      </div>
+    </article>
+  </div>
 </div>
 
 <footer>إعداد المعلم: عمر العيسى — الدراسات الإسلامية / القرآن الكريم وتفسيره · المصدر: كتاب القرآن الكريم وتفسيره (1448-GE-CBM-TRC1-SM1-QTFSR)</footer>
-</div></body></html>
+</body>
+</html>

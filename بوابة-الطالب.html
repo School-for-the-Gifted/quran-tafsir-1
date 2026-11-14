@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>بوابة الطالب — القرآن الكريم وتفسيره ١</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{--green:#0b3d2e;--green2:#12513c;--gold:#c8a24a;--gold2:#f0d99b;--paper:#fbf7ec;--ink:#13322a;--line:#e2dbc4}
+  body{font-family:"Traditional Arabic","Noto Naskh Arabic","Segoe UI",Tahoma,sans-serif;background:#f4efe1;color:var(--ink);line-height:1.7}
+  header{background:linear-gradient(135deg,#0b3d2e,#12513c);color:#f7f3e6;padding:16px;border-bottom:5px solid var(--gold)}
+  .hrow{max-width:1100px;margin:0 auto;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+  .hrow h1{font-size:clamp(17px,3vw,23px);flex:1;min-width:160px}
+  .hbar{background:rgba(255,255,255,.13);border:1.5px solid rgba(200,162,74,.6);color:var(--gold2);
+        border-radius:10px;padding:7px 13px;font-size:14px;font-weight:800;text-decoration:none;cursor:pointer}
+  .hbar:hover{background:rgba(255,255,255,.24)}
+  .who{max-width:1100px;margin:10px auto 0;font-size:14px;color:#e4d9b8}
+  .who b{color:#f0d99b}
+  .wrap{max-width:1100px;margin:0 auto;padding:18px 16px 60px}
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-bottom:18px}
+  .st{background:#fff;border:1px solid var(--line);border-right:5px solid var(--gold);border-radius:12px;padding:11px 14px}
+  .st b{display:block;font-size:22px;color:var(--green)}
+  .st span{font-size:12.5px;color:#6d7c74}
+  h2{font-size:19px;color:var(--green);margin:18px 0 10px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .units{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:12px}
+  .u{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 15px;box-shadow:0 2px 8px rgba(11,61,46,.06)}
+  .u .n{display:inline-block;background:var(--green);color:var(--gold);border-radius:999px;font-size:12px;
+        padding:2px 10px;font-weight:800;margin-bottom:6px}
+  .u h3{font-size:16.5px;color:var(--green);margin-bottom:4px}
+  .u .ls{font-size:12.8px;color:#6d7c74;margin-bottom:10px}
+  .acts{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .b{display:flex;align-items:center;justify-content:center;gap:6px;text-decoration:none;border-radius:10px;
+     padding:10px;font-size:14.5px;font-weight:800;border:1.5px solid transparent;text-align:center}
+  .b-game{background:#1f6b4f;color:#fff}
+  .b-exam{background:var(--gold);color:#22180a}
+  .b:hover{filter:brightness(1.06)}
+  .done{display:inline-block;font-size:11.5px;padding:1px 8px;border-radius:999px;background:#e9f4ee;color:#1c6b4a;font-weight:800}
+  .toolrow{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
+  .tool{display:block;background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px;
+        text-decoration:none;color:var(--ink)}
+  .tool b{display:block;color:var(--green);font-size:15.5px;margin-bottom:3px}
+  .tool span{font-size:13px;color:#6d7c74}
+  .note{background:#fff8e3;border:1px solid #e5d3a1;border-radius:10px;padding:9px 12px;font-size:13.5px;color:#6b5a2a;margin:12px 0}
+  .hide{display:none!important}
+  table{width:100%;border-collapse:collapse;background:#fff;border:1px solid #e2dbc4;border-radius:12px;overflow:hidden;font-size:14px}
+  th{background:#0b3d2e;color:#f0d99b;padding:8px;text-align:right;font-size:13px}
+  td{padding:7px 8px;border-top:1px solid #eee8d5;text-align:center}
+  td:first-child,th:first-child{text-align:right}
+</style>
+</head>
+<body>
+<header>
+  <div class="hrow">
+    <a class="hbar" href="دخول-الطالب.html">← تغيير الاسم</a>
+    <h1>🎒 بوابة الطالب — القرآن الكريم وتفسيره ١</h1>
+    <a class="hbar" href="العروض.html">📚 دروس المقرر</a>
+    <a class="hbar" href="index.html">🏠 الرئيسية</a>
+  </div>
+  <div class="who" id="who"></div>
+</header>
+
+<div class="wrap">
+  <div class="stats" id="stats"></div>
+  <div class="note" id="hint"></div>
+
+  <h2>🎮 الوحدات العشر</h2>
+  <div class="units">
+    <div class="u" data-unit="1">
+      <span class="n">الوحدة <span class="num">1</span></span>
+      <h3>مقدمة في التفسير</h3>
+      <div class="ls">التعريف بعلم التفسير ونشأته · أهمية علم التفسير وضوابطه · أبرز المؤلفات الموثوقة في التفسير · التقنية في خدمة القرآن الكريم وتفسيره</div>
+      <div class="acts">
+        <a class="b b-game" href="لعبة-الوحدة-01-مقدمة-في-التفسير.html" data-kind="game">🎮 اللعبة <span class="done hide"></span></a>
+        <a class="b b-exam" href="اختبار-الوحدة-01-مقدمة-في-التفسير.html" data-kind="exam">📝 الاختبار <span class="done hide"></span></a>
+      </div>
+    </div>
+    <div class="u" data-unit="2">
+      <span class="n">الوحدة <span class="num">2</span></span>
+      <h3>سورة الفاتحة</h3>
+      <div class="ls">تفسير سورة الفاتحة</div>
+      <div class="acts">
+        <a class="b b-game" href="لعبة-الوحدة-02-سورة-الفاتحة.html" data-kind="game">🎮 اللعبة <span class="done hide"></span></a>
+        <a class="b b-exam" href="اختبار-الوحدة-02-سورة-الفاتحة.html" data-kind="exam">📝 الاختبار <span class="done hide"></span></a>
+      </div>
+    </div>
+    <div class="u" data-unit="3">
+      <span class="n">الوحدة <span class="num">3</span></span>
+      <h3>سورة يونس</h3>
+      <div class="ls">تفسير سورة يونس (3-10) · تفسير سورة يونس (26-33) · تفسير سورة يونس (62-70)</div>
+      <div class="acts">
+        <a class="b b-game" href="لعبة-الوحدة-03-سورة-يونس.html" data-kind="game">🎮 اللعبة <span class="done hide"></span></a>
+        <a class="b b-exam" href="اختبار-الوحدة-03-سورة-يونس.html" data-kind="exam">📝 الاختبار <span class="done hide"></span></a>
+      </div>
+    </div>
+    <div class="u" data-unit="4">
+      <span class="n">الوحدة <span class="num">4</span></span>
+      <h3>سورة هود</h3>
+      <div class="ls">تفسير سورة هود (96-108) · تفسير سورة هود (112-123)</div>
+      <div class="acts">
+        <a class="b b-game" href="لعبة-الوحدة-04-سورة-هود.html" data-kind="game">🎮 اللعبة <span class="done hide"></span></a>
+        <a class="b b-exam" href="اختبار-الوحدة-04-سورة-هود.html" data-kind="exam">📝 الاختبار <span class="done hide"></span></a>
+      </div>
+    </div>
+    <div class="u" data-unit="5">
+      <span class="n">الوحدة <span class="num">5</span></span>
+      <h3>سورة يوسف</h3>
+      <div class="ls">تفسير سورة يوسف (46-57) · تفسير سورة يوسف (102-111)</div>
+      <div class="acts">
+        <a class="b b-game" href="لعبة-الوحدة-05-سورة-يوسف.html" data-kind="game">🎮 اللعبة <span class="done hide"></span></a>
+        <a class="b b-exam" href="اختبار-الوحدة-05-سورة-يوسف.html" data-kind="exam">📝 الاختبار <span class="done hide"></span></a>
+      </div>
+    </div>
+    <div class="u" data-unit="6">
+      <span class="n">الوحدة <span class="num">6</span></span>
+      <h3>سورة الرعد</h3>
+      <div class="ls">تفسير سورة الرعد (8-15) · تفسير سورة الرعد (19-29)</div>
+      <div class="acts">
+        <a class="b b-game" href="لعبة-الوحدة-06-سورة-الرعد.html" data-kind="game">🎮 اللعبة <span class="done hide"></span></a>
+        <a class="b b-exam" href="اختبار-الوحدة-06-سورة-الرعد.html" data-kind="exam">📝 الاختبار <span class="done hide"></span></a>
+      </div>
+    </div>
+    <div class="u" data-unit="7">
+      <span class="n">الوحدة <span class="num">7</span></span>
+      <h3>سورة إبراهيم</h3>
+      <div class="ls">تفسير سورة إبراهيم (24-31) · تفسير سورة إبراهيم (42-52)</div>
+      <div class="acts">
+        <a class="b b-game" href="لعبة-الوحدة-07-سورة-إبراهيم.html" data-kind="game">🎮 اللعبة <span class="done hide"></span></a>
+        <a class="b b-exam" href="اختبار-الوحدة-07-سورة-إبراهيم.html" data-kind="exam">📝 الاختبار <span class="done hide"></span></a>
+      </div>
+    </div>
+    <div class="u" data-unit="8">
+      <span class="n">الوحدة <span class="num">8</span></span>
+      <h3>سورة الحجر</h3>
+      <div class="ls">تفسير سورة الحجر (28-50) · تفسير سورة الحجر (85-99)</div>
+      <div class="acts">
+        <a class="b b-game" href="لعبة-الوحدة-08-سورة-الحجر.html" data-kind="game">🎮 اللعبة <span class="done hide"></span></a>
+        <a class="b b-exam" href="اختبار-الوحدة-08-سورة-الحجر.html" data-kind="exam">📝 الاختبار <span class="done hide"></span></a>
+      </div>
+    </div>
+    <div class="u" data-unit="9">
+      <span class="n">الوحدة <span class="num">9</span></span>
+      <h3>سورة النحل</h3>
+      <div class="ls">تفسير سورة النحل (10-18) · تفسير سورة النحل (112-117) · تفسير سورة النحل (120-128)</div>
+      <div class="acts">
+        <a class="b b-game" href="لعبة-الوحدة-09-سورة-النحل.html" data-kind="game">🎮 اللعبة <span class="done hide"></span></a>
+        <a class="b b-exam" href="اختبار-الوحدة-09-سورة-النحل.html" data-kind="exam">📝 الاختبار <span class="done hide"></span></a>
+      </div>
+    </div>
+    <div class="u" data-unit="10">
+      <span class="n">الوحدة <span class="num">10</span></span>
+      <h3>سورة الإسراء</h3>
+      <div class="ls">تفسير سورة الإسراء (23-30) · تفسير سورة الإسراء (31-39) · تفسير سورة الإسراء (78-87) · تفسير سورة الإسراء (105-111)</div>
+      <div class="acts">
+        <a class="b b-game" href="لعبة-الوحدة-10-سورة-الإسراء.html" data-kind="game">🎮 اللعبة <span class="done hide"></span></a>
+        <a class="b b-exam" href="اختبار-الوحدة-10-سورة-الإسراء.html" data-kind="exam">📝 الاختبار <span class="done hide"></span></a>
+      </div>
+    </div>
+  </div>
+
+  <h2>🧰 أدوات</h2>
+  <div class="toolrow">
+    <a class="tool" href="العروض.html"><b>📚 دروس المقرر (٢٥ درسًا)</b><span>عرض البوربوينت · الفيديو · اللعبة · الاختبار — تُفتح داخل المنصة.</span></a>
+    <a class="tool" href="قارئ-نتائج-الطلاب.html"><b>🔎 قارئ نتيجة الشهادة</b><span>الصق رمز النتيجة أو امسح باركود شهادتك لعرض التقرير.</span></a>
+    <a class="tool" href="#" id="myRes"><b>📊 نتائجي على هذا الجهاز</b><span>كل محاولاتك محفوظة هنا مع الدرجة والتاريخ.</span></a>
+  </div>
+
+  <div id="myResBox" class="hide" style="margin-top:14px"></div>
+</div>
+
+<script src="platform.js"></script>
+<script>
+(function(){
+  var $=function(s){return document.querySelector(s)};
+  var ar=PF.arNum;
+  var name=PF.name();
+  if(!name){ location.replace("دخول-الطالب.html"); return; }
+
+  function esc(t){return String(t==null?"":t).replace(/[&<>"']/g,function(c){
+    return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
+
+  $("#who").innerHTML="الطالب: <b>"+esc(name)+"</b> · الصف: <b>"+esc(PF.klass())+
+    "</b> · الشعبة: <b>"+esc(PF.section())+"</b>"+(PF.school()?" · "+esc(PF.school()):"");
+
+  var snaps=PF.snapshots().filter(function(s){return s.name===name});
+
+  // أفضل نتيجة لكل وحدة/نوع
+  document.querySelectorAll(".u").forEach(function(card){
+    var u=+card.dataset.unit;
+    card.querySelectorAll("a.b").forEach(function(a){
+      var kind=a.dataset.kind;
+      var list=snaps.filter(function(s){return s.unit===u && s.kind===kind});
+      if(!list.length) return;
+      var pct=Math.max.apply(null,list.map(function(s){return Math.round(s.score/s.total*100)}));
+      var d=a.querySelector(".done"); d.textContent=ar(pct)+"%"; d.classList.remove("hide");
+    });
+  });
+
+  var n=snaps.length, passed=snaps.filter(function(s){return s.pass}).length;
+  var avg=n?Math.round(snaps.reduce(function(a,s){return a+s.score/s.total*100},0)/n):0;
+  $("#stats").innerHTML=
+    '<div class="st"><b>'+ar(n)+'</b><span>محاولة</span></div>'+
+    '<div class="st"><b>'+ar(passed)+'</b><span>اجتياز</span></div>'+
+    '<div class="st"><b>'+ar(avg)+'%</b><span>متوسطك</span></div>';
+
+  $("#hint").innerHTML = n
+    ? "نتائجك محفوظة على هذا الجهاز، وتُرسل تلقائيًا إلى لوحة المعلم عند إنهاء كل لعبة أو اختبار."
+    : "لم تسجّل محاولة بعد — ابدأ بلعبة الوحدة الأولى، وبعد الاجتياز ستحصل على شهادة بباركود.";
+
+  $("#myRes").addEventListener("click",function(e){
+    e.preventDefault();
+    var mine=snaps.slice().reverse(), box=$("#myResBox");
+    if(!mine.length){ box.innerHTML='<div class="note">لا نتائج محفوظة على هذا الجهاز بعد.</div>'; }
+    else{
+      var t='<table><thead><tr><th>الوحدة</th><th>النوع</th><th>الدرجة</th><th>النتيجة</th><th>التاريخ</th></tr></thead><tbody>';
+      mine.forEach(function(s){
+        t+='<tr><td>'+ar(s.unit)+'</td><td>'+(s.kind==="game"?"لعبة":"اختبار")+'</td>'+
+           '<td>'+ar(s.score)+"/"+ar(s.total)+'</td><td>'+(s.pass?"✔ اجتياز":"✘")+'</td>'+
+           '<td style="font-size:12.5px">'+esc(s.date||"")+'</td></tr>';
+      });
+      box.innerHTML=t+"</tbody></table>";
+    }
+    box.classList.toggle("hide");
+  });
+})();
+</script>
+</body>
+</html>
