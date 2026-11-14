@@ -5,646 +5,573 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>دروس المقرر — القرآن الكريم وتفسيره ١</title>
 <style>
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:"Traditional Arabic","Segoe UI",Tahoma,sans-serif;background:#fbf7ec;color:#13322a;line-height:1.7}
-  header{background:linear-gradient(135deg,#0b3d2e,#12513c);color:#f7f3e6;padding:22px 18px 20px;
-          border-bottom:5px solid #c8a24a;position:sticky;top:0;z-index:20}
-  .hrow{max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
-  .hrow h1{font-size:clamp(19px,3.2vw,27px);flex:1;min-width:200px}
-  header p{max-width:1100px;margin:6px auto 0;color:#e4d9b8;font-size:clamp(13px,1.9vw,15.5px)}
-  .back-b{background:rgba(255,255,255,.13);border:1.5px solid rgba(200,162,74,.6);color:#f0d99b;
-           border-radius:10px;padding:8px 15px;font-size:15px;font-weight:800;text-decoration:none;font-family:inherit}
-  .back-b:hover{background:rgba(255,255,255,.24)}
-  .wrap{max-width:1100px;margin:0 auto;padding:20px 16px 60px}
-  .bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:8px 0 20px}
-  .chip{background:#fff;border:1.5px solid #cfc6a8;color:#0b3d2e;border-radius:999px;padding:7px 16px;
-         cursor:pointer;font-family:inherit;font-size:15px;font-weight:700}
-  .chip:hover{border-color:#c8a24a;background:#fdf9ee}
-  .chip.on{background:#0b3d2e;color:#fff;border-color:#0b3d2e}
-  .card{background:#fff;border:1px solid #e2dbc4;border-radius:14px;padding:16px 18px;margin-bottom:14px;
-         box-shadow:0 2px 8px rgba(11,61,46,.06)}
-  .card.hide{display:none}
-  .top{display:flex;gap:14px;align-items:center;margin-bottom:14px}
-  .num{flex:0 0 46px;height:46px;border-radius:50%;background:#0b3d2e;color:#c8a24a;display:grid;
-        place-items:center;font-size:19px;font-weight:800}
-  .unit{font-size:13px;color:#8a7c52;font-weight:800}
-  .meta h3{font-size:clamp(15px,2.1vw,19px);font-weight:800;color:#0b3d2e}
-  .acts{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}
-  .btn{display:flex;align-items:center;justify-content:center;gap:7px;text-decoration:none;border-radius:11px;
-        padding:11px 10px;font-size:15px;font-weight:800;font-family:inherit;border:1.5px solid transparent;
-        cursor:pointer;transition:transform .12s,box-shadow .12s;text-align:center}
-  .btn:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(11,61,46,.16)}
-  .btn .ic{font-size:17px;line-height:1}
-  .b-ppt{background:#0b3d2e;color:#fff}
-  .b-game{background:#1f6b4f;color:#fff}
-  .b-vid{background:#8b2f2f;color:#fff}
-  .b-exam{background:#c8a24a;color:#22180a}
-  .btn.off{background:#f1ece0;color:#9a9181;border-color:#e0d7c1;cursor:not-allowed;font-weight:600}
-  .btn.off:hover{transform:none;box-shadow:none}
-  @media(max-width:760px){.acts{grid-template-columns:repeat(2,1fr)}}
-  @media(max-width:400px){.acts{grid-template-columns:1fr}}
+  @font-face{font-family:'AmiriX';src:url('amiri.woff2') format('woff2');font-display:swap}
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{--ink:#0b241d;--emerald:#0e4636;--emerald-d:#07281f;--gold:#c9a227;--gold-l:#f2dfa4;
+   --paper:#fbf8f0;--muted:#6b7d74;--line:rgba(201,162,39,.26);--sh:0 20px 50px rgba(6,32,25,.14)}
+  body{font-family:"Noto Naskh Arabic",'AmiriX',"Amiri","Segoe UI",Tahoma,sans-serif;
+    background:var(--paper);color:var(--ink);line-height:1.75}
+  svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+  a{text-decoration:none;color:inherit}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 20px}
 
-  /* ===== العارض المضمّن ===== */
-  .viewer{position:fixed;inset:0;background:#0a1512;z-index:50;display:none;flex-direction:column}
-  .viewer.on{display:flex}
-  .vbar{background:#0b3d2e;color:#f7f3e6;padding:9px 12px;display:flex;align-items:center;gap:10px;
-         border-bottom:3px solid #c8a24a;flex-wrap:wrap}
-  .vbar .vt{flex:1;font-weight:800;font-size:clamp(13px,2.2vw,16px);min-width:120px}
-  .vbtn{background:rgba(255,255,255,.14);border:1.5px solid rgba(200,162,74,.6);color:#f0d99b;
-         border-radius:10px;padding:7px 14px;font-size:14px;font-weight:800;font-family:inherit;text-decoration:none}
-  .vbtn:hover{background:rgba(255,255,255,.26)}
-  .vclose{background:#8b2f2f;border-color:#c05252;color:#fff}
-  .vclose:hover{background:#a83a3a}
-  .frame{flex:1;position:relative;background:#0a1512}
-  .frame iframe,.frame video{border:0;width:100%;height:100%;background:#0a1512}
-  .vloading{position:absolute;inset:0;display:grid;place-items:center;color:#c8a24a;font-size:17px;font-weight:800}
-  .vnote{background:#12261f;color:#a9bdb3;font-size:13px;padding:8px 14px;text-align:center}
-  .vnote a{color:#f0d99b}
+  header{position:sticky;top:0;z-index:60;background:rgba(7,40,31,.94);backdrop-filter:blur(14px);
+    border-bottom:1px solid rgba(201,162,39,.28)}
+  .hin{max-width:1180px;margin:0 auto;padding:13px 20px;display:flex;align-items:center;gap:14px}
+  .hin h1{flex:1;font-size:clamp(16px,2.4vw,21px);color:#fff;font-weight:700;min-width:140px}
+  .hb{display:flex;align-items:center;gap:7px;color:#d7e5dd;font-size:14px;padding:8px 14px;
+    border-radius:10px;border:1px solid rgba(255,255,255,.16);transition:.2s;white-space:nowrap}
+  .hb:hover{background:rgba(255,255,255,.12);color:#fff}
+  .hb svg{transform:scaleX(-1)}
+
+  .head{background:linear-gradient(160deg,#07281f,#0e4636 60%,#0b3a2c);padding:38px 0 30px;
+    border-bottom:3px solid var(--gold);position:relative;overflow:hidden}
+  .head::after{content:"";position:absolute;inset:0;opacity:.22;
+    background:url('img-unit_geometric.jpg') center/cover}
+  .head .in{position:relative;max-width:1180px;margin:0 auto;padding:0 20px}
+  .head h2{font-size:clamp(22px,3.6vw,34px);color:#fff;font-weight:700;margin-bottom:6px}
+  .head p{color:#cfe0d7;font-size:14.5px}
+  .bar{max-width:1180px;margin:22px auto 0;padding:0 20px;display:flex;gap:9px;flex-wrap:wrap;align-items:center}
+  .search{position:relative;flex:1;min-width:210px;max-width:330px}
+  .search svg{position:absolute;inset-inline-start:12px;top:50%;transform:translateY(-50%);
+    color:var(--muted);width:17px;height:17px}
+  .search input{width:100%;padding:11px 40px 11px 14px;border-radius:11px;border:1px solid #e2dbc9;
+    background:#fff;font:inherit;font-size:14px;color:var(--ink)}
+  .search input:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,162,39,.16)}
+  .chip{background:#fff;border:1px solid #e2dbc9;color:var(--emerald);border-radius:999px;
+    padding:8px 16px;font:inherit;font-size:13.5px;font-weight:700;cursor:pointer;transition:.2s}
+  .chip:hover{border-color:var(--gold)}
+  .chip.on{background:var(--emerald);color:#fff;border-color:var(--emerald)}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px;
+    padding:26px 0 60px}
+  .lc{background:#fff;border:1px solid #eae3d2;border-radius:18px;overflow:hidden;transition:.25s;
+    display:flex;flex-direction:column}
+  .lc:hover{transform:translateY(-4px);box-shadow:var(--sh)}
+  .lc.hide{display:none}
+  .lthumb{display:block;height:132px;background-size:cover;background-position:center;position:relative}
+  .lthumb::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(4,26,20,.12),rgba(4,26,20,.62))}
+  .ln{position:absolute;top:10px;inset-inline-start:12px;z-index:2;font-size:12px;font-weight:700;
+    background:rgba(7,40,31,.85);border:1px solid rgba(201,162,39,.55);color:var(--gold-l);
+    border-radius:999px;padding:2px 11px}
+  .lplay{position:absolute;z-index:2;inset:0;display:grid;place-items:center;color:#fff;opacity:0;
+    transition:.25s;transform:scale(.86)}
+  .lplay svg{width:44px;height:44px;stroke-width:1.4;filter:drop-shadow(0 6px 18px rgba(0,0,0,.5))}
+  .lc:hover .lplay{opacity:1;transform:none}
+  .lbody{padding:14px 16px 16px;display:flex;flex-direction:column;flex:1}
+  .lu{font-size:11.5px;color:#9a8b5c;font-weight:700;letter-spacing:.02em}
+  .lbody h3{font-size:15.5px;color:var(--emerald);margin:4px 0 12px;flex:1;line-height:1.6;font-weight:700}
+  .lacts{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}
+  .lb{display:flex;align-items:center;justify-content:center;gap:5px;padding:8px 4px;border-radius:9px;
+    font-size:12.5px;font-weight:700;background:#f3efe2;color:var(--emerald);transition:.2s}
+  .lb svg{width:15px;height:15px}
+  .lb:hover{background:#e6dfcc}
+  .lb-main{background:var(--emerald);color:#fff}
+  .lb-main:hover{background:#125741}
+
+  /* ===== بوابة القفل ===== */
+  #gate{position:fixed;inset:0;z-index:90;background:rgba(4,26,20,.94);backdrop-filter:blur(10px);
+    display:none;place-items:center;padding:20px}
+  #gate.on{display:grid}
+  .gatebox{background:var(--paper);border-radius:20px;max-width:420px;width:100%;padding:28px 24px;
+    border:1px solid var(--gold);box-shadow:0 30px 80px rgba(0,0,0,.5);text-align:center}
+  .gatebox .lk{width:56px;height:56px;border-radius:16px;background:rgba(201,162,39,.14);
+    border:1px solid rgba(201,162,39,.5);display:grid;place-items:center;margin:0 auto 14px;color:#8a6f16}
+  .gatebox .lk svg{width:26px;height:26px}
+  .gatebox h2{font-size:20px;color:var(--emerald);margin-bottom:5px}
+  .gatebox p{font-size:13.5px;color:var(--muted);margin-bottom:16px;line-height:1.8}
+  .fld{text-align:right;margin-bottom:10px}
+  .fld label{display:block;font-size:12.5px;color:#5c6f66;font-weight:700;margin-bottom:4px}
+  .fld input{width:100%;padding:11px 13px;border-radius:11px;border:1.5px solid #cfc3a1;
+    background:#fffdf6;font:inherit;font-size:14.5px}
+  .fld input:focus{outline:none;border-color:var(--emerald);box-shadow:0 0 0 3px rgba(14,70,54,.13)}
+  .gbtn{width:100%;padding:12px;border-radius:12px;border:0;background:linear-gradient(180deg,#17795c,#0b3d2e);
+    color:#fff;font:inherit;font-size:15px;font-weight:700;cursor:pointer;margin-top:4px}
+  .gbtn:hover{filter:brightness(1.08)}
+  .gback{display:inline-block;margin-top:14px;font-size:13px;color:#7b6b3a;font-weight:700}
+  .gerr{color:#a8323c;font-size:13px;margin-top:8px;display:none}
+  .gerr.on{display:block}
+  @media(max-width:520px){.lacts{grid-template-columns:1fr 1fr}.lb-main{grid-column:1/-1}}
+  .rv{opacity:0;transform:translateY(14px);transition:.5s}
+  .rv.in{opacity:1;transform:none}
 </style>
 </head>
 <body>
 
 <header>
-  <div class="hrow">
-    <a class="back-b" href="index.html">← الرئيسية</a>
-    <h1>دروس المقرر — القرآن الكريم وتفسيره ١</h1>
-    <a class="back-b" href="صفحة-المعلم.html">📊 لوحة المعلم</a>
-    <a class="back-b" href="قارئ-نتائج-الطلاب.html">🔎 قارئ النتائج</a>
+  <div class="hin">
+    <a class="hb" href="index.html"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg><span>الرئيسية</span></a>
+    <h1>دروس المقرر — ٢٥ درسًا</h1>
+    <a class="hb" href="صفحة-المعلم.html"><svg viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg><span>لوحة المعلم</span></a>
   </div>
-  <p>٢٥ درسًا · لكل درس: عرض البوربوينت · اللعبة التفاعلية · الفيديو · اختبار الوحدة — تُعرض جميعها داخل المنصة</p>
 </header>
 
-<div class="wrap">
-  <div class="bar">
-    <button class="chip on" data-f="all">الكل (٢٥)</button>
-    <button class="chip" data-f="1">الوحدة 1</button><button class="chip" data-f="2">الوحدة 2</button><button class="chip" data-f="3">الوحدة 3</button><button class="chip" data-f="4">الوحدة 4</button><button class="chip" data-f="5">الوحدة 5</button><button class="chip" data-f="6">الوحدة 6</button><button class="chip" data-f="7">الوحدة 7</button><button class="chip" data-f="8">الوحدة 8</button><button class="chip" data-f="9">الوحدة 9</button><button class="chip" data-f="10">الوحدة 10</button>
+<section class="head">
+  <div class="in">
+    <h2>عروض تفاعلية داخل المنصة</h2>
+    <p>شرائح متحركة · آيات بالتلاوة · وقفات تدبّرية · تقويم سريع — بلا ملفات PDF ولا نوافذ منبثقة.</p>
   </div>
-  <div id="list">
-    
-    <article class="card" data-unit="1">
-      <div class="top">
-        <div class="num">1</div>
-        <div class="meta">
-          <span class="unit">الوحدة 1 — مقدمة في التفسير</span>
-          <h3>الدرس 1 — التعريف بعلم التفسير ونشأته</h3>
+</section>
+
+<div class="bar">
+  <div class="search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><input id="q" type="text" placeholder="ابحث باسم الدرس…"></div>
+  <button class="chip on" data-f="all" type="button">الكل</button>
+  <button class="chip" data-f="1" type="button">الوحدة 1</button><button class="chip" data-f="2" type="button">الوحدة 2</button><button class="chip" data-f="3" type="button">الوحدة 3</button><button class="chip" data-f="4" type="button">الوحدة 4</button><button class="chip" data-f="5" type="button">الوحدة 5</button><button class="chip" data-f="6" type="button">الوحدة 6</button><button class="chip" data-f="7" type="button">الوحدة 7</button><button class="chip" data-f="8" type="button">الوحدة 8</button><button class="chip" data-f="9" type="button">الوحدة 9</button><button class="chip" data-f="10" type="button">الوحدة 10</button>
+</div>
+
+<div class="wrap">
+  <div class="grid" id="grid">
+      <article class="lc rv" data-u="1" data-t="التعريف بعلم التفسير ونشأته">
+        <a class="lthumb" href="درس-01-التعريف-بعلم-التفسير-ونشأته.html" style="background-image:url('img-unit_quran_open.jpg')">
+          <span class="ln">01</span>
+          <span class="lplay"><svg viewBox="0 0 24 24"><path d="M7 4l12 8-12 8z"/></svg></span>
+        </a>
+        <div class="lbody">
+          <span class="lu">الوحدة 1 · مقدمة في التفسير</span>
+          <h3>التعريف بعلم التفسير ونشأته</h3>
+          <div class="lacts">
+            <a class="lb lb-main" href="درس-01-التعريف-بعلم-التفسير-ونشأته.html"><svg viewBox="0 0 24 24"><path d="M7 4l12 8-12 8z"/></svg><span>العرض</span></a>
+            <a class="lb" href="لعبة-الوحدة-01-مقدمة-في-التفسير.html"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="9" rx="4"/><path d="M8 12h2M9 11v2M15 12h.01M17 12h.01"/></svg><span>اللعبة</span></a>
+            <a class="lb" href="اختبار-الوحدة-01-مقدمة-في-التفسير.html"><svg viewBox="0 0 24 24"><path d="M6 4h9l4 4v12H6z"/><path d="M9 12h7M9 16h4"/></svg><span>الاختبار</span></a>
+          </div>
         </div>
-      </div>
-      <div class="acts">
-        <button class="btn b-ppt" data-view="ppt" data-drive="11_nie3F3nHA8w2zsbVxUYQuvHPr0adC6"
-                data-title="الدرس 1: التعريف بعلم التفسير ونشأته">
-          <span class="ic">📊</span><span class="tx">عرض البوربوينت</span></button>
-        <a class="btn b-game" href="لعبة-الوحدة-01-مقدمة-في-التفسير.html">
-          <span class="ic">🎮</span><span class="tx">اللعبة التفاعلية</span></a>
-        <button class="btn b-vid off" type="button" disabled title="لم يُضف فيديو لهذا الدرس بعد"><span class="ic">🎬</span><span class="tx">فيديو — قريبًا</span></button>
-        <a class="btn b-exam" href="اختبار-الوحدة-01-مقدمة-في-التفسير.html">
-          <span class="ic">📝</span><span class="tx">اختبار الوحدة</span></a>
-      </div>
-    </article>
-    <article class="card" data-unit="1">
-      <div class="top">
-        <div class="num">2</div>
-        <div class="meta">
-          <span class="unit">الوحدة 1 — مقدمة في التفسير</span>
-          <h3>الدرس 2 — أهمية علم التفسير وضوابطه</h3>
+      </article>
+      <article class="lc rv" data-u="1" data-t="أهمية علم التفسير وضوابطه">
+        <a class="lthumb" href="درس-02-أهمية-علم-التفسير-وضوابطه.html" style="background-image:url('img-unit_mosque.jpg')">
+          <span class="ln">02</span>
+          <span class="lplay"><svg viewBox="0 0 24 24"><path d="M7 4l12 8-12 8z"/></svg></span>
+        </a>
+        <div class="lbody">
+          <span class="lu">الوحدة 1 · مقدمة في التفسير</span>
+          <h3>أهمية علم التفسير وضوابطه</h3>
+          <div class="lacts">
+            <a class="lb lb-main" href="درس-02-أهمية-علم-التفسير-وضوابطه.html"><svg viewBox="0 0 24 24"><path d="M7 4l12 8-12 8z"/></svg><span>العرض</span></a>
+            <a class="lb" href="لعبة-الوحدة-01-مقدمة-في-التفسير.html"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="9" rx="4"/><path d="M8 12h2M9 11v2M15 12h.01M17 12h.01"/></svg><span>اللعبة</span></a>
+            <a class="lb" href="اختبار-الوحدة-01-مقدمة-في-التفسير.html"><svg viewBox="0 0 24 24"><path d="M6 4h9l4 4v12H6z"/><path d="M9 12h7M9 16h4"/></svg><span>الاختبار</span></a>
+          </div>
         </div>
-      </div>
-      <div class="acts">
-        <button class="btn b-ppt" data-view="ppt" data-drive="1_b85lnwUmQLYlMC_SIi7TazlW8O_RFrV"
-                data-title="الدرس 2: أهمية علم التفسير وضوابطه">
-          <span class="ic">📊</span><span class="tx">عرض البوربوينت</span></button>
-        <a class="btn b-game" href="لعبة-الوحدة-01-مقدمة-في-التفسير.html">
-          <span class="ic">🎮</span><span class="tx">اللعبة التفاعلية</span></a>
-        <button class="btn b-vid off" type="button" disabled title="لم يُضف فيديو لهذا الدرس بعد"><span class="ic">🎬</span><span class="tx">فيديو — قريبًا</span></button>
-        <a class="btn b-exam" href="اختبار-الوحدة-01-مقدمة-في-التفسير.html">
-          <span class="ic">📝</span><span class="tx">اختبار الوحدة</span></a>
-      </div>
-    </article>
-    <article class="card" data-unit="1">
-      <div class="top">
-        <div class="num">3</div>
-        <div class="meta">
-          <span class="unit">الوحدة 1 — مقدمة في التفسير</span>
-          <h3>الدرس 3 — أبرز المؤلفات الموثوقة في التفسير</h3>
+      </article>
+      <article class="lc rv" data-u="1" data-t="أبرز المؤلفات الموثوقة في التفسير">
+        <a class="lthumb" href="درس-03-أبرز-المؤلفات-الموثوقة-في-التفسير.html" style="background-image:url('img-unit_manuscript.jpg')">
+          <span class="ln">03</span>
+          <span class="lplay"><svg viewBox="0 0 24 24"><path d="M7 4l12 8-12 8z"/></svg></span>
+        </a>
+        <div class="lbody">
+          <span class="lu">الوحدة 1 · مقدمة في التفسير</span>
+          <h3>أبرز المؤلفات الموثوقة في التفسير</h3>
+          <div class="lacts">
+            <a class="lb lb-main" href="درس-03-أبرز-المؤلفات-الموثوقة-في-التفسير.html"><svg viewBox="0 0 24 24"><path d="M7 4l12 8-12 8z"/></svg><span>العرض</span></a>
+            <a class="lb" href="لعبة-الوحدة-01-مقدمة-في-التفسير.html"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="9" rx="4"/><path d="M8 12h2M9 11v2M15 12h.01M17 12h.01"/></svg><span>اللعبة</span></a>
+            <a class="lb" href="اختبار-الوحدة-01-مقدمة-في-التفسير.html"><svg viewBox="0 0 24 24"><path d="M6 4h9l4 4v12H6z"/><path d="M9 12h7M9 16h4"/></svg><span>الاختبار</span></a>
+          </div>
         </div>
-      </div>
-      <div class="acts">
-        <button class="btn b-ppt" data-view="ppt" data-drive="1xEfsfkRF8Fij_zlXuGsPyg-AHTuwogbS"
-                data-title="الدرس 3: أبرز المؤلفات الموثوقة في التفسير">
-          <span class="ic">📊</span><span class="tx">عرض البوربوينت</span></button>
-        <a class="btn b-game" href="لعبة-الوحدة-01-مقدمة-في-التفسير.html">
-          <span class="ic">🎮</span><span class="tx">اللعبة التفاعلية</span></a>
-        <button class="btn b-vid off" type="button" disabled title="لم يُضف فيديو لهذا الدرس بعد"><span class="ic">🎬</span><span class="tx">فيديو — قريبًا</span></button>
-        <a class="btn b-exam" href="اختبار-الوحدة-01-مقدمة-في-التفسير.html">
-          <span class="ic">📝</span><span class="tx">اختبار الوحدة</span></a>
-      </div>
-    </article>
-    <article class="card" data-unit="1">
-      <div class="top">
-        <div class="num">4</div>
-        <div class="meta">
-          <span class="unit">الوحدة 1 — مقدمة في التفسير</span>
-          <h3>الدرس 4 — التقنية في خدمة القرآن الكريم وتفسيره</h3>
+      </article>
+      <article class="lc rv" data-u="1" data-t="التقنية في خدمة القرآن الكريم وتفسيره">
+        <a class="lthumb" href="درس-04-التقنية-في-خدمة-القرآن-الكريم-وتفسيره.html" style="background-image:url('img-unit_sky.jpg')">
+          <span class="ln">04</span>
+          <span class="lplay"><svg viewBox="0 0 24 24"><path d="M7 4l12 8-12 8z"/></svg></span>
+        </a>
+        <div class="lbody">
+          <span class="lu">الوحدة 1 · مقدمة في التفسير</span>
+          <h3>التقنية في خدمة القرآن الكريم وتفسيره</h3>
+          <div class="lacts">
+            <a class="lb lb-main" href="درس-04-التقنية-في-خدمة-القرآن-الكريم-وتفسيره.html"><svg viewBox="0 0 24 24"><path d="M7 4l12 8-12 8z"/></svg><span>العرض</span></a>
+            <a class="lb" href="لعبة-الوحدة-01-مقدمة-في-التفسير.html"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="9" rx="4"/><path d="M8 12h2M9 11v2M15 12h.01M17 12h.01"/></svg><span>اللعبة</span></a>
+            <a class="lb" href="اختبار-الوحدة-01-مقدمة-في-التفسير.html"><svg viewBox="0 0 24 24"><path d="M6 4h9l4 4v12H6z"/><path d="M9 12h7M9 16h4"/></svg><span>الاختبار</span></a>
+          </div>
         </div>
-      </div>
-      <div class="acts">
-        <button class="btn b-ppt" data-view="ppt" data-drive="1VtAFUPqIOjDLysCzLrfyLUyPRa3gCViO"
-                data-title="الدرس 4: التقنية في خدمة القرآن الكريم وتفسيره">
-          <span class="ic">📊</span><span class="tx">عرض البوربوينت</span></button>
-        <a class="btn b-game" href="لعبة-الوحدة-01-مقدمة-في-التفسير.html">
-          <span class="ic">🎮</span><span class="tx">اللعبة التفاعلية</span></a>
-        <button class="btn b-vid off" type="button" disabled title="لم يُضف فيديو لهذا الدرس بعد"><span class="ic">🎬</span><span class="tx">فيديو — قريبًا</span></button>
-        <a class="btn b-exam" href="اختبار-الوحدة-01-مقدمة-في-التفسير.html">
-          <span class="ic">📝</span><span class="tx">اختبار الوحدة</span></a>
-      </div>
-    </article>
-    <article class="card" data-unit="2">
-      <div class="top">
-        <div class="num">5</div>
-        <div class="meta">
-          <span class="unit">الوحدة 2 — سورة الفاتحة</span>
-          <h3>الدرس 5 — تفسير سورة الفاتحة</h3>
+      </article>
+      <article class="lc rv" data-u="2" data-t="تفسير سورة الفاتحة">
+        <a class="lthumb" href="درس-05-تفسير-سورة-الفاتحة.html" style="background-image:url('img-unit_geometric.jpg')">
+          <span class="ln">05</span>
+          <span class="lplay"><svg viewBox="0 0 24 24"><path d="M7 4l12 8-12 8z"/></svg></span>
+        </a>
+        <div class="lbody">
+          <span class="lu">الوحدة 2 · سورة الفاتحة</span>
+          <h3>تفسير سورة الفاتحة</h3>
+          <div class="lacts">
+            <a class="lb lb-main" href="درس-05-تفسير-سورة-الفاتحة.html"><svg viewBox="0 0 24 24"><path d="M7 4l12 8-12 8z"/></svg><span>العرض</span></a>
+            <a class="lb" href="لعبة-الوحدة-02-سورة-الفاتحة.html"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="9" rx="4"/><path d="M8 12h2M9 11v2M15 12h.01M17 12h.01"/></svg><span>اللعبة</span></a>
+            <a class="lb" href="اختبار-الوحدة-02-سورة-الفاتحة.html"><svg viewBox="0 0 24 24"><path d="M6 4h9l4 4v12H6z"/><path d="M9 12h7M9 16h4"/></svg><span>الاختبار</span></a>
+          </div>
         </div>
-      </div>
-      <div class="acts">
-        <button class="btn b-ppt" data-view="ppt" data-drive="1DInmDNL7vTJs2q64o20cIEQY7DaNcBC1"
-                data-title="الدرس 5: تفسير سورة الفاتحة">
-          <span class="ic">📊</span><span class="tx">عرض البوربوينت</span></button>
-        <a class="btn b-game" href="لعبة-الوحدة-02-سورة-الفاتحة.html">
-          <span class="ic">🎮</span><span class="tx">اللعبة التفاعلية</span></a>
-        <button class="btn b-vid off" type="button" disabled title="لم يُضف فيديو لهذا الدرس بعد"><span class="ic">🎬</span><span class="tx">فيديو — قريبًا</span></button>
-        <a class="btn b-exam" href="اختبار-الوحدة-02-سورة-الفاتحة.html">
-          <span class="ic">📝</span><span class="tx">اختبار الوحدة</span></a>
-      </div>
-    </article>
-    <article class="card" data-unit="3">
-      <div class="top">
-        <div class="num">6</div>
-        <div class="meta">
-          <span class="unit">الوحدة 3 — سورة يونس</span>
-          <h3>الدرس 6 — تفسير سورة يونس (3-10)</h3>
+      </article>
+      <article class="lc rv" data-u="3" data-t="تفسير سورة يونس (3-10)">
+        <a class="lthumb" href="درس-06-تفسير-سورة-يونس-3-10.html" style="background-image:url('img-unit_light.jpg')">
+          <span class="ln">06</span>
+          <span class="lplay"><svg viewBox="0 0 24 24"><path d="M7 4l12 8-12 8z"/></svg></span>
+        </a>
+        <div class="lbody">
+          <span class="lu">الوحدة 3 · سورة يونس</span>
+          <h3>تفسير سورة يونس (3-10)</h3>
+          <div class="lacts">
+            <a class="lb lb-main" href="درس-06-تفسير-سورة-يونس-3-10.html"><svg viewBox="0 0 24 24"><path d="M7 4l12 8-12 8z"/></svg><span>العرض</span></a>
+            <a class="lb" href="لعبة-الوحدة-03-سورة-يونس.html"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="9" rx="4"/><path d="M8 12h2M9 11v2M15 12h.01M17 12h.01"/></svg><span>اللعبة</span></a>
+            <a class="lb" href="اختبار-الوحدة-03-سورة-يونس.html"><svg viewBox="0 0 24 24"><path d="M6 4h9l4 4v12H6z"/><path d="M9 12h7M9 16h4"/></svg><span>الاختبار</span></a>
+          </div>
         </div>
-      </div>
-      <div class="acts">
-        <button class="btn b-ppt" data-view="ppt" data-drive="1TQPcyl_oCWepCBGLMCzYS_c7SRKeq_DG"
-                data-title="الدرس 6: تفسير سورة يونس (3-10)">
-          <span class="ic">📊</span><span class="tx">عرض البوربوينت</span></button>
-        <a class="btn b-game" href="لعبة-الوحدة-03-سورة-يونس.html">
-          <span class="ic">🎮</span><span class="tx">اللعبة التفاعلية</span></a>
-        <button class="btn b-vid" data-view="video" data-drive="1O8tnsypFzp9IJwF6rteEi3R8IscBmM45" data-title="الدرس 6: تفسير سورة يونس (3-10)"><span class="ic">🎬</span><span class="tx">مشاهدة الفيديو</span></button>
-        <a class="btn b-exam" href="اختبار-الوحدة-03-سورة-يونس.html">
-          <span class="ic">📝</span><span class="tx">اختبار الوحدة</span></a>
-      </div>
-    </article>
-    <article class="card" data-unit="3">
-      <div class="top">
-        <div class="num">7</div>
-        <div class="meta">
-          <span class="unit">الوحدة 3 — سورة يونس</span>
-          <h3>الدرس 7 — تفسير سورة يونس (26-33)</h3>
+      </article>
+      <article class="lc rv" data-u="3" data-t="تفسير سورة يونس (26-33)">
+        <a class="lthumb" href="درس-07-تفسير-سورة-يونس-26-33.html" style="background-image:url('img-unit_calligraphy.jpg')">
+          <span class="ln">07</span>
+          <span class="lplay"><svg viewBox="0 0 24 24"><path d="M7 4l12 8-12 8z"/></svg></span>
+        </a>
+        <div class="lbody">
+          <span class="lu">الوحدة 3 · سورة يونس</span>
+          <h3>تفسير سورة يونس (26-33)</h3>
+          <div class="lacts">
+            <a class="lb lb-main" href="درس-07-تفسير-سورة-يونس-26-33.html"><svg viewBox="0 0 24 24"><path d="M7 4l12 8-12 8z"/></svg><span>العرض</span></a>
+            <a class="lb" href="لعبة-الوحدة-03-سورة-يونس.html"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="9" rx="4"/><path d="M8 12h2M9 11v2M15 12h.01M17 12h.01"/></svg><span>اللعبة</span></a>
+            <a class="lb" href="اختبار-الوحدة-03-سورة-يونس.html"><svg viewBox="0 0 24 24"><path d="M6 4h9l4 4v12H6z"/><path d="M9 12h7M9 16h4"/></svg><span>الاختبار</span></a>
+          </div>
         </div>
-      </div>
-      <div class="acts">
-        <button class="btn b-ppt" data-view="ppt" data-drive="1Eo8fpxAdVN55f50_BB1CWteOKFdVIw6O"
-                data-title="الدرس 7: تفسير سورة يونس (26-33)">
-          <span class="ic">📊</span><span class="tx">عرض البوربوينت</span></button>
-        <a class="btn b-game" href="لعبة-الوحدة-03-سورة-يونس.html">
-          <span class="ic">🎮</span><span class="tx">اللعبة التفاعلية</span></a>
-        <button class="btn b-vid off" type="button" disabled title="لم يُضف فيديو لهذا الدرس بعد"><span class="ic">🎬</span><span class="tx">فيديو — قريبًا</span></button>
-        <a class="btn b-exam" href="اختبار-الوحدة-03-سورة-يونس.html">
-          <span class="ic">📝</span><span class="tx">اختبار الوحدة</span></a>
-      </div>
-    </article>
-    <article class="card" data-unit="3">
-      <div class="top">
-        <div class="num">8</div>
-        <div class="meta">
-          <span class="unit">الوحدة 3 — سورة يونس</span>
-          <h3>الدرس 8 — تفسير سورة يونس (62-70)</h3>
+      </article>
+      <article class="lc rv" data-u="3" data-t="تفسير سورة يونس (62-70)">
+        <a class="lthumb" href="درس-08-تفسير-سورة-يونس-62-70.html" style="background-image:url('img-unit_quran_open.jpg')">
+          <span class="ln">08</span>
+          <span class="lplay"><svg viewBox="0 0 24 24"><path d="M7 4l12 8-12 8z"/></svg></span>
+        </a>
+        <div class="lbody">
+          <span class="lu">الوحدة 3 · سورة يونس</span>
+          <h3>تفسير سورة يونس (62-70)</h3>
+          <div class="lacts">
+            <a class="lb lb-main" href="درس-08-تفسير-سورة-يونس-62-70.html"><svg viewBox="0 0 24 24"><path d="M7 4l12 8-12 8z"/></svg><span>العرض</span></a>
+            <a class="lb" href="لعبة-الوحدة-03-سورة-يونس.html"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="9" rx="4"/><path d="M8 12h2M9 11v2M15 12h.01M17 12h.01"/></svg><span>اللعبة</span></a>
+            <a class="lb" href="اختبار-الوحدة-03-سورة-يونس.html"><svg viewBox="0 0 24 24"><path d="M6 4h9l4 4v12H6z"/><path d="M9 12h7M9 16h4"/></svg><span>الاختبار</span></a>
+          </div>
         </div>
-      </div>
-      <div class="acts">
-        <button class="btn b-ppt" data-view="ppt" data-drive="1WToyYJIKnRuRyY4KNLZUMay_UmZetXrD"
-                data-title="الدرس 8: تفسير سورة يونس (62-70)">
-          <span class="ic">📊</span><span class="tx">عرض البوربوينت</span></button>
-        <a class="btn b-game" href="لعبة-الوحدة-03-سورة-يونس.html">
-          <span class="ic">🎮</span><span class="tx">اللعبة التفاعلية</span></a>
-        <button class="btn b-vid off" type="button" disabled title="لم يُضف فيديو لهذا الدرس بعد"><span class="ic">🎬</span><span class="tx">فيديو — قريبًا</span></button>
-        <a class="btn b-exam" href="اختبار-الوحدة-03-سورة-يونس.html">
-          <span class="ic">📝</span><span class="tx">اختبار الوحدة</span></a>
-      </div>
-    </article>
-    <article class="card" data-unit="4">
-      <div class="top">
-        <div class="num">9</div>
-        <div class="meta">
-          <span class="unit">الوحدة 4 — سورة هود</span>
-          <h3>الدرس 9 — تفسير سورة هود (96-108)</h3>
+      </article>
+      <article class="lc rv" data-u="4" data-t="تفسير سورة هود (96-108)">
+        <a class="lthumb" href="درس-09-تفسير-سورة-هود-96-108.html" style="background-image:url('img-unit_mosque.jpg')">
+          <span class="ln">09</span>
+          <span class="lplay"><svg viewBox="0 0 24 24"><path d="M7 4l12 8-12 8z"/></svg></span>
+        </a>
+        <div class="lbody">
+          <span class="lu">الوحدة 4 · سورة هود</span>
+          <h3>تفسير سورة هود (96-108)</h3>
+          <div class="lacts">
+            <a class="lb lb-main" href="درس-09-تفسير-سورة-هود-96-108.html"><svg viewBox="0 0 24 24"><path d="M7 4l12 8-12 8z"/></svg><span>العرض</span></a>
+            <a class="lb" href="لعبة-الوحدة-04-سورة-هود.html"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="9" rx="4"/><path d="M8 12h2M9 11v2M15 12h.01M17 12h.01"/></svg><span>اللعبة</span></a>
+            <a class="lb" href="اختبار-الوحدة-04-سورة-هود.html"><svg viewBox="0 0 24 24"><path d="M6 4h9l4 4v12H6z"/><path d="M9 12h7M9 16h4"/></svg><span>الاختبار</span></a>
+          </div>
         </div>
-      </div>
-      <div class="acts">
-        <button class="btn b-ppt" data-view="ppt" data-drive="1lIOigMSn-4tE7PruolKUYNdMpFAWAyEW"
-                data-title="الدرس 9: تفسير سورة هود (96-108)">
-          <span class="ic">📊</span><span class="tx">عرض البوربوينت</span></button>
-        <a class="btn b-game" href="لعبة-الوحدة-04-سورة-هود.html">
-          <span class="ic">🎮</span><span class="tx">اللعبة التفاعلية</span></a>
-        <button class="btn b-vid off" type="button" disabled title="لم يُضف فيديو لهذا الدرس بعد"><span class="ic">🎬</span><span class="tx">فيديو — قريبًا</span></button>
-        <a class="btn b-exam" href="اختبار-الوحدة-04-سورة-هود.html">
-          <span class="ic">📝</span><span class="tx">اختبار الوحدة</span></a>
-      </div>
-    </article>
-    <article class="card" data-unit="4">
-      <div class="top">
-        <div class="num">10</div>
-        <div class="meta">
-          <span class="unit">الوحدة 4 — سورة هود</span>
-          <h3>الدرس 10 — تفسير سورة هود (112-123)</h3>
+      </article>
+      <article class="lc rv" data-u="4" data-t="تفسير سورة هود (112-123)">
+        <a class="lthumb" href="درس-10-تفسير-سورة-هود-112-123.html" style="background-image:url('img-unit_manuscript.jpg')">
+          <span class="ln">10</span>
+          <span class="lplay"><svg viewBox="0 0 24 24"><path d="M7 4l12 8-12 8z"/></svg></span>
+        </a>
+        <div class="lbody">
+          <span class="lu">الوحدة 4 · سورة هود</span>
+          <h3>تفسير سورة هود (112-123)</h3>
+          <div class="lacts">
+            <a class="lb lb-main" href="درس-10-تفسير-سورة-هود-112-123.html"><svg viewBox="0 0 24 24"><path d="M7 4l12 8-12 8z"/></svg><span>العرض</span></a>
+            <a class="lb" href="لعبة-الوحدة-04-سورة-هود.html"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="9" rx="4"/><path d="M8 12h2M9 11v2M15 12h.01M17 12h.01"/></svg><span>اللعبة</span></a>
+            <a class="lb" href="اختبار-الوحدة-04-سورة-هود.html"><svg viewBox="0 0 24 24"><path d="M6 4h9l4 4v12H6z"/><path d="M9 12h7M9 16h4"/></svg><span>الاختبار</span></a>
+          </div>
         </div>
-      </div>
-      <div class="acts">
-        <button class="btn b-ppt" data-view="ppt" data-drive="15gqxRaefsVOtfpFIbEVQO5bsmDjzLHiR"
-                data-title="الدرس 10: تفسير سورة هود (112-123)">
-          <span class="ic">📊</span><span class="tx">عرض البوربوينت</span></button>
-        <a class="btn b-game" href="لعبة-الوحدة-04-سورة-هود.html">
-          <span class="ic">🎮</span><span class="tx">اللعبة التفاعلية</span></a>
-        <button class="btn b-vid off" type="button" disabled title="لم يُضف فيديو لهذا الدرس بعد"><span class="ic">🎬</span><span class="tx">فيديو — قريبًا</span></button>
-        <a class="btn b-exam" href="اختبار-الوحدة-04-سورة-هود.html">
-          <span class="ic">📝</span><span class="tx">اختبار الوحدة</span></a>
-      </div>
-    </article>
-    <article class="card" data-unit="5">
-      <div class="top">
-        <div class="num">11</div>
-        <div class="meta">
-          <span class="unit">الوحدة 5 — سورة يوسف</span>
-          <h3>الدرس 11 — تفسير سورة يوسف (46-57)</h3>
+      </article>
+      <article class="lc rv" data-u="5" data-t="تفسير سورة يوسف (46-57)">
+        <a class="lthumb" href="درس-11-تفسير-سورة-يوسف-46-57.html" style="background-image:url('img-unit_sky.jpg')">
+          <span class="ln">11</span>
+          <span class="lplay"><svg viewBox="0 0 24 24"><path d="M7 4l12 8-12 8z"/></svg></span>
+        </a>
+        <div class="lbody">
+          <span class="lu">الوحدة 5 · سورة يوسف</span>
+          <h3>تفسير سورة يوسف (46-57)</h3>
+          <div class="lacts">
+            <a class="lb lb-main" href="درس-11-تفسير-سورة-يوسف-46-57.html"><svg viewBox="0 0 24 24"><path d="M7 4l12 8-12 8z"/></svg><span>العرض</span></a>
+            <a class="lb" href="لعبة-الوحدة-05-سورة-يوسف.html"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="9" rx="4"/><path d="M8 12h2M9 11v2M15 12h.01M17 12h.01"/></svg><span>اللعبة</span></a>
+            <a class="lb" href="اختبار-الوحدة-05-سورة-يوسف.html"><svg viewBox="0 0 24 24"><path d="M6 4h9l4 4v12H6z"/><path d="M9 12h7M9 16h4"/></svg><span>الاختبار</span></a>
+          </div>
         </div>
-      </div>
-      <div class="acts">
-        <button class="btn b-ppt" data-view="ppt" data-drive="1i0H3yqsudZA8trHKAnb9NQuhOSTXQEIb"
-                data-title="الدرس 11: تفسير سورة يوسف (46-57)">
-          <span class="ic">📊</span><span class="tx">عرض البوربوينت</span></button>
-        <a class="btn b-game" href="لعبة-الوحدة-05-سورة-يوسف.html">
-          <span class="ic">🎮</span><span class="tx">اللعبة التفاعلية</span></a>
-        <button class="btn b-vid" data-view="video" data-drive="12J8pFfgA8kr2lKHKY9tRr67uV214XtJ3" data-title="الدرس 11: تفسير سورة يوسف (46-57)"><span class="ic">🎬</span><span class="tx">مشاهدة الفيديو</span></button>
-        <a class="btn b-exam" href="اختبار-الوحدة-05-سورة-يوسف.html">
-          <span class="ic">📝</span><span class="tx">اختبار الوحدة</span></a>
-      </div>
-    </article>
-    <article class="card" data-unit="5">
-      <div class="top">
-        <div class="num">12</div>
-        <div class="meta">
-          <span class="unit">الوحدة 5 — سورة يوسف</span>
-          <h3>الدرس 12 — تفسير سورة يوسف (102-111)</h3>
+      </article>
+      <article class="lc rv" data-u="5" data-t="تفسير سورة يوسف (102-111)">
+        <a class="lthumb" href="درس-12-تفسير-سورة-يوسف-102-111.html" style="background-image:url('img-unit_geometric.jpg')">
+          <span class="ln">12</span>
+          <span class="lplay"><svg viewBox="0 0 24 24"><path d="M7 4l12 8-12 8z"/></svg></span>
+        </a>
+        <div class="lbody">
+          <span class="lu">الوحدة 5 · سورة يوسف</span>
+          <h3>تفسير سورة يوسف (102-111)</h3>
+          <div class="lacts">
+            <a class="lb lb-main" href="درس-12-تفسير-سورة-يوسف-102-111.html"><svg viewBox="0 0 24 24"><path d="M7 4l12 8-12 8z"/></svg><span>العرض</span></a>
+            <a class="lb" href="لعبة-الوحدة-05-سورة-يوسف.html"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="9" rx="4"/><path d="M8 12h2M9 11v2M15 12h.01M17 12h.01"/></svg><span>اللعبة</span></a>
+            <a class="lb" href="اختبار-الوحدة-05-سورة-يوسف.html"><svg viewBox="0 0 24 24"><path d="M6 4h9l4 4v12H6z"/><path d="M9 12h7M9 16h4"/></svg><span>الاختبار</span></a>
+          </div>
         </div>
-      </div>
-      <div class="acts">
-        <button class="btn b-ppt" data-view="ppt" data-drive="1mywOE6EraBOT43M6BY94fuqpkO8o5xwN"
-                data-title="الدرس 12: تفسير سورة يوسف (102-111)">
-          <span class="ic">📊</span><span class="tx">عرض البوربوينت</span></button>
-        <a class="btn b-game" href="لعبة-الوحدة-05-سورة-يوسف.html">
-          <span class="ic">🎮</span><span class="tx">اللعبة التفاعلية</span></a>
-        <button class="btn b-vid off" type="button" disabled title="لم يُضف فيديو لهذا الدرس بعد"><span class="ic">🎬</span><span class="tx">فيديو — قريبًا</span></button>
-        <a class="btn b-exam" href="اختبار-الوحدة-05-سورة-يوسف.html">
-          <span class="ic">📝</span><span class="tx">اختبار الوحدة</span></a>
-      </div>
-    </article>
-    <article class="card" data-unit="6">
-      <div class="top">
-        <div class="num">13</div>
-        <div class="meta">
-          <span class="unit">الوحدة 6 — سورة الرعد</span>
-          <h3>الدرس 13 — تفسير سورة الرعد (8-15)</h3>
+      </article>
+      <article class="lc rv" data-u="6" data-t="تفسير سورة الرعد (8-15)">
+        <a class="lthumb" href="درس-13-تفسير-سورة-الرعد-8-15.html" style="background-image:url('img-unit_light.jpg')">
+          <span class="ln">13</span>
+          <span class="lplay"><svg viewBox="0 0 24 24"><path d="M7 4l12 8-12 8z"/></svg></span>
+        </a>
+        <div class="lbody">
+          <span class="lu">الوحدة 6 · سورة الرعد</span>
+          <h3>تفسير سورة الرعد (8-15)</h3>
+          <div class="lacts">
+            <a class="lb lb-main" href="درس-13-تفسير-سورة-الرعد-8-15.html"><svg viewBox="0 0 24 24"><path d="M7 4l12 8-12 8z"/></svg><span>العرض</span></a>
+            <a class="lb" href="لعبة-الوحدة-06-سورة-الرعد.html"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="9" rx="4"/><path d="M8 12h2M9 11v2M15 12h.01M17 12h.01"/></svg><span>اللعبة</span></a>
+            <a class="lb" href="اختبار-الوحدة-06-سورة-الرعد.html"><svg viewBox="0 0 24 24"><path d="M6 4h9l4 4v12H6z"/><path d="M9 12h7M9 16h4"/></svg><span>الاختبار</span></a>
+          </div>
         </div>
-      </div>
-      <div class="acts">
-        <button class="btn b-ppt" data-view="ppt" data-drive="1joN0H1_z2cb4RbYQ5M6TcxB_Cf1BpJ4r"
-                data-title="الدرس 13: تفسير سورة الرعد (8-15)">
-          <span class="ic">📊</span><span class="tx">عرض البوربوينت</span></button>
-        <a class="btn b-game" href="لعبة-الوحدة-06-سورة-الرعد.html">
-          <span class="ic">🎮</span><span class="tx">اللعبة التفاعلية</span></a>
-        <button class="btn b-vid off" type="button" disabled title="لم يُضف فيديو لهذا الدرس بعد"><span class="ic">🎬</span><span class="tx">فيديو — قريبًا</span></button>
-        <a class="btn b-exam" href="اختبار-الوحدة-06-سورة-الرعد.html">
-          <span class="ic">📝</span><span class="tx">اختبار الوحدة</span></a>
-      </div>
-    </article>
-    <article class="card" data-unit="6">
-      <div class="top">
-        <div class="num">14</div>
-        <div class="meta">
-          <span class="unit">الوحدة 6 — سورة الرعد</span>
-          <h3>الدرس 14 — تفسير سورة الرعد (19-29)</h3>
+      </article>
+      <article class="lc rv" data-u="6" data-t="تفسير سورة الرعد (19-29)">
+        <a class="lthumb" href="درس-14-تفسير-سورة-الرعد-19-29.html" style="background-image:url('img-unit_calligraphy.jpg')">
+          <span class="ln">14</span>
+          <span class="lplay"><svg viewBox="0 0 24 24"><path d="M7 4l12 8-12 8z"/></svg></span>
+        </a>
+        <div class="lbody">
+          <span class="lu">الوحدة 6 · سورة الرعد</span>
+          <h3>تفسير سورة الرعد (19-29)</h3>
+          <div class="lacts">
+            <a class="lb lb-main" href="درس-14-تفسير-سورة-الرعد-19-29.html"><svg viewBox="0 0 24 24"><path d="M7 4l12 8-12 8z"/></svg><span>العرض</span></a>
+            <a class="lb" href="لعبة-الوحدة-06-سورة-الرعد.html"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="9" rx="4"/><path d="M8 12h2M9 11v2M15 12h.01M17 12h.01"/></svg><span>اللعبة</span></a>
+            <a class="lb" href="اختبار-الوحدة-06-سورة-الرعد.html"><svg viewBox="0 0 24 24"><path d="M6 4h9l4 4v12H6z"/><path d="M9 12h7M9 16h4"/></svg><span>الاختبار</span></a>
+          </div>
         </div>
-      </div>
-      <div class="acts">
-        <button class="btn b-ppt" data-view="ppt" data-drive="17oweoGJrTY1YET-E-WV9bKxxXEeZ39id"
-                data-title="الدرس 14: تفسير سورة الرعد (19-29)">
-          <span class="ic">📊</span><span class="tx">عرض البوربوينت</span></button>
-        <a class="btn b-game" href="لعبة-الوحدة-06-سورة-الرعد.html">
-          <span class="ic">🎮</span><span class="tx">اللعبة التفاعلية</span></a>
-        <button class="btn b-vid off" type="button" disabled title="لم يُضف فيديو لهذا الدرس بعد"><span class="ic">🎬</span><span class="tx">فيديو — قريبًا</span></button>
-        <a class="btn b-exam" href="اختبار-الوحدة-06-سورة-الرعد.html">
-          <span class="ic">📝</span><span class="tx">اختبار الوحدة</span></a>
-      </div>
-    </article>
-    <article class="card" data-unit="7">
-      <div class="top">
-        <div class="num">15</div>
-        <div class="meta">
-          <span class="unit">الوحدة 7 — سورة إبراهيم</span>
-          <h3>الدرس 15 — تفسير سورة إبراهيم (24-31)</h3>
+      </article>
+      <article class="lc rv" data-u="7" data-t="تفسير سورة إبراهيم (24-31)">
+        <a class="lthumb" href="درس-15-تفسير-سورة-إبراهيم-24-31.html" style="background-image:url('img-unit_quran_open.jpg')">
+          <span class="ln">15</span>
+          <span class="lplay"><svg viewBox="0 0 24 24"><path d="M7 4l12 8-12 8z"/></svg></span>
+        </a>
+        <div class="lbody">
+          <span class="lu">الوحدة 7 · سورة إبراهيم</span>
+          <h3>تفسير سورة إبراهيم (24-31)</h3>
+          <div class="lacts">
+            <a class="lb lb-main" href="درس-15-تفسير-سورة-إبراهيم-24-31.html"><svg viewBox="0 0 24 24"><path d="M7 4l12 8-12 8z"/></svg><span>العرض</span></a>
+            <a class="lb" href="لعبة-الوحدة-07-سورة-إبراهيم.html"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="9" rx="4"/><path d="M8 12h2M9 11v2M15 12h.01M17 12h.01"/></svg><span>اللعبة</span></a>
+            <a class="lb" href="اختبار-الوحدة-07-سورة-إبراهيم.html"><svg viewBox="0 0 24 24"><path d="M6 4h9l4 4v12H6z"/><path d="M9 12h7M9 16h4"/></svg><span>الاختبار</span></a>
+          </div>
         </div>
-      </div>
-      <div class="acts">
-        <button class="btn b-ppt" data-view="ppt" data-drive="1YmMgqC82qZBdNRSYrk-zewwdHOYUlLfo"
-                data-title="الدرس 15: تفسير سورة إبراهيم (24-31)">
-          <span class="ic">📊</span><span class="tx">عرض البوربوينت</span></button>
-        <a class="btn b-game" href="لعبة-الوحدة-07-سورة-إبراهيم.html">
-          <span class="ic">🎮</span><span class="tx">اللعبة التفاعلية</span></a>
-        <button class="btn b-vid off" type="button" disabled title="لم يُضف فيديو لهذا الدرس بعد"><span class="ic">🎬</span><span class="tx">فيديو — قريبًا</span></button>
-        <a class="btn b-exam" href="اختبار-الوحدة-07-سورة-إبراهيم.html">
-          <span class="ic">📝</span><span class="tx">اختبار الوحدة</span></a>
-      </div>
-    </article>
-    <article class="card" data-unit="7">
-      <div class="top">
-        <div class="num">16</div>
-        <div class="meta">
-          <span class="unit">الوحدة 7 — سورة إبراهيم</span>
-          <h3>الدرس 16 — تفسير سورة إبراهيم (42-52)</h3>
+      </article>
+      <article class="lc rv" data-u="7" data-t="تفسير سورة إبراهيم (42-52)">
+        <a class="lthumb" href="درس-16-تفسير-سورة-إبراهيم-42-52.html" style="background-image:url('img-unit_mosque.jpg')">
+          <span class="ln">16</span>
+          <span class="lplay"><svg viewBox="0 0 24 24"><path d="M7 4l12 8-12 8z"/></svg></span>
+        </a>
+        <div class="lbody">
+          <span class="lu">الوحدة 7 · سورة إبراهيم</span>
+          <h3>تفسير سورة إبراهيم (42-52)</h3>
+          <div class="lacts">
+            <a class="lb lb-main" href="درس-16-تفسير-سورة-إبراهيم-42-52.html"><svg viewBox="0 0 24 24"><path d="M7 4l12 8-12 8z"/></svg><span>العرض</span></a>
+            <a class="lb" href="لعبة-الوحدة-07-سورة-إبراهيم.html"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="9" rx="4"/><path d="M8 12h2M9 11v2M15 12h.01M17 12h.01"/></svg><span>اللعبة</span></a>
+            <a class="lb" href="اختبار-الوحدة-07-سورة-إبراهيم.html"><svg viewBox="0 0 24 24"><path d="M6 4h9l4 4v12H6z"/><path d="M9 12h7M9 16h4"/></svg><span>الاختبار</span></a>
+          </div>
         </div>
-      </div>
-      <div class="acts">
-        <button class="btn b-ppt" data-view="ppt" data-drive="1y1P92Kw6w-RQ0IyHWkaKlQ5-mUckUV38"
-                data-title="الدرس 16: تفسير سورة إبراهيم (42-52)">
-          <span class="ic">📊</span><span class="tx">عرض البوربوينت</span></button>
-        <a class="btn b-game" href="لعبة-الوحدة-07-سورة-إبراهيم.html">
-          <span class="ic">🎮</span><span class="tx">اللعبة التفاعلية</span></a>
-        <button class="btn b-vid off" type="button" disabled title="لم يُضف فيديو لهذا الدرس بعد"><span class="ic">🎬</span><span class="tx">فيديو — قريبًا</span></button>
-        <a class="btn b-exam" href="اختبار-الوحدة-07-سورة-إبراهيم.html">
-          <span class="ic">📝</span><span class="tx">اختبار الوحدة</span></a>
-      </div>
-    </article>
-    <article class="card" data-unit="8">
-      <div class="top">
-        <div class="num">17</div>
-        <div class="meta">
-          <span class="unit">الوحدة 8 — سورة الحجر</span>
-          <h3>الدرس 17 — تفسير سورة الحجر (28-50)</h3>
+      </article>
+      <article class="lc rv" data-u="8" data-t="تفسير سورة الحجر (28-50)">
+        <a class="lthumb" href="درس-17-تفسير-سورة-الحجر-28-50.html" style="background-image:url('img-unit_manuscript.jpg')">
+          <span class="ln">17</span>
+          <span class="lplay"><svg viewBox="0 0 24 24"><path d="M7 4l12 8-12 8z"/></svg></span>
+        </a>
+        <div class="lbody">
+          <span class="lu">الوحدة 8 · سورة الحجر</span>
+          <h3>تفسير سورة الحجر (28-50)</h3>
+          <div class="lacts">
+            <a class="lb lb-main" href="درس-17-تفسير-سورة-الحجر-28-50.html"><svg viewBox="0 0 24 24"><path d="M7 4l12 8-12 8z"/></svg><span>العرض</span></a>
+            <a class="lb" href="لعبة-الوحدة-08-سورة-الحجر.html"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="9" rx="4"/><path d="M8 12h2M9 11v2M15 12h.01M17 12h.01"/></svg><span>اللعبة</span></a>
+            <a class="lb" href="اختبار-الوحدة-08-سورة-الحجر.html"><svg viewBox="0 0 24 24"><path d="M6 4h9l4 4v12H6z"/><path d="M9 12h7M9 16h4"/></svg><span>الاختبار</span></a>
+          </div>
         </div>
-      </div>
-      <div class="acts">
-        <button class="btn b-ppt" data-view="ppt" data-drive="1GDdokDX_oPBfoyg_07goS5wVV0C_Z0eI"
-                data-title="الدرس 17: تفسير سورة الحجر (28-50)">
-          <span class="ic">📊</span><span class="tx">عرض البوربوينت</span></button>
-        <a class="btn b-game" href="لعبة-الوحدة-08-سورة-الحجر.html">
-          <span class="ic">🎮</span><span class="tx">اللعبة التفاعلية</span></a>
-        <button class="btn b-vid off" type="button" disabled title="لم يُضف فيديو لهذا الدرس بعد"><span class="ic">🎬</span><span class="tx">فيديو — قريبًا</span></button>
-        <a class="btn b-exam" href="اختبار-الوحدة-08-سورة-الحجر.html">
-          <span class="ic">📝</span><span class="tx">اختبار الوحدة</span></a>
-      </div>
-    </article>
-    <article class="card" data-unit="8">
-      <div class="top">
-        <div class="num">18</div>
-        <div class="meta">
-          <span class="unit">الوحدة 8 — سورة الحجر</span>
-          <h3>الدرس 18 — تفسير سورة الحجر (85-99)</h3>
+      </article>
+      <article class="lc rv" data-u="8" data-t="تفسير سورة الحجر (85-99)">
+        <a class="lthumb" href="درس-18-تفسير-سورة-الحجر-85-99.html" style="background-image:url('img-unit_sky.jpg')">
+          <span class="ln">18</span>
+          <span class="lplay"><svg viewBox="0 0 24 24"><path d="M7 4l12 8-12 8z"/></svg></span>
+        </a>
+        <div class="lbody">
+          <span class="lu">الوحدة 8 · سورة الحجر</span>
+          <h3>تفسير سورة الحجر (85-99)</h3>
+          <div class="lacts">
+            <a class="lb lb-main" href="درس-18-تفسير-سورة-الحجر-85-99.html"><svg viewBox="0 0 24 24"><path d="M7 4l12 8-12 8z"/></svg><span>العرض</span></a>
+            <a class="lb" href="لعبة-الوحدة-08-سورة-الحجر.html"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="9" rx="4"/><path d="M8 12h2M9 11v2M15 12h.01M17 12h.01"/></svg><span>اللعبة</span></a>
+            <a class="lb" href="اختبار-الوحدة-08-سورة-الحجر.html"><svg viewBox="0 0 24 24"><path d="M6 4h9l4 4v12H6z"/><path d="M9 12h7M9 16h4"/></svg><span>الاختبار</span></a>
+          </div>
         </div>
-      </div>
-      <div class="acts">
-        <button class="btn b-ppt" data-view="ppt" data-drive="1OwsLkRR96BmyNBGTLKBishwWbmE47C6N"
-                data-title="الدرس 18: تفسير سورة الحجر (85-99)">
-          <span class="ic">📊</span><span class="tx">عرض البوربوينت</span></button>
-        <a class="btn b-game" href="لعبة-الوحدة-08-سورة-الحجر.html">
-          <span class="ic">🎮</span><span class="tx">اللعبة التفاعلية</span></a>
-        <button class="btn b-vid off" type="button" disabled title="لم يُضف فيديو لهذا الدرس بعد"><span class="ic">🎬</span><span class="tx">فيديو — قريبًا</span></button>
-        <a class="btn b-exam" href="اختبار-الوحدة-08-سورة-الحجر.html">
-          <span class="ic">📝</span><span class="tx">اختبار الوحدة</span></a>
-      </div>
-    </article>
-    <article class="card" data-unit="9">
-      <div class="top">
-        <div class="num">19</div>
-        <div class="meta">
-          <span class="unit">الوحدة 9 — سورة النحل</span>
-          <h3>الدرس 19 — تفسير سورة النحل (10-18)</h3>
+      </article>
+      <article class="lc rv" data-u="9" data-t="تفسير سورة النحل (10-18)">
+        <a class="lthumb" href="درس-19-تفسير-سورة-النحل-10-18.html" style="background-image:url('img-unit_geometric.jpg')">
+          <span class="ln">19</span>
+          <span class="lplay"><svg viewBox="0 0 24 24"><path d="M7 4l12 8-12 8z"/></svg></span>
+        </a>
+        <div class="lbody">
+          <span class="lu">الوحدة 9 · سورة النحل</span>
+          <h3>تفسير سورة النحل (10-18)</h3>
+          <div class="lacts">
+            <a class="lb lb-main" href="درس-19-تفسير-سورة-النحل-10-18.html"><svg viewBox="0 0 24 24"><path d="M7 4l12 8-12 8z"/></svg><span>العرض</span></a>
+            <a class="lb" href="لعبة-الوحدة-09-سورة-النحل.html"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="9" rx="4"/><path d="M8 12h2M9 11v2M15 12h.01M17 12h.01"/></svg><span>اللعبة</span></a>
+            <a class="lb" href="اختبار-الوحدة-09-سورة-النحل.html"><svg viewBox="0 0 24 24"><path d="M6 4h9l4 4v12H6z"/><path d="M9 12h7M9 16h4"/></svg><span>الاختبار</span></a>
+          </div>
         </div>
-      </div>
-      <div class="acts">
-        <button class="btn b-ppt" data-view="ppt" data-drive="1hF9Jp27F8kVEJoQoTMMFsNuEWpKbrxQT"
-                data-title="الدرس 19: تفسير سورة النحل (10-18)">
-          <span class="ic">📊</span><span class="tx">عرض البوربوينت</span></button>
-        <a class="btn b-game" href="لعبة-الوحدة-09-سورة-النحل.html">
-          <span class="ic">🎮</span><span class="tx">اللعبة التفاعلية</span></a>
-        <button class="btn b-vid off" type="button" disabled title="لم يُضف فيديو لهذا الدرس بعد"><span class="ic">🎬</span><span class="tx">فيديو — قريبًا</span></button>
-        <a class="btn b-exam" href="اختبار-الوحدة-09-سورة-النحل.html">
-          <span class="ic">📝</span><span class="tx">اختبار الوحدة</span></a>
-      </div>
-    </article>
-    <article class="card" data-unit="9">
-      <div class="top">
-        <div class="num">20</div>
-        <div class="meta">
-          <span class="unit">الوحدة 9 — سورة النحل</span>
-          <h3>الدرس 20 — تفسير سورة النحل (112-117)</h3>
+      </article>
+      <article class="lc rv" data-u="9" data-t="تفسير سورة النحل (112-117)">
+        <a class="lthumb" href="درس-20-تفسير-سورة-النحل-112-117.html" style="background-image:url('img-unit_light.jpg')">
+          <span class="ln">20</span>
+          <span class="lplay"><svg viewBox="0 0 24 24"><path d="M7 4l12 8-12 8z"/></svg></span>
+        </a>
+        <div class="lbody">
+          <span class="lu">الوحدة 9 · سورة النحل</span>
+          <h3>تفسير سورة النحل (112-117)</h3>
+          <div class="lacts">
+            <a class="lb lb-main" href="درس-20-تفسير-سورة-النحل-112-117.html"><svg viewBox="0 0 24 24"><path d="M7 4l12 8-12 8z"/></svg><span>العرض</span></a>
+            <a class="lb" href="لعبة-الوحدة-09-سورة-النحل.html"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="9" rx="4"/><path d="M8 12h2M9 11v2M15 12h.01M17 12h.01"/></svg><span>اللعبة</span></a>
+            <a class="lb" href="اختبار-الوحدة-09-سورة-النحل.html"><svg viewBox="0 0 24 24"><path d="M6 4h9l4 4v12H6z"/><path d="M9 12h7M9 16h4"/></svg><span>الاختبار</span></a>
+          </div>
         </div>
-      </div>
-      <div class="acts">
-        <button class="btn b-ppt" data-view="ppt" data-drive="1EY32ZrqyB-9HFRhc6VExorOhdnScmi9L"
-                data-title="الدرس 20: تفسير سورة النحل (112-117)">
-          <span class="ic">📊</span><span class="tx">عرض البوربوينت</span></button>
-        <a class="btn b-game" href="لعبة-الوحدة-09-سورة-النحل.html">
-          <span class="ic">🎮</span><span class="tx">اللعبة التفاعلية</span></a>
-        <button class="btn b-vid off" type="button" disabled title="لم يُضف فيديو لهذا الدرس بعد"><span class="ic">🎬</span><span class="tx">فيديو — قريبًا</span></button>
-        <a class="btn b-exam" href="اختبار-الوحدة-09-سورة-النحل.html">
-          <span class="ic">📝</span><span class="tx">اختبار الوحدة</span></a>
-      </div>
-    </article>
-    <article class="card" data-unit="9">
-      <div class="top">
-        <div class="num">21</div>
-        <div class="meta">
-          <span class="unit">الوحدة 9 — سورة النحل</span>
-          <h3>الدرس 21 — تفسير سورة النحل (120-128)</h3>
+      </article>
+      <article class="lc rv" data-u="9" data-t="تفسير سورة النحل (120-128)">
+        <a class="lthumb" href="درس-21-تفسير-سورة-النحل-120-128.html" style="background-image:url('img-unit_calligraphy.jpg')">
+          <span class="ln">21</span>
+          <span class="lplay"><svg viewBox="0 0 24 24"><path d="M7 4l12 8-12 8z"/></svg></span>
+        </a>
+        <div class="lbody">
+          <span class="lu">الوحدة 9 · سورة النحل</span>
+          <h3>تفسير سورة النحل (120-128)</h3>
+          <div class="lacts">
+            <a class="lb lb-main" href="درس-21-تفسير-سورة-النحل-120-128.html"><svg viewBox="0 0 24 24"><path d="M7 4l12 8-12 8z"/></svg><span>العرض</span></a>
+            <a class="lb" href="لعبة-الوحدة-09-سورة-النحل.html"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="9" rx="4"/><path d="M8 12h2M9 11v2M15 12h.01M17 12h.01"/></svg><span>اللعبة</span></a>
+            <a class="lb" href="اختبار-الوحدة-09-سورة-النحل.html"><svg viewBox="0 0 24 24"><path d="M6 4h9l4 4v12H6z"/><path d="M9 12h7M9 16h4"/></svg><span>الاختبار</span></a>
+          </div>
         </div>
-      </div>
-      <div class="acts">
-        <button class="btn b-ppt" data-view="ppt" data-drive="1Ulyz4PSmtNC3aLAZ6iWi8E-CYm-URbEz"
-                data-title="الدرس 21: تفسير سورة النحل (120-128)">
-          <span class="ic">📊</span><span class="tx">عرض البوربوينت</span></button>
-        <a class="btn b-game" href="لعبة-الوحدة-09-سورة-النحل.html">
-          <span class="ic">🎮</span><span class="tx">اللعبة التفاعلية</span></a>
-        <button class="btn b-vid off" type="button" disabled title="لم يُضف فيديو لهذا الدرس بعد"><span class="ic">🎬</span><span class="tx">فيديو — قريبًا</span></button>
-        <a class="btn b-exam" href="اختبار-الوحدة-09-سورة-النحل.html">
-          <span class="ic">📝</span><span class="tx">اختبار الوحدة</span></a>
-      </div>
-    </article>
-    <article class="card" data-unit="10">
-      <div class="top">
-        <div class="num">22</div>
-        <div class="meta">
-          <span class="unit">الوحدة 10 — سورة الإسراء</span>
-          <h3>الدرس 22 — تفسير سورة الإسراء (23-30)</h3>
+      </article>
+      <article class="lc rv" data-u="10" data-t="تفسير سورة الإسراء (23-30)">
+        <a class="lthumb" href="درس-22-تفسير-سورة-الإسراء-23-30.html" style="background-image:url('img-unit_quran_open.jpg')">
+          <span class="ln">22</span>
+          <span class="lplay"><svg viewBox="0 0 24 24"><path d="M7 4l12 8-12 8z"/></svg></span>
+        </a>
+        <div class="lbody">
+          <span class="lu">الوحدة 10 · سورة الإسراء</span>
+          <h3>تفسير سورة الإسراء (23-30)</h3>
+          <div class="lacts">
+            <a class="lb lb-main" href="درس-22-تفسير-سورة-الإسراء-23-30.html"><svg viewBox="0 0 24 24"><path d="M7 4l12 8-12 8z"/></svg><span>العرض</span></a>
+            <a class="lb" href="لعبة-الوحدة-10-سورة-الإسراء.html"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="9" rx="4"/><path d="M8 12h2M9 11v2M15 12h.01M17 12h.01"/></svg><span>اللعبة</span></a>
+            <a class="lb" href="اختبار-الوحدة-10-سورة-الإسراء.html"><svg viewBox="0 0 24 24"><path d="M6 4h9l4 4v12H6z"/><path d="M9 12h7M9 16h4"/></svg><span>الاختبار</span></a>
+          </div>
         </div>
-      </div>
-      <div class="acts">
-        <button class="btn b-ppt" data-view="ppt" data-drive="1O7owSJE0-3rhSQ6ue98Uy41O45IjWn3V"
-                data-title="الدرس 22: تفسير سورة الإسراء (23-30)">
-          <span class="ic">📊</span><span class="tx">عرض البوربوينت</span></button>
-        <a class="btn b-game" href="لعبة-الوحدة-10-سورة-الإسراء.html">
-          <span class="ic">🎮</span><span class="tx">اللعبة التفاعلية</span></a>
-        <button class="btn b-vid off" type="button" disabled title="لم يُضف فيديو لهذا الدرس بعد"><span class="ic">🎬</span><span class="tx">فيديو — قريبًا</span></button>
-        <a class="btn b-exam" href="اختبار-الوحدة-10-سورة-الإسراء.html">
-          <span class="ic">📝</span><span class="tx">اختبار الوحدة</span></a>
-      </div>
-    </article>
-    <article class="card" data-unit="10">
-      <div class="top">
-        <div class="num">23</div>
-        <div class="meta">
-          <span class="unit">الوحدة 10 — سورة الإسراء</span>
-          <h3>الدرس 23 — تفسير سورة الإسراء (31-39)</h3>
+      </article>
+      <article class="lc rv" data-u="10" data-t="تفسير سورة الإسراء (31-39)">
+        <a class="lthumb" href="درس-23-تفسير-سورة-الإسراء-31-39.html" style="background-image:url('img-unit_mosque.jpg')">
+          <span class="ln">23</span>
+          <span class="lplay"><svg viewBox="0 0 24 24"><path d="M7 4l12 8-12 8z"/></svg></span>
+        </a>
+        <div class="lbody">
+          <span class="lu">الوحدة 10 · سورة الإسراء</span>
+          <h3>تفسير سورة الإسراء (31-39)</h3>
+          <div class="lacts">
+            <a class="lb lb-main" href="درس-23-تفسير-سورة-الإسراء-31-39.html"><svg viewBox="0 0 24 24"><path d="M7 4l12 8-12 8z"/></svg><span>العرض</span></a>
+            <a class="lb" href="لعبة-الوحدة-10-سورة-الإسراء.html"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="9" rx="4"/><path d="M8 12h2M9 11v2M15 12h.01M17 12h.01"/></svg><span>اللعبة</span></a>
+            <a class="lb" href="اختبار-الوحدة-10-سورة-الإسراء.html"><svg viewBox="0 0 24 24"><path d="M6 4h9l4 4v12H6z"/><path d="M9 12h7M9 16h4"/></svg><span>الاختبار</span></a>
+          </div>
         </div>
-      </div>
-      <div class="acts">
-        <button class="btn b-ppt" data-view="ppt" data-drive="1OjX5HVGXEPPE12bx8CkIKNmwvP-lvmDl"
-                data-title="الدرس 23: تفسير سورة الإسراء (31-39)">
-          <span class="ic">📊</span><span class="tx">عرض البوربوينت</span></button>
-        <a class="btn b-game" href="لعبة-الوحدة-10-سورة-الإسراء.html">
-          <span class="ic">🎮</span><span class="tx">اللعبة التفاعلية</span></a>
-        <button class="btn b-vid off" type="button" disabled title="لم يُضف فيديو لهذا الدرس بعد"><span class="ic">🎬</span><span class="tx">فيديو — قريبًا</span></button>
-        <a class="btn b-exam" href="اختبار-الوحدة-10-سورة-الإسراء.html">
-          <span class="ic">📝</span><span class="tx">اختبار الوحدة</span></a>
-      </div>
-    </article>
-    <article class="card" data-unit="10">
-      <div class="top">
-        <div class="num">24</div>
-        <div class="meta">
-          <span class="unit">الوحدة 10 — سورة الإسراء</span>
-          <h3>الدرس 24 — تفسير سورة الإسراء (78-87)</h3>
+      </article>
+      <article class="lc rv" data-u="10" data-t="تفسير سورة الإسراء (78-87)">
+        <a class="lthumb" href="درس-24-تفسير-سورة-الإسراء-78-87.html" style="background-image:url('img-unit_manuscript.jpg')">
+          <span class="ln">24</span>
+          <span class="lplay"><svg viewBox="0 0 24 24"><path d="M7 4l12 8-12 8z"/></svg></span>
+        </a>
+        <div class="lbody">
+          <span class="lu">الوحدة 10 · سورة الإسراء</span>
+          <h3>تفسير سورة الإسراء (78-87)</h3>
+          <div class="lacts">
+            <a class="lb lb-main" href="درس-24-تفسير-سورة-الإسراء-78-87.html"><svg viewBox="0 0 24 24"><path d="M7 4l12 8-12 8z"/></svg><span>العرض</span></a>
+            <a class="lb" href="لعبة-الوحدة-10-سورة-الإسراء.html"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="9" rx="4"/><path d="M8 12h2M9 11v2M15 12h.01M17 12h.01"/></svg><span>اللعبة</span></a>
+            <a class="lb" href="اختبار-الوحدة-10-سورة-الإسراء.html"><svg viewBox="0 0 24 24"><path d="M6 4h9l4 4v12H6z"/><path d="M9 12h7M9 16h4"/></svg><span>الاختبار</span></a>
+          </div>
         </div>
-      </div>
-      <div class="acts">
-        <button class="btn b-ppt" data-view="ppt" data-drive="10HWQG7sXuRB7-QgeHzUnFgSkxOrY7R-8"
-                data-title="الدرس 24: تفسير سورة الإسراء (78-87)">
-          <span class="ic">📊</span><span class="tx">عرض البوربوينت</span></button>
-        <a class="btn b-game" href="لعبة-الوحدة-10-سورة-الإسراء.html">
-          <span class="ic">🎮</span><span class="tx">اللعبة التفاعلية</span></a>
-        <button class="btn b-vid off" type="button" disabled title="لم يُضف فيديو لهذا الدرس بعد"><span class="ic">🎬</span><span class="tx">فيديو — قريبًا</span></button>
-        <a class="btn b-exam" href="اختبار-الوحدة-10-سورة-الإسراء.html">
-          <span class="ic">📝</span><span class="tx">اختبار الوحدة</span></a>
-      </div>
-    </article>
-    <article class="card" data-unit="10">
-      <div class="top">
-        <div class="num">25</div>
-        <div class="meta">
-          <span class="unit">الوحدة 10 — سورة الإسراء</span>
-          <h3>الدرس 25 — تفسير سورة الإسراء (105-111)</h3>
+      </article>
+      <article class="lc rv" data-u="10" data-t="تفسير سورة الإسراء (105-111)">
+        <a class="lthumb" href="درس-25-تفسير-سورة-الإسراء-105-111.html" style="background-image:url('img-unit_sky.jpg')">
+          <span class="ln">25</span>
+          <span class="lplay"><svg viewBox="0 0 24 24"><path d="M7 4l12 8-12 8z"/></svg></span>
+        </a>
+        <div class="lbody">
+          <span class="lu">الوحدة 10 · سورة الإسراء</span>
+          <h3>تفسير سورة الإسراء (105-111)</h3>
+          <div class="lacts">
+            <a class="lb lb-main" href="درس-25-تفسير-سورة-الإسراء-105-111.html"><svg viewBox="0 0 24 24"><path d="M7 4l12 8-12 8z"/></svg><span>العرض</span></a>
+            <a class="lb" href="لعبة-الوحدة-10-سورة-الإسراء.html"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="9" rx="4"/><path d="M8 12h2M9 11v2M15 12h.01M17 12h.01"/></svg><span>اللعبة</span></a>
+            <a class="lb" href="اختبار-الوحدة-10-سورة-الإسراء.html"><svg viewBox="0 0 24 24"><path d="M6 4h9l4 4v12H6z"/><path d="M9 12h7M9 16h4"/></svg><span>الاختبار</span></a>
+          </div>
         </div>
-      </div>
-      <div class="acts">
-        <button class="btn b-ppt" data-view="ppt" data-drive="1WDUNbN8rLkWOqxdJ-kj5XIuXS9EpeMq-"
-                data-title="الدرس 25: تفسير سورة الإسراء (105-111)">
-          <span class="ic">📊</span><span class="tx">عرض البوربوينت</span></button>
-        <a class="btn b-game" href="لعبة-الوحدة-10-سورة-الإسراء.html">
-          <span class="ic">🎮</span><span class="tx">اللعبة التفاعلية</span></a>
-        <button class="btn b-vid off" type="button" disabled title="لم يُضف فيديو لهذا الدرس بعد"><span class="ic">🎬</span><span class="tx">فيديو — قريبًا</span></button>
-        <a class="btn b-exam" href="اختبار-الوحدة-10-سورة-الإسراء.html">
-          <span class="ic">📝</span><span class="tx">اختبار الوحدة</span></a>
-      </div>
-    </article>
+      </article>
   </div>
 </div>
 
-<!-- العارض -->
-<div class="viewer" id="viewer">
-  <div class="vbar">
-    <button class="vbtn vclose" id="vClose">✕ إغلاق</button>
-    <div class="vt" id="vTitle">—</div>
-    <a class="vbtn" id="vNew" href="#" target="_blank" rel="noopener">↗ نافذة مستقلة</a>
+<div id="gate">
+  <div class="gatebox">
+    <div class="lk"><svg viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg></div>
+    <h2>هذه الصفحة للمعلم</h2>
+    <p>دروس المقرر محجوزة لحساب المعلم. سجّل الدخول للمتابعة.</p>
+    <form id="gform">
+      <div class="fld"><label>البريد الإلكتروني</label>
+        <input id="gemail" type="email" value="teacher@quran-tafsir.local"></div>
+      <div class="fld"><label>كلمة المرور</label>
+        <input id="gpass" type="password" placeholder="••••••••"></div>
+      <button class="gbtn" type="submit">دخول</button>
+      <div class="gerr" id="gerr"></div>
+    </form>
+    <a class="gback" href="index.html">← العودة للرئيسية</a>
   </div>
-  <div class="frame">
-    <div class="vloading" id="vLoad">جارٍ التحميل…</div>
-    <iframe id="vFrame" allow="autoplay; fullscreen" allowfullscreen></iframe>
-  </div>
-  <div class="vnote" id="vNote">العرض يُقدَّم من Google Drive. لو لم يظهر، استخدم زر «نافذة مستقلة» أو زر التحميل.</div>
 </div>
 
 <script src="platform.js"></script>
 <script>
 (function(){
-  var cardNums=[].slice.call(document.querySelectorAll('.card'));
-  var viewer=document.getElementById('viewer'), frame=document.getElementById('vFrame'),
-      vTitle=document.getElementById('vTitle'), vLoad=document.getElementById('vLoad'),
-      vNew=document.getElementById('vNew'), vNote=document.getElementById('vNote');
+  var $=function(s){return document.querySelector(s)};
+  var gate=$('#gate'), grid=$('#grid');
 
-  // ترقيم الدروس (للفيديوهات المضافة من لوحة المعلم)
-  cardNums.forEach(function(c,i){ c.dataset.lesson = (i+1) });
-
-  function openView(drive, title, kind, lesson){
-
-    // فيديو محلاّت محلية (مضافة من لوحة المعلم) تُعرض داخل المنصة بمشغّل HTML
-    var local = (kind==='video' && window.PF) ? (PF.lsJson('qpt_decks')||{}) : {};
-    var lv = local[lesson] && local[lesson].video;
-    if (lv){
-      vTitle.textContent = title;
-      frame.src = '';
-      frame.style.display = 'none';
-      var v = document.getElementById('vLocal');
-      if(!v){ v=document.createElement('video'); v.id='vLocal'; v.controls=true; v.playsInline=true;
-             v.style.cssText='width:100%;height:100%;background:#000'; frame.parentNode.appendChild(v); }
-      v.style.display='block';
-      v.src = (/^https?:/.test(lv) ? lv : 'https://drive.google.com/uc?export=download&id='+lv);
-      vLoad.style.display='none';
-      vNote.innerHTML = 'فيديو مُضاف من لوحة المعلم — يُعرض داخل المنصة.';
-      vNew.href = /^https?:/.test(lv) ? lv : 'https://drive.google.com/file/d/'+lv+'/view';
-      viewer.classList.add('on');
-      document.body.style.overflow='hidden';
-      return;
-    }
-    var lvEl=document.getElementById('vLocal'); if(lvEl){ lvEl.style.display='none'; lvEl.pause&&lvEl.pause(); }
-    frame.style.display='';
-    vTitle.textContent=title;
-    var src = kind==='video'
-      ? 'https://drive.google.com/file/d/'+drive+'/preview'
-      : 'https://drive.google.com/file/d/'+drive+'/preview';
-    vLoad.style.display='grid'; frame.src='';
-    vNote.style.display='';
-    setTimeout(function(){ frame.src=src; }, 60);
-    vNew.href='https://drive.google.com/file/d/'+drive+'/view';
-    viewer.classList.add('on');
-    document.body.style.overflow='hidden';
-    frame.onload=function(){ vLoad.style.display='none' };
+  function locked(){
+    if (window.PF && PF.isTeacher()) return false;
+    return true;
   }
-  function closeView(){
-    viewer.classList.remove('on'); frame.src=''; document.body.style.overflow='';
-    var v=document.getElementById('vLocal'); if(v){ v.pause(); v.removeAttribute('src'); v.style.display='none'; }
-  }
+  function showGate(){ gate.classList.add('on'); }
 
-  document.querySelectorAll('[data-view]').forEach(function(b){
-    b.addEventListener('click',function(){
-      var card=b.closest('.card');
-      openView(b.dataset.drive, b.dataset.title, b.dataset.view, card?card.dataset.lesson:null);
+  // منع فتح الدروس بلا دخول
+  grid.addEventListener('click', function(e){
+    var a=e.target.closest('a'); if(!a) return;
+    if (locked()){ e.preventDefault(); showGate(); }
+  });
+
+  $('#gform').addEventListener('submit', function(e){
+    e.preventDefault();
+    var b=e.target.querySelector('.gbtn'); b.textContent='جارٍ الدخول…'; b.disabled=true;
+    PF.login($('#gemail').value.trim(), $('#gpass').value).then(function(){
+      location.reload();
+    }).catch(function(err){
+      b.textContent='دخول'; b.disabled=false;
+      var g=$('#gerr'); g.classList.add('on');
+      g.textContent='بيانات غير صحيحة أو لا يوجد اتصال. ('+err.message+')';
     });
   });
-  document.getElementById('vClose').addEventListener('click',closeView);
-  document.addEventListener('keydown',function(e){ if(e.key==='Escape') closeView(); });
 
-  // المرشّح
-  var chips=document.querySelectorAll('.chip'), cards=document.querySelectorAll('.card');
-  chips.forEach(function(c){
-    c.addEventListener('click',function(){
-      chips.forEach(function(x){x.classList.remove('on')});
-      c.classList.add('on');
-      var f=c.dataset.f;
-      cards.forEach(function(card){
-        card.classList.toggle('hide', !(f==='all'||card.dataset.unit===f));
-      });
+  if (locked()) showGate();
+
+  // تصفية
+  var cards=[].slice.call(document.querySelectorAll('.lc'));
+  var unit='all';
+  function apply(){
+    var q=($('#q').value||'').trim();
+    cards.forEach(function(c){
+      var okU=(unit==='all'||c.dataset.u===unit);
+      var okQ=(!q||c.dataset.t.indexOf(q)>=0);
+      c.classList.toggle('hide',!(okU&&okQ));
+    });
+  }
+  document.querySelectorAll('.chip').forEach(function(ch){
+    ch.addEventListener('click',function(){
+      document.querySelectorAll('.chip').forEach(function(x){x.classList.remove('on')});
+      ch.classList.add('on'); unit=ch.dataset.f; apply();
     });
   });
+  $('#q').addEventListener('input', apply);
+
+  // ظهور تدريجي
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  },{threshold:.1});
+  cards.forEach(function(c){ io.observe(c); });
 })();
 </script>
 </body>

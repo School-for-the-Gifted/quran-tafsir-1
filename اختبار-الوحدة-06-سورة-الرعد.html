@@ -115,11 +115,6 @@ a{color:#f0d99b}
 
 </head>
 <body>
-<div class="backbar" style="max-width:980px;margin:0 auto;padding:12px 14px 0;display:flex;gap:8px;flex-wrap:wrap">
-  <a href="index.html" style="background:#fffdf6;border:1.5px solid #d5c9a6;color:#0b3d2e;border-radius:10px;padding:7px 14px;font-size:14px;font-weight:800;text-decoration:none">← رجوع</a>
-  <a href="بوابة-الطالب.html" style="background:#0b3d2e;border:1.5px solid #0b3d2e;color:#f0d99b;border-radius:10px;padding:7px 14px;font-size:14px;font-weight:800;text-decoration:none">🎒 بوابة الطالب</a>
-  <a href="العروض.html" style="background:#fffdf6;border:1.5px solid #d5c9a6;color:#0b3d2e;border-radius:10px;padding:7px 14px;font-size:14px;font-weight:800;text-decoration:none">📚 دروس المقرر</a>
-</div>
 <div class="wrap">
 
   <!-- ===== المقدمة ===== -->
@@ -134,10 +129,6 @@ a{color:#f0d99b}
 
     <div class="row">
       <div>
-        <label>اختر اسمك من قائمة المعلم</label>
-        <select id="stuPick"><option value="__manual">— كتابة الاسم يدويًا —</option></select>
-      </div>
-      <div>
         <label>اسم الطالب (ثلاثي)</label>
         <input id="stuName" type="text" placeholder="اكتب اسمك الكامل" autocomplete="off">
       </div>
@@ -149,7 +140,7 @@ a{color:#f0d99b}
       </div>
       <div>
         <label>الشعبة</label>
-        <select id="stuSection"><option>101</option><option>102</option><option>103</option></select>
+        <select id="stuSection"><option>أ</option><option>ب</option><option>ج</option><option>د</option></select>
       </div>
       <div>
         <label>المدرسة</label>
@@ -380,7 +371,6 @@ function finish(timeout){
   el('certBtn').style.display=passed?'inline-block':'none';
   el('certHint').textContent=passed?'':'الشهادة تُتاح عند بلوغ '+APP.pass+'%.';
   buildPayload();
-  if(window.__onFinish) window.__onFinish();
 }
 
 /* ---------- رمز الاستجابة (QR) ---------- */
@@ -521,67 +511,77 @@ function certPNG(){
 function audioPlay(src){ try{ new Audio(src).play(); }catch(e){} }
 </script>
 
-<script src="platform.js"></script>
+<script src="sfx.js"></script>
 <script>
+/* صوت عند الإجابة + موسيقى خلفية معتمدة من المعلم */
 (function(){
-  var $=function(s){return document.querySelector(s)};
-  function esc(t){return String(t==null?"":t).replace(/[&<>"']/g,function(c){
-    return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
-
-  window.__onFinish = function(){
-    if (!window.PF || !window.APP || !APP.result) return;
-    var nm=APP.student && APP.student.name ? APP.student.name : "";
-    if(!nm) return;
-    var cls=(APP.student.grade||"أول ثانوي"), sec=APP.student.section||"101";
-    var sch=(APP.student.school||"").trim();
-    try{
-      PF.setStudent(nm); PF.setClass(cls,sec); PF.school(sch);
-      PF.recordSnapshot({
-        name:nm, klass:cls, section:sec, kind:"exam", unit:APP.unitNo, unitName:APP.unitName,
-        score:APP.result.got, total:APP.result.max, pass:!!APP.result.passed, secs:APP.result.secs||0,
-        date:APP.result.date||new Date().toLocaleDateString("ar-SA")
-      });
-      PF.saveResult({
-        student_name:nm, "class":cls, section:sec, kind:"exam",
-        unit_no:APP.unitNo, unit_name:APP.unitName,
-        score:APP.result.got, total:APP.result.max, passed:!!APP.result.passed,
-        secs:APP.result.secs||0, detail:{pct:APP.result.pct}
-      }).catch(function(){});
-    }catch(e){}
-  };
-
   document.addEventListener("DOMContentLoaded", function(){
-    if(window.PF){
-      try{
-        if(PF.school()) $("#stuSchool").value=PF.school();
-        if(PF.name()) $("#stuName").value=PF.name();
-        if($("#stuSection")) $("#stuSection").value=PF.section();
-      }catch(e){}
-      var sel=$("#stuPick");
-      if(sel && PF.studentsPublic){
-        PF.studentsPublic().then(function(list){
-          if(!list||!list.length) return;
-          var html='<option value="__manual">— كتابة الاسم يدويًا —</option>';
-          var order=["101","102","103"], by={};
-          list.forEach(function(s){ (by[s.section||"101"]=by[s.section||"101"]||[]).push(s); });
-          var keys=order.filter(function(k){return by[k]}).concat(
-            Object.keys(by).filter(function(k){return order.indexOf(k)<0}));
-          keys.forEach(function(k){
-            html+='<optgroup label="شعبة '+k+'">';
-            by[k].forEach(function(s){
-              html+='<option data-n="'+esc(s.name)+'" data-s="'+esc(s.section)+'">'+esc(s.name)+'</option>';
-            });
-            html+='</optgroup>';
-          });
-          sel.innerHTML=html;
-          sel.addEventListener("change",function(){
-            if(sel.value==="__manual"){ $("#stuName").value=""; return; }
-            var o=sel.options[sel.selectedIndex];
-            $("#stuName").value=o.dataset.n||"";
-            if(o.dataset.s && $("#stuSection")) $("#stuSection").value=o.dataset.s;
-          });
-        }).catch(function(){});
-      }
+    if (window.SFX && SFX.auto) SFX.auto();
+    var opts = document.getElementById("opts");
+    if (!opts) return;
+    opts.addEventListener("click", function(e){
+      var b = e.target.closest("button"); if(!b) return;
+      var ok = b.classList.contains("correct") ||
+               (b.dataset && b.dataset.ok === "1") ||
+               b.getAttribute("data-correct") === "1";
+      if (window.SFX) { setTimeout(function(){ ok ? SFX.correct() : SFX.wrong(); }, 30); }
+    }, true);
+    // نغمة نجاح عند ظهور النتيجة
+    var res = document.getElementById("result");
+    if (res){
+      var mo = new MutationObserver(function(){
+        if (!res.classList.contains("hidden") && window.SFX){ SFX.win(); mo.disconnect(); }
+      });
+      mo.observe(res, {attributes:true, attributeFilter:["class"]});
+    }
+  });
+})();
+</script>
+
+
+<script src="cert.js"></script>
+<script>
+/* استبدال رسم الشهادة القديم بالتصميم الاحترافي */
+(function(){
+  function ready(fn){
+    if (document.readyState !== "loading") fn();
+    else document.addEventListener("DOMContentLoaded", fn);
+  }
+  ready(function(){
+    if (!window.QCert || typeof window.drawCert !== "function") return;
+    var origDraw = window.drawCert;
+    QCert.load().then(function(){ setTimeout(patch, 60); });
+
+    function patch(){
+      window.drawCert = function(){
+        var r = window.APP && APP.result, st = window.APP && APP.student;
+        if (!r || !st) return;
+        var cv = document.getElementById("certCanvas");
+        if (!cv) return;
+        // رمز QR
+        var qrc = null;
+        try{
+          var txt = (typeof window.payload === "function")
+            ? (function(){ try { var p = payload(); return p && (p.str || p.text || p.code) ? (p.str || p.text || p.code) : (typeof encode === "function" ? encode(p) : JSON.stringify(p)); } catch(e){ return ""; } })()
+            : (typeof window.code === "function" ? code() : "");
+          if (!txt) txt = "IOAQ1:" + encodeURIComponent((st.name||"") + "|" + APP.unitNo + "|" + r.pct);
+          var box = document.createElement("div");
+          new QRCode(box, { text: txt, width: 420, height: 420, correctLevel: QRCode.CorrectLevel.M });
+          qrc = box.querySelector("canvas");
+        }catch(e){}
+
+        QCert.draw(cv, {
+          name: st.name, klass: st.grade, section: st.section, school: st.school,
+          unitName: APP.unitName, unitNo: APP.unitNo,
+          score: r.got, total: r.max, pct: r.pct, pass: r.passed,
+          kind: "exam", secs: r.secs, date: r.date,
+          teacher: APP.teacher || "عمر العيسى",
+          certNo: (typeof window.certNo === "function") ? certNo() : "",
+          qrCanvas: qrc
+        });
+      };
+      // أعد الرسم إن كانت الشهادة ظاهرة
+      try{ if (window.APP && APP.result) window.drawCert(); }catch(e){}
     }
   });
 })();

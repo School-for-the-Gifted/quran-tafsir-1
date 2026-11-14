@@ -144,7 +144,6 @@ footer{text-align:center;color:#7b8b83;font-size:13px;padding:10px}
 </head>
 <body>
 
-<div class="backbar" style="max-width:1100px;margin:0 auto;padding:10px 12px 0;display:flex;gap:8px;flex-wrap:wrap"><a href="بوابة-الطالب.html" style="background:rgba(255,255,255,.12);border:1.5px solid #c8a24a;color:#f0d99b;border-radius:10px;padding:6px 12px;font-size:13.5px;font-weight:800;text-decoration:none">🎒 بوابة الطالب</a><a href="العروض.html" style="background:rgba(255,255,255,.12);border:1.5px solid #c8a24a;color:#f0d99b;border-radius:10px;padding:6px 12px;font-size:13.5px;font-weight:800;text-decoration:none">📚 دروس المقرر</a></div>
 <div class="topbar">
   <a class="back" href="index.html">← رجوع</a>
   <div class="ttl">🎮 الوحدة 7 — سورة إبراهيم</div>
@@ -157,16 +156,14 @@ footer{text-align:center;color:#7b8b83;font-size:13px;padding:10px}
 <section class="start" id="startView">
   <h1>عالم المعرفة — الوحدة 7</h1>
   <p>سورة إبراهيم<br><small style="color:#8a9a92">تفسير سورة إبراهيم (٢٤−٣١) · تفسير سورة إبراهيم (٤٢−٥٢)</small></p>
-  <div class="field"><label for="stuPick">اختر اسمك من قائمة المعلم</label>
-      <select id="stuPick"><option value="__manual">— كتابة الاسم يدويًا —</option></select></div>
-    <div class="grid2">
+  <div class="grid2">
     <div class="field"><label for="stuName">اسم الطالب</label>
       <input id="stuName" placeholder="الاسم الثلاثي" autocomplete="name"></div>
     <div class="field"><label for="stuClass">الصف</label>
       <select id="stuClass"><option>أول ثانوي</option><option>ثاني ثانوي</option><option>ثالث ثانوي</option></select></div>
   </div>
   <div class="grid2">
-    <div class="field"><label for="stuSec">الشعبة</label><select id="stuSec"><option>101</option><option>102</option><option>103</option></select></div>
+    <div class="field"><label for="stuSec">الشعبة</label><input id="stuSec" placeholder="مثال: أ"></div>
     <div class="field"><label for="stuSchool">المدرسة</label><input id="stuSchool" placeholder="اسم المدرسة"></div>
   </div>
   <div class="field"><label for="modeSel">نوع التحدي</label>
@@ -338,7 +335,7 @@ footer{text-align:center;color:#7b8b83;font-size:13px;padding:10px}
 
     buildReview();
     drawCert(pass);
-    if(window.__onFinish) window.__onFinish(S,DATA,Q);  }
+  }
 
   function buildReview(){
     var r=$("#review"); r.innerHTML="<h3 style='color:#0b3d2e;margin:6px 0 10px'>تفصيل الإجابات</h3>";
@@ -449,68 +446,77 @@ footer{text-align:center;color:#7b8b83;font-size:13px;padding:10px}
 })();
 </script>
 
-<script src="platform.js"></script>
+<script src="sfx.js"></script>
 <script>
-/* ===== طبقة الربط: قائمة الأسماء + رفع النتيجة ===== */
 (function(){
-  var $=function(s){return document.querySelector(s)};
-  function esc(t){return String(t==null?"":t).replace(/[&<>"']/g,function(c){
-    return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
-
-  window.__onFinish = function(S, DATA, Q){
-    if (!window.PF) return;
-    var nm=($("#stuName").value||"طالب").trim();
-    var cls=$("#stuClass").value, sec=$("#stuSec").value||"101", sch=($("#stuSchool").value||"").trim();
-    try{
-      PF.setStudent(nm); PF.setClass(cls,sec); PF.school(sch);
-      PF.recordSnapshot({
-        name:nm, klass:cls, section:sec, kind:S.mode, unit:DATA.unitNo, unitName:DATA.unitName,
-        score:S.ok, total:Q.length, pass:!!(S.result&&S.result.pass), secs:S.secs||0,
-        date:new Date().toLocaleDateString("ar-SA")
-      });
-      PF.saveResult({
-        student_name:nm, class:cls, section:sec, kind:S.mode,
-        unit_no:DATA.unitNo, unit_name:DATA.unitName,
-        score:S.ok, total:Q.length, passed:!!(S.result&&S.result.pass),
-        secs:S.secs||0, detail:{picks:S.picks||[]}
-      }).catch(function(){});
-    }catch(e){}
-  };
-
   document.addEventListener("DOMContentLoaded", function(){
-    if (!window.PF) return;
-    var sel=$("#stuPick");
-    if (sel && PF.studentsPublic){
-      PF.studentsPublic().then(function(list){
-        if(!list||!list.length) return;
-        var html='<option value="__manual">— كتابة الاسم يدويًا —</option>';
-        var order=["101","102","103"], by={};
-        list.forEach(function(s){ (by[s.section||"101"]=by[s.section||"101"]||[]).push(s); });
-        var keys=order.filter(function(k){return by[k]}).concat(
-          Object.keys(by).filter(function(k){return order.indexOf(k)<0}));
-        keys.forEach(function(k){
-          html+='<optgroup label="شعبة '+k+'">';
-          by[k].forEach(function(s){
-            html+='<option data-n="'+esc(s.name)+'" data-s="'+esc(s.section)+'">'+esc(s.name)+'</option>';
-          });
-          html+='</optgroup>';
-        });
-        sel.innerHTML=html;
-        sel.addEventListener("change",function(){
-          if(sel.value==="__manual"){ $("#stuName").value=""; return; }
-          var o=sel.options[sel.selectedIndex];
-          $("#stuName").value=o.dataset.n||"";
-          if(o.dataset.s) $("#stuSec").value=o.dataset.s;
-        });
-      }).catch(function(){});
-    }
-    // تعبئة مسبقة من بيانات الطالب المحفوظة
-    try{
-      if(PF.name()) $("#stuName").value=PF.name();
-      if(PF.school()) $("#stuSchool").value=PF.school();
-      $("#stuSec").value=PF.section();
-    }catch(e){}
+    if (window.SFX && SFX.auto) SFX.auto();
   });
+})();
+</script>
+
+<script>
+/* مؤثر صوتي عند اختيار إجابة */
+(function(){
+  document.addEventListener("click", function(e){
+    var b = e.target.closest(".opt"); if(!b || !window.SFX) return;
+    setTimeout(function(){
+      if (b.classList.contains("ok")) SFX.correct();
+      else if (b.classList.contains("bad")) SFX.wrong();
+      else { var bad = document.querySelector(".opt.bad"); bad ? SFX.wrong() : SFX.correct(); }
+    }, 40);
+  }, true);
+})();
+</script>
+
+
+<script src="cert.js"></script>
+<script>
+/* شهادة احترافية بدل الرسم المبسّط */
+(function(){
+  function boot(){
+    var cv = document.getElementById("cert");
+    if (!cv || !window.QCert) return;
+    var origPush = null;
+    QCert.load().then(function(){
+      setTimeout(function(){
+        var old = window.drawCert;
+        window.drawCert = function(pass){
+          var S = window.S, DATA = window.DATA;
+          var cv2 = document.getElementById("cert");
+          if (!cv2) return;
+          var qrc = null;
+          try{
+            if (typeof window.code === "function"){
+              var txt = window.code();
+              var box = document.createElement("div");
+              new QRCode(box, {text: txt, width: 420, height: 420, correctLevel: QRCode.CorrectLevel.M});
+              qrc = box.querySelector("canvas");
+            }
+          }catch(e){}
+          var nm = (document.getElementById("stuName")||{}).value || (window.PF && PF.name()) || "—";
+          var cls = (document.getElementById("stuClass")||{}).value || "أول ثانوي";
+          var sec = (document.getElementById("stuSec")||{}).value || "101";
+          var sch = (document.getElementById("stuSchool")||{}).value || "";
+          var ok = (S && S.ok) || 0, tot = (window.Q && Q.length) || 10;
+          var d = new Date();
+          var dateStr = d.getFullYear() + "-" + ("0"+(d.getMonth()+1)).slice(-2) + "-" + ("0"+d.getDate()).slice(-2);
+          QCert.draw(cv2, {
+            name: nm, klass: cls, section: sec, school: sch,
+            unitName: (DATA && DATA.unitName) || "", unitNo: (DATA && DATA.unitNo) || "",
+            score: ok, total: tot, pct: Math.round(ok / tot * 100), pass: !!pass,
+            kind: (S && S.mode) || "game", secs: (S && S.secs) || 0, date: dateStr,
+            teacher: "عمر العيسى",
+            certNo: "QT" + ((DATA && DATA.unitNo) || "") + "-" + dateStr.replace(/-/g,"").slice(2) + "-" + String(ok * 7919 + tot * 131).slice(0,5),
+            qrCanvas: qrc
+          });
+        };
+        try{ if (window.S && S.result) window.drawCert(S.result.pass); }catch(e){}
+      }, 40);
+    });
+  }
+  if (document.readyState !== "loading") boot();
+  else document.addEventListener("DOMContentLoaded", boot);
 })();
 </script>
 
