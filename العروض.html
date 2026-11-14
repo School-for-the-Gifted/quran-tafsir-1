@@ -61,11 +61,13 @@
   .lbody{padding:14px 16px 16px;display:flex;flex-direction:column;flex:1}
   .lu{font-size:11.5px;color:#9a8b5c;font-weight:700;letter-spacing:.02em}
   .lbody h3{font-size:15.5px;color:var(--emerald);margin:4px 0 12px;flex:1;line-height:1.6;font-weight:700}
-  .lacts{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}
+  .lacts{display:grid;grid-template-columns:repeat(2,1fr);gap:7px}
   .lb{display:flex;align-items:center;justify-content:center;gap:5px;padding:8px 4px;border-radius:9px;
     font-size:12.5px;font-weight:700;background:#f3efe2;color:var(--emerald);transition:.2s}
   .lb svg{width:15px;height:15px}
   .lb:hover{background:#e6dfcc}
+  .lb-ppt{background:#fff;border:1px solid var(--gold);color:#8a6f16}
+  .lb-ppt:hover{background:#fdf6e4}
   .lb-main{background:var(--emerald);color:#fff}
   .lb-main:hover{background:#125741}
 
@@ -91,7 +93,7 @@
   .gback{display:inline-block;margin-top:14px;font-size:13px;color:#7b6b3a;font-weight:700}
   .gerr{color:#a8323c;font-size:13px;margin-top:8px;display:none}
   .gerr.on{display:block}
-  @media(max-width:520px){.lacts{grid-template-columns:1fr 1fr}.lb-main{grid-column:1/-1}}
+  @media(max-width:520px){.lacts{grid-template-columns:1fr 1fr}}
   .rv{opacity:0;transform:translateY(14px);transition:.5s}
   .rv.in{opacity:1;transform:none}
 </style>
@@ -109,7 +111,7 @@
 <section class="head">
   <div class="in">
     <h2>عروض تفاعلية داخل المنصة</h2>
-    <p>شرائح متحركة · آيات بالتلاوة · وقفات تدبّرية · تقويم سريع — بلا ملفات PDF ولا نوافذ منبثقة.</p>
+    <p>عرض تفاعلي داخل المنصة · ملف البوربوينت الأصلي (PPTX) · لعبة · اختبار — لكل درس.</p>
   </div>
 </section>
 
@@ -133,6 +135,7 @@
             <a class="lb lb-main" href="درس-01-التعريف-بعلم-التفسير-ونشأته.html"><svg viewBox="0 0 24 24"><path d="M7 4l12 8-12 8z"/></svg><span>العرض</span></a>
             <a class="lb" href="لعبة-الوحدة-01-مقدمة-في-التفسير.html"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="9" rx="4"/><path d="M8 12h2M9 11v2M15 12h.01M17 12h.01"/></svg><span>اللعبة</span></a>
             <a class="lb" href="اختبار-الوحدة-01-مقدمة-في-التفسير.html"><svg viewBox="0 0 24 24"><path d="M6 4h9l4 4v12H6z"/><path d="M9 12h7M9 16h4"/></svg><span>الاختبار</span></a>
+            <a class="lb lb-ppt" href="https://drive.google.com/file/d/11_nie3F3nHA8w2zsbVxUYQuvHPr0adC6/view" target="_blank" rel="noopener" onclick="return confirm('سيُفتح ملف البوربوينت الأصلي في نافذة جديدة. هل تريد المتابعة؟')"><svg viewBox="0 0 24 24"><rect x="2.5" y="4.5" width="19" height="12" rx="2"/><path d="M12 16.5V21M8.5 21h7"/></svg><span>البوربوينت</span></a>
           </div>
         </div>
       </article>
@@ -148,6 +151,7 @@
             <a class="lb lb-main" href="درس-02-أهمية-علم-التفسير-وضوابطه.html"><svg viewBox="0 0 24 24"><path d="M7 4l12 8-12 8z"/></svg><span>العرض</span></a>
             <a class="lb" href="لعبة-الوحدة-01-مقدمة-في-التفسير.html"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="9" rx="4"/><path d="M8 12h2M9 11v2M15 12h.01M17 12h.01"/></svg><span>اللعبة</span></a>
             <a class="lb" href="اختبار-الوحدة-01-مقدمة-في-التفسير.html"><svg viewBox="0 0 24 24"><path d="M6 4h9l4 4v12H6z"/><path d="M9 12h7M9 16h4"/></svg><span>الاختبار</span></a>
+            <a class="lb lb-ppt" href="https://drive.google.com/file/d/1_b85lnwUmQLYlMC_SIi7TazlW8O_RFrV/view" target="_blank" rel="noopener" onclick="return confirm('سيُفتح ملف البوربوينت الأصلي في نافذة جديدة. هل تريد المتابعة؟')"><svg viewBox="0 0 24 24"><rect x="2.5" y="4.5" width="19" height="12" rx="2"/><path d="M12 16.5V21M8.5 21h7"/></svg><span>البوربوينت</span></a>
           </div>
         </div>
       </article>
@@ -163,6 +167,7 @@
             <a class="lb lb-main" href="درس-03-أبرز-المؤلفات-الموثوقة-في-التفسير.html"><svg viewBox="0 0 24 24"><path d="M7 4l12 8-12 8z"/></svg><span>العرض</span></a>
             <a class="lb" href="لعبة-الوحدة-01-مقدمة-في-التفسير.html"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="9" rx="4"/><path d="M8 12h2M9 11v2M15 12h.01M17 12h.01"/></svg><span>اللعبة</span></a>
             <a class="lb" href="اختبار-الوحدة-01-مقدمة-في-التفسير.html"><svg viewBox="0 0 24 24"><path d="M6 4h9l4 4v12H6z"/><path d="M9 12h7M9 16h4"/></svg><span>الاختبار</span></a>
+            <a class="lb lb-ppt" href="https://drive.google.com/file/d/1xEfsfkRF8Fij_zlXuGsPyg-AHTuwogbS/view" target="_blank" rel="noopener" onclick="return confirm('سيُفتح ملف البوربوينت الأصلي في نافذة جديدة. هل تريد المتابعة؟')"><svg viewBox="0 0 24 24"><rect x="2.5" y="4.5" width="19" height="12" rx="2"/><path d="M12 16.5V21M8.5 21h7"/></svg><span>البوربوينت</span></a>
           </div>
         </div>
       </article>
@@ -178,6 +183,7 @@
             <a class="lb lb-main" href="درس-04-التقنية-في-خدمة-القرآن-الكريم-وتفسيره.html"><svg viewBox="0 0 24 24"><path d="M7 4l12 8-12 8z"/></svg><span>العرض</span></a>
             <a class="lb" href="لعبة-الوحدة-01-مقدمة-في-التفسير.html"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="9" rx="4"/><path d="M8 12h2M9 11v2M15 12h.01M17 12h.01"/></svg><span>اللعبة</span></a>
             <a class="lb" href="اختبار-الوحدة-01-مقدمة-في-التفسير.html"><svg viewBox="0 0 24 24"><path d="M6 4h9l4 4v12H6z"/><path d="M9 12h7M9 16h4"/></svg><span>الاختبار</span></a>
+            <a class="lb lb-ppt" href="https://drive.google.com/file/d/1VtAFUPqIOjDLysCzLrfyLUyPRa3gCViO/view" target="_blank" rel="noopener" onclick="return confirm('سيُفتح ملف البوربوينت الأصلي في نافذة جديدة. هل تريد المتابعة؟')"><svg viewBox="0 0 24 24"><rect x="2.5" y="4.5" width="19" height="12" rx="2"/><path d="M12 16.5V21M8.5 21h7"/></svg><span>البوربوينت</span></a>
           </div>
         </div>
       </article>
@@ -193,6 +199,7 @@
             <a class="lb lb-main" href="درس-05-تفسير-سورة-الفاتحة.html"><svg viewBox="0 0 24 24"><path d="M7 4l12 8-12 8z"/></svg><span>العرض</span></a>
             <a class="lb" href="لعبة-الوحدة-02-سورة-الفاتحة.html"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="9" rx="4"/><path d="M8 12h2M9 11v2M15 12h.01M17 12h.01"/></svg><span>اللعبة</span></a>
             <a class="lb" href="اختبار-الوحدة-02-سورة-الفاتحة.html"><svg viewBox="0 0 24 24"><path d="M6 4h9l4 4v12H6z"/><path d="M9 12h7M9 16h4"/></svg><span>الاختبار</span></a>
+            <a class="lb lb-ppt" href="https://drive.google.com/file/d/1DInmDNL7vTJs2q64o20cIEQY7DaNcBC1/view" target="_blank" rel="noopener" onclick="return confirm('سيُفتح ملف البوربوينت الأصلي في نافذة جديدة. هل تريد المتابعة؟')"><svg viewBox="0 0 24 24"><rect x="2.5" y="4.5" width="19" height="12" rx="2"/><path d="M12 16.5V21M8.5 21h7"/></svg><span>البوربوينت</span></a>
           </div>
         </div>
       </article>
@@ -208,6 +215,7 @@
             <a class="lb lb-main" href="درس-06-تفسير-سورة-يونس-3-10.html"><svg viewBox="0 0 24 24"><path d="M7 4l12 8-12 8z"/></svg><span>العرض</span></a>
             <a class="lb" href="لعبة-الوحدة-03-سورة-يونس.html"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="9" rx="4"/><path d="M8 12h2M9 11v2M15 12h.01M17 12h.01"/></svg><span>اللعبة</span></a>
             <a class="lb" href="اختبار-الوحدة-03-سورة-يونس.html"><svg viewBox="0 0 24 24"><path d="M6 4h9l4 4v12H6z"/><path d="M9 12h7M9 16h4"/></svg><span>الاختبار</span></a>
+            <a class="lb lb-ppt" href="https://drive.google.com/file/d/1TQPcyl_oCWepCBGLMCzYS_c7SRKeq_DG/view" target="_blank" rel="noopener" onclick="return confirm('سيُفتح ملف البوربوينت الأصلي في نافذة جديدة. هل تريد المتابعة؟')"><svg viewBox="0 0 24 24"><rect x="2.5" y="4.5" width="19" height="12" rx="2"/><path d="M12 16.5V21M8.5 21h7"/></svg><span>البوربوينت</span></a>
           </div>
         </div>
       </article>
@@ -223,6 +231,7 @@
             <a class="lb lb-main" href="درس-07-تفسير-سورة-يونس-26-33.html"><svg viewBox="0 0 24 24"><path d="M7 4l12 8-12 8z"/></svg><span>العرض</span></a>
             <a class="lb" href="لعبة-الوحدة-03-سورة-يونس.html"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="9" rx="4"/><path d="M8 12h2M9 11v2M15 12h.01M17 12h.01"/></svg><span>اللعبة</span></a>
             <a class="lb" href="اختبار-الوحدة-03-سورة-يونس.html"><svg viewBox="0 0 24 24"><path d="M6 4h9l4 4v12H6z"/><path d="M9 12h7M9 16h4"/></svg><span>الاختبار</span></a>
+            <a class="lb lb-ppt" href="https://drive.google.com/file/d/1Eo8fpxAdVN55f50_BB1CWteOKFdVIw6O/view" target="_blank" rel="noopener" onclick="return confirm('سيُفتح ملف البوربوينت الأصلي في نافذة جديدة. هل تريد المتابعة؟')"><svg viewBox="0 0 24 24"><rect x="2.5" y="4.5" width="19" height="12" rx="2"/><path d="M12 16.5V21M8.5 21h7"/></svg><span>البوربوينت</span></a>
           </div>
         </div>
       </article>
@@ -238,6 +247,7 @@
             <a class="lb lb-main" href="درس-08-تفسير-سورة-يونس-62-70.html"><svg viewBox="0 0 24 24"><path d="M7 4l12 8-12 8z"/></svg><span>العرض</span></a>
             <a class="lb" href="لعبة-الوحدة-03-سورة-يونس.html"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="9" rx="4"/><path d="M8 12h2M9 11v2M15 12h.01M17 12h.01"/></svg><span>اللعبة</span></a>
             <a class="lb" href="اختبار-الوحدة-03-سورة-يونس.html"><svg viewBox="0 0 24 24"><path d="M6 4h9l4 4v12H6z"/><path d="M9 12h7M9 16h4"/></svg><span>الاختبار</span></a>
+            <a class="lb lb-ppt" href="https://drive.google.com/file/d/1WToyYJIKnRuRyY4KNLZUMay_UmZetXrD/view" target="_blank" rel="noopener" onclick="return confirm('سيُفتح ملف البوربوينت الأصلي في نافذة جديدة. هل تريد المتابعة؟')"><svg viewBox="0 0 24 24"><rect x="2.5" y="4.5" width="19" height="12" rx="2"/><path d="M12 16.5V21M8.5 21h7"/></svg><span>البوربوينت</span></a>
           </div>
         </div>
       </article>
@@ -253,6 +263,7 @@
             <a class="lb lb-main" href="درس-09-تفسير-سورة-هود-96-108.html"><svg viewBox="0 0 24 24"><path d="M7 4l12 8-12 8z"/></svg><span>العرض</span></a>
             <a class="lb" href="لعبة-الوحدة-04-سورة-هود.html"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="9" rx="4"/><path d="M8 12h2M9 11v2M15 12h.01M17 12h.01"/></svg><span>اللعبة</span></a>
             <a class="lb" href="اختبار-الوحدة-04-سورة-هود.html"><svg viewBox="0 0 24 24"><path d="M6 4h9l4 4v12H6z"/><path d="M9 12h7M9 16h4"/></svg><span>الاختبار</span></a>
+            <a class="lb lb-ppt" href="https://drive.google.com/file/d/1lIOigMSn-4tE7PruolKUYNdMpFAWAyEW/view" target="_blank" rel="noopener" onclick="return confirm('سيُفتح ملف البوربوينت الأصلي في نافذة جديدة. هل تريد المتابعة؟')"><svg viewBox="0 0 24 24"><rect x="2.5" y="4.5" width="19" height="12" rx="2"/><path d="M12 16.5V21M8.5 21h7"/></svg><span>البوربوينت</span></a>
           </div>
         </div>
       </article>
@@ -268,6 +279,7 @@
             <a class="lb lb-main" href="درس-10-تفسير-سورة-هود-112-123.html"><svg viewBox="0 0 24 24"><path d="M7 4l12 8-12 8z"/></svg><span>العرض</span></a>
             <a class="lb" href="لعبة-الوحدة-04-سورة-هود.html"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="9" rx="4"/><path d="M8 12h2M9 11v2M15 12h.01M17 12h.01"/></svg><span>اللعبة</span></a>
             <a class="lb" href="اختبار-الوحدة-04-سورة-هود.html"><svg viewBox="0 0 24 24"><path d="M6 4h9l4 4v12H6z"/><path d="M9 12h7M9 16h4"/></svg><span>الاختبار</span></a>
+            <a class="lb lb-ppt" href="https://drive.google.com/file/d/15gqxRaefsVOtfpFIbEVQO5bsmDjzLHiR/view" target="_blank" rel="noopener" onclick="return confirm('سيُفتح ملف البوربوينت الأصلي في نافذة جديدة. هل تريد المتابعة؟')"><svg viewBox="0 0 24 24"><rect x="2.5" y="4.5" width="19" height="12" rx="2"/><path d="M12 16.5V21M8.5 21h7"/></svg><span>البوربوينت</span></a>
           </div>
         </div>
       </article>
@@ -283,6 +295,7 @@
             <a class="lb lb-main" href="درس-11-تفسير-سورة-يوسف-46-57.html"><svg viewBox="0 0 24 24"><path d="M7 4l12 8-12 8z"/></svg><span>العرض</span></a>
             <a class="lb" href="لعبة-الوحدة-05-سورة-يوسف.html"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="9" rx="4"/><path d="M8 12h2M9 11v2M15 12h.01M17 12h.01"/></svg><span>اللعبة</span></a>
             <a class="lb" href="اختبار-الوحدة-05-سورة-يوسف.html"><svg viewBox="0 0 24 24"><path d="M6 4h9l4 4v12H6z"/><path d="M9 12h7M9 16h4"/></svg><span>الاختبار</span></a>
+            <a class="lb lb-ppt" href="https://drive.google.com/file/d/1i0H3yqsudZA8trHKAnb9NQuhOSTXQEIb/view" target="_blank" rel="noopener" onclick="return confirm('سيُفتح ملف البوربوينت الأصلي في نافذة جديدة. هل تريد المتابعة؟')"><svg viewBox="0 0 24 24"><rect x="2.5" y="4.5" width="19" height="12" rx="2"/><path d="M12 16.5V21M8.5 21h7"/></svg><span>البوربوينت</span></a>
           </div>
         </div>
       </article>
@@ -298,6 +311,7 @@
             <a class="lb lb-main" href="درس-12-تفسير-سورة-يوسف-102-111.html"><svg viewBox="0 0 24 24"><path d="M7 4l12 8-12 8z"/></svg><span>العرض</span></a>
             <a class="lb" href="لعبة-الوحدة-05-سورة-يوسف.html"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="9" rx="4"/><path d="M8 12h2M9 11v2M15 12h.01M17 12h.01"/></svg><span>اللعبة</span></a>
             <a class="lb" href="اختبار-الوحدة-05-سورة-يوسف.html"><svg viewBox="0 0 24 24"><path d="M6 4h9l4 4v12H6z"/><path d="M9 12h7M9 16h4"/></svg><span>الاختبار</span></a>
+            <a class="lb lb-ppt" href="https://drive.google.com/file/d/1mywOE6EraBOT43M6BY94fuqpkO8o5xwN/view" target="_blank" rel="noopener" onclick="return confirm('سيُفتح ملف البوربوينت الأصلي في نافذة جديدة. هل تريد المتابعة؟')"><svg viewBox="0 0 24 24"><rect x="2.5" y="4.5" width="19" height="12" rx="2"/><path d="M12 16.5V21M8.5 21h7"/></svg><span>البوربوينت</span></a>
           </div>
         </div>
       </article>
@@ -313,6 +327,7 @@
             <a class="lb lb-main" href="درس-13-تفسير-سورة-الرعد-8-15.html"><svg viewBox="0 0 24 24"><path d="M7 4l12 8-12 8z"/></svg><span>العرض</span></a>
             <a class="lb" href="لعبة-الوحدة-06-سورة-الرعد.html"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="9" rx="4"/><path d="M8 12h2M9 11v2M15 12h.01M17 12h.01"/></svg><span>اللعبة</span></a>
             <a class="lb" href="اختبار-الوحدة-06-سورة-الرعد.html"><svg viewBox="0 0 24 24"><path d="M6 4h9l4 4v12H6z"/><path d="M9 12h7M9 16h4"/></svg><span>الاختبار</span></a>
+            <a class="lb lb-ppt" href="https://drive.google.com/file/d/1joN0H1_z2cb4RbYQ5M6TcxB_Cf1BpJ4r/view" target="_blank" rel="noopener" onclick="return confirm('سيُفتح ملف البوربوينت الأصلي في نافذة جديدة. هل تريد المتابعة؟')"><svg viewBox="0 0 24 24"><rect x="2.5" y="4.5" width="19" height="12" rx="2"/><path d="M12 16.5V21M8.5 21h7"/></svg><span>البوربوينت</span></a>
           </div>
         </div>
       </article>
@@ -328,6 +343,7 @@
             <a class="lb lb-main" href="درس-14-تفسير-سورة-الرعد-19-29.html"><svg viewBox="0 0 24 24"><path d="M7 4l12 8-12 8z"/></svg><span>العرض</span></a>
             <a class="lb" href="لعبة-الوحدة-06-سورة-الرعد.html"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="9" rx="4"/><path d="M8 12h2M9 11v2M15 12h.01M17 12h.01"/></svg><span>اللعبة</span></a>
             <a class="lb" href="اختبار-الوحدة-06-سورة-الرعد.html"><svg viewBox="0 0 24 24"><path d="M6 4h9l4 4v12H6z"/><path d="M9 12h7M9 16h4"/></svg><span>الاختبار</span></a>
+            <a class="lb lb-ppt" href="https://drive.google.com/file/d/17oweoGJrTY1YET-E-WV9bKxxXEeZ39id/view" target="_blank" rel="noopener" onclick="return confirm('سيُفتح ملف البوربوينت الأصلي في نافذة جديدة. هل تريد المتابعة؟')"><svg viewBox="0 0 24 24"><rect x="2.5" y="4.5" width="19" height="12" rx="2"/><path d="M12 16.5V21M8.5 21h7"/></svg><span>البوربوينت</span></a>
           </div>
         </div>
       </article>
@@ -343,6 +359,7 @@
             <a class="lb lb-main" href="درس-15-تفسير-سورة-إبراهيم-24-31.html"><svg viewBox="0 0 24 24"><path d="M7 4l12 8-12 8z"/></svg><span>العرض</span></a>
             <a class="lb" href="لعبة-الوحدة-07-سورة-إبراهيم.html"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="9" rx="4"/><path d="M8 12h2M9 11v2M15 12h.01M17 12h.01"/></svg><span>اللعبة</span></a>
             <a class="lb" href="اختبار-الوحدة-07-سورة-إبراهيم.html"><svg viewBox="0 0 24 24"><path d="M6 4h9l4 4v12H6z"/><path d="M9 12h7M9 16h4"/></svg><span>الاختبار</span></a>
+            <a class="lb lb-ppt" href="https://drive.google.com/file/d/1YmMgqC82qZBdNRSYrk-zewwdHOYUlLfo/view" target="_blank" rel="noopener" onclick="return confirm('سيُفتح ملف البوربوينت الأصلي في نافذة جديدة. هل تريد المتابعة؟')"><svg viewBox="0 0 24 24"><rect x="2.5" y="4.5" width="19" height="12" rx="2"/><path d="M12 16.5V21M8.5 21h7"/></svg><span>البوربوينت</span></a>
           </div>
         </div>
       </article>
@@ -358,6 +375,7 @@
             <a class="lb lb-main" href="درس-16-تفسير-سورة-إبراهيم-42-52.html"><svg viewBox="0 0 24 24"><path d="M7 4l12 8-12 8z"/></svg><span>العرض</span></a>
             <a class="lb" href="لعبة-الوحدة-07-سورة-إبراهيم.html"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="9" rx="4"/><path d="M8 12h2M9 11v2M15 12h.01M17 12h.01"/></svg><span>اللعبة</span></a>
             <a class="lb" href="اختبار-الوحدة-07-سورة-إبراهيم.html"><svg viewBox="0 0 24 24"><path d="M6 4h9l4 4v12H6z"/><path d="M9 12h7M9 16h4"/></svg><span>الاختبار</span></a>
+            <a class="lb lb-ppt" href="https://drive.google.com/file/d/1y1P92Kw6w-RQ0IyHWkaKlQ5-mUckUV38/view" target="_blank" rel="noopener" onclick="return confirm('سيُفتح ملف البوربوينت الأصلي في نافذة جديدة. هل تريد المتابعة؟')"><svg viewBox="0 0 24 24"><rect x="2.5" y="4.5" width="19" height="12" rx="2"/><path d="M12 16.5V21M8.5 21h7"/></svg><span>البوربوينت</span></a>
           </div>
         </div>
       </article>
@@ -373,6 +391,7 @@
             <a class="lb lb-main" href="درس-17-تفسير-سورة-الحجر-28-50.html"><svg viewBox="0 0 24 24"><path d="M7 4l12 8-12 8z"/></svg><span>العرض</span></a>
             <a class="lb" href="لعبة-الوحدة-08-سورة-الحجر.html"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="9" rx="4"/><path d="M8 12h2M9 11v2M15 12h.01M17 12h.01"/></svg><span>اللعبة</span></a>
             <a class="lb" href="اختبار-الوحدة-08-سورة-الحجر.html"><svg viewBox="0 0 24 24"><path d="M6 4h9l4 4v12H6z"/><path d="M9 12h7M9 16h4"/></svg><span>الاختبار</span></a>
+            <a class="lb lb-ppt" href="https://drive.google.com/file/d/1GDdokDX_oPBfoyg_07goS5wVV0C_Z0eI/view" target="_blank" rel="noopener" onclick="return confirm('سيُفتح ملف البوربوينت الأصلي في نافذة جديدة. هل تريد المتابعة؟')"><svg viewBox="0 0 24 24"><rect x="2.5" y="4.5" width="19" height="12" rx="2"/><path d="M12 16.5V21M8.5 21h7"/></svg><span>البوربوينت</span></a>
           </div>
         </div>
       </article>
@@ -388,6 +407,7 @@
             <a class="lb lb-main" href="درس-18-تفسير-سورة-الحجر-85-99.html"><svg viewBox="0 0 24 24"><path d="M7 4l12 8-12 8z"/></svg><span>العرض</span></a>
             <a class="lb" href="لعبة-الوحدة-08-سورة-الحجر.html"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="9" rx="4"/><path d="M8 12h2M9 11v2M15 12h.01M17 12h.01"/></svg><span>اللعبة</span></a>
             <a class="lb" href="اختبار-الوحدة-08-سورة-الحجر.html"><svg viewBox="0 0 24 24"><path d="M6 4h9l4 4v12H6z"/><path d="M9 12h7M9 16h4"/></svg><span>الاختبار</span></a>
+            <a class="lb lb-ppt" href="https://drive.google.com/file/d/1OwsLkRR96BmyNBGTLKBishwWbmE47C6N/view" target="_blank" rel="noopener" onclick="return confirm('سيُفتح ملف البوربوينت الأصلي في نافذة جديدة. هل تريد المتابعة؟')"><svg viewBox="0 0 24 24"><rect x="2.5" y="4.5" width="19" height="12" rx="2"/><path d="M12 16.5V21M8.5 21h7"/></svg><span>البوربوينت</span></a>
           </div>
         </div>
       </article>
@@ -403,6 +423,7 @@
             <a class="lb lb-main" href="درس-19-تفسير-سورة-النحل-10-18.html"><svg viewBox="0 0 24 24"><path d="M7 4l12 8-12 8z"/></svg><span>العرض</span></a>
             <a class="lb" href="لعبة-الوحدة-09-سورة-النحل.html"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="9" rx="4"/><path d="M8 12h2M9 11v2M15 12h.01M17 12h.01"/></svg><span>اللعبة</span></a>
             <a class="lb" href="اختبار-الوحدة-09-سورة-النحل.html"><svg viewBox="0 0 24 24"><path d="M6 4h9l4 4v12H6z"/><path d="M9 12h7M9 16h4"/></svg><span>الاختبار</span></a>
+            <a class="lb lb-ppt" href="https://drive.google.com/file/d/1hF9Jp27F8kVEJoQoTMMFsNuEWpKbrxQT/view" target="_blank" rel="noopener" onclick="return confirm('سيُفتح ملف البوربوينت الأصلي في نافذة جديدة. هل تريد المتابعة؟')"><svg viewBox="0 0 24 24"><rect x="2.5" y="4.5" width="19" height="12" rx="2"/><path d="M12 16.5V21M8.5 21h7"/></svg><span>البوربوينت</span></a>
           </div>
         </div>
       </article>
@@ -418,6 +439,7 @@
             <a class="lb lb-main" href="درس-20-تفسير-سورة-النحل-112-117.html"><svg viewBox="0 0 24 24"><path d="M7 4l12 8-12 8z"/></svg><span>العرض</span></a>
             <a class="lb" href="لعبة-الوحدة-09-سورة-النحل.html"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="9" rx="4"/><path d="M8 12h2M9 11v2M15 12h.01M17 12h.01"/></svg><span>اللعبة</span></a>
             <a class="lb" href="اختبار-الوحدة-09-سورة-النحل.html"><svg viewBox="0 0 24 24"><path d="M6 4h9l4 4v12H6z"/><path d="M9 12h7M9 16h4"/></svg><span>الاختبار</span></a>
+            <a class="lb lb-ppt" href="https://drive.google.com/file/d/1EY32ZrqyB-9HFRhc6VExorOhdnScmi9L/view" target="_blank" rel="noopener" onclick="return confirm('سيُفتح ملف البوربوينت الأصلي في نافذة جديدة. هل تريد المتابعة؟')"><svg viewBox="0 0 24 24"><rect x="2.5" y="4.5" width="19" height="12" rx="2"/><path d="M12 16.5V21M8.5 21h7"/></svg><span>البوربوينت</span></a>
           </div>
         </div>
       </article>
@@ -433,6 +455,7 @@
             <a class="lb lb-main" href="درس-21-تفسير-سورة-النحل-120-128.html"><svg viewBox="0 0 24 24"><path d="M7 4l12 8-12 8z"/></svg><span>العرض</span></a>
             <a class="lb" href="لعبة-الوحدة-09-سورة-النحل.html"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="9" rx="4"/><path d="M8 12h2M9 11v2M15 12h.01M17 12h.01"/></svg><span>اللعبة</span></a>
             <a class="lb" href="اختبار-الوحدة-09-سورة-النحل.html"><svg viewBox="0 0 24 24"><path d="M6 4h9l4 4v12H6z"/><path d="M9 12h7M9 16h4"/></svg><span>الاختبار</span></a>
+            <a class="lb lb-ppt" href="https://drive.google.com/file/d/1Ulyz4PSmtNC3aLAZ6iWi8E-CYm-URbEz/view" target="_blank" rel="noopener" onclick="return confirm('سيُفتح ملف البوربوينت الأصلي في نافذة جديدة. هل تريد المتابعة؟')"><svg viewBox="0 0 24 24"><rect x="2.5" y="4.5" width="19" height="12" rx="2"/><path d="M12 16.5V21M8.5 21h7"/></svg><span>البوربوينت</span></a>
           </div>
         </div>
       </article>
@@ -448,6 +471,7 @@
             <a class="lb lb-main" href="درس-22-تفسير-سورة-الإسراء-23-30.html"><svg viewBox="0 0 24 24"><path d="M7 4l12 8-12 8z"/></svg><span>العرض</span></a>
             <a class="lb" href="لعبة-الوحدة-10-سورة-الإسراء.html"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="9" rx="4"/><path d="M8 12h2M9 11v2M15 12h.01M17 12h.01"/></svg><span>اللعبة</span></a>
             <a class="lb" href="اختبار-الوحدة-10-سورة-الإسراء.html"><svg viewBox="0 0 24 24"><path d="M6 4h9l4 4v12H6z"/><path d="M9 12h7M9 16h4"/></svg><span>الاختبار</span></a>
+            <a class="lb lb-ppt" href="https://drive.google.com/file/d/1O7owSJE0-3rhSQ6ue98Uy41O45IjWn3V/view" target="_blank" rel="noopener" onclick="return confirm('سيُفتح ملف البوربوينت الأصلي في نافذة جديدة. هل تريد المتابعة؟')"><svg viewBox="0 0 24 24"><rect x="2.5" y="4.5" width="19" height="12" rx="2"/><path d="M12 16.5V21M8.5 21h7"/></svg><span>البوربوينت</span></a>
           </div>
         </div>
       </article>
@@ -463,6 +487,7 @@
             <a class="lb lb-main" href="درس-23-تفسير-سورة-الإسراء-31-39.html"><svg viewBox="0 0 24 24"><path d="M7 4l12 8-12 8z"/></svg><span>العرض</span></a>
             <a class="lb" href="لعبة-الوحدة-10-سورة-الإسراء.html"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="9" rx="4"/><path d="M8 12h2M9 11v2M15 12h.01M17 12h.01"/></svg><span>اللعبة</span></a>
             <a class="lb" href="اختبار-الوحدة-10-سورة-الإسراء.html"><svg viewBox="0 0 24 24"><path d="M6 4h9l4 4v12H6z"/><path d="M9 12h7M9 16h4"/></svg><span>الاختبار</span></a>
+            <a class="lb lb-ppt" href="https://drive.google.com/file/d/1OjX5HVGXEPPE12bx8CkIKNmwvP-lvmDl/view" target="_blank" rel="noopener" onclick="return confirm('سيُفتح ملف البوربوينت الأصلي في نافذة جديدة. هل تريد المتابعة؟')"><svg viewBox="0 0 24 24"><rect x="2.5" y="4.5" width="19" height="12" rx="2"/><path d="M12 16.5V21M8.5 21h7"/></svg><span>البوربوينت</span></a>
           </div>
         </div>
       </article>
@@ -478,6 +503,7 @@
             <a class="lb lb-main" href="درس-24-تفسير-سورة-الإسراء-78-87.html"><svg viewBox="0 0 24 24"><path d="M7 4l12 8-12 8z"/></svg><span>العرض</span></a>
             <a class="lb" href="لعبة-الوحدة-10-سورة-الإسراء.html"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="9" rx="4"/><path d="M8 12h2M9 11v2M15 12h.01M17 12h.01"/></svg><span>اللعبة</span></a>
             <a class="lb" href="اختبار-الوحدة-10-سورة-الإسراء.html"><svg viewBox="0 0 24 24"><path d="M6 4h9l4 4v12H6z"/><path d="M9 12h7M9 16h4"/></svg><span>الاختبار</span></a>
+            <a class="lb lb-ppt" href="https://drive.google.com/file/d/10HWQG7sXuRB7-QgeHzUnFgSkxOrY7R-8/view" target="_blank" rel="noopener" onclick="return confirm('سيُفتح ملف البوربوينت الأصلي في نافذة جديدة. هل تريد المتابعة؟')"><svg viewBox="0 0 24 24"><rect x="2.5" y="4.5" width="19" height="12" rx="2"/><path d="M12 16.5V21M8.5 21h7"/></svg><span>البوربوينت</span></a>
           </div>
         </div>
       </article>
@@ -493,6 +519,7 @@
             <a class="lb lb-main" href="درس-25-تفسير-سورة-الإسراء-105-111.html"><svg viewBox="0 0 24 24"><path d="M7 4l12 8-12 8z"/></svg><span>العرض</span></a>
             <a class="lb" href="لعبة-الوحدة-10-سورة-الإسراء.html"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="9" rx="4"/><path d="M8 12h2M9 11v2M15 12h.01M17 12h.01"/></svg><span>اللعبة</span></a>
             <a class="lb" href="اختبار-الوحدة-10-سورة-الإسراء.html"><svg viewBox="0 0 24 24"><path d="M6 4h9l4 4v12H6z"/><path d="M9 12h7M9 16h4"/></svg><span>الاختبار</span></a>
+            <a class="lb lb-ppt" href="https://drive.google.com/file/d/1WDUNbN8rLkWOqxdJ-kj5XIuXS9EpeMq-/view" target="_blank" rel="noopener" onclick="return confirm('سيُفتح ملف البوربوينت الأصلي في نافذة جديدة. هل تريد المتابعة؟')"><svg viewBox="0 0 24 24"><rect x="2.5" y="4.5" width="19" height="12" rx="2"/><path d="M12 16.5V21M8.5 21h7"/></svg><span>البوربوينت</span></a>
           </div>
         </div>
       </article>
@@ -527,11 +554,18 @@
     return true;
   }
   function showGate(){ gate.classList.add('on'); }
+  // منع فتح الصفحة نفسها بلا حساب (حتى بالرابط المباشر)
+  if (locked()) {
+    showGate();
+    document.querySelector('.wrap').style.display='none';
+    document.querySelector('.bar').style.display='none';
+  }
 
   // منع فتح الدروس بلا دخول
   grid.addEventListener('click', function(e){
     var a=e.target.closest('a'); if(!a) return;
-    if (locked()){ e.preventDefault(); showGate(); }
+    if (!locked()) return;
+    e.preventDefault(); showGate();
   });
 
   $('#gform').addEventListener('submit', function(e){

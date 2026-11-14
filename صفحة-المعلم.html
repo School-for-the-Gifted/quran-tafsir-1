@@ -3,666 +3,589 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#07281f">
 <title>لوحة المعلم — القرآن الكريم وتفسيره ١</title>
 <style>
-  *{margin:0;padding:0;box-sizing:border-box}
-  :root{--ink:#0b241d;--emerald:#0e4636;--emerald-d:#07281f;--gold:#c9a227;--gold-l:#f2dfa4;
-        --paper:#fbf8f0;--muted:#6b7d74;--line:#e6dfcd;--sh:0 18px 46px rgba(6,32,25,.13);
-        --ok:#17795c;--bad:#a8323c}
-  body{font-family:"Noto Naskh Arabic","Amiri","Segoe UI",Tahoma,sans-serif;background:#f3efe4;
-       color:var(--ink);line-height:1.75}
-  svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.7;
-      stroke-linecap:round;stroke-linejoin:round;flex:none}
-  a{text-decoration:none;color:inherit}
-  button{font:inherit;cursor:pointer;border:0;background:none}
-  input,select{font:inherit}
-  .hide{display:none!important}
+@font-face{font-family:'AmiriX';src:url('amiri.woff2') format('woff2');font-display:swap}
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--em:#0e4636;--ed:#07281f;--gold:#c9a227;--goldl:#f2dfa4;--paper:#fbf8f0;--ink:#0b241d;
+  --muted:#6b7d74;--line:#e6dfcd;--sh:0 18px 44px rgba(6,32,25,.12)}
+body{font-family:"Noto Naskh Arabic",'AmiriX',"Amiri",Tahoma,sans-serif;background:#f4f1e8;
+  color:var(--ink);line-height:1.75}
+svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.7;
+  stroke-linecap:round;stroke-linejoin:round}
+a{text-decoration:none;color:inherit}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+input,select{font:inherit}
 
-  /* ========== الدخول ========== */
-  #login{min-height:100vh;display:grid;place-items:center;padding:20px;
-    background:linear-gradient(160deg,#07281f,#0e4636 70%,#0a3a2c);position:relative;overflow:hidden}
-  #login::before{content:"";position:absolute;inset:0;opacity:.2;
-    background:url('img-unit_geometric.jpg') center/cover}
-  .lbox{position:relative;background:var(--paper);border-radius:22px;padding:30px 28px;width:100%;
-    max-width:420px;border:1px solid var(--gold);box-shadow:0 34px 90px rgba(0,0,0,.5)}
-  .lbox .mark{width:56px;height:56px;border-radius:16px;background:rgba(14,70,54,.1);
-    border:1px solid rgba(201,162,39,.5);display:grid;place-items:center;margin:0 auto 14px;color:#8a6f16}
-  .lbox .mark svg{width:27px;height:27px}
-  .lbox h1{font-size:21px;color:var(--emerald);text-align:center;margin-bottom:3px}
-  .lbox p{text-align:center;color:var(--muted);font-size:13px;margin-bottom:20px}
-  .fld{margin-bottom:12px}
-  .fld label{display:block;font-size:12.5px;color:#5c6f66;font-weight:700;margin-bottom:5px}
-  .fld input,.fld select{width:100%;padding:11px 13px;border-radius:11px;border:1.5px solid #d8cfb6;
-    background:#fffdf6;font-size:14.5px;color:var(--ink)}
-  .fld input:focus,.fld select:focus{outline:none;border-color:var(--emerald);
-    box-shadow:0 0 0 3px rgba(14,70,54,.12)}
-  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:11px;
-    padding:11px 18px;font-size:14.5px;font-weight:700;transition:.2s}
-  .btn-p{background:linear-gradient(180deg,#17795c,#0b3d2e);color:#fff;width:100%}
-  .btn-p:hover{filter:brightness(1.08)}
-  .btn-g{background:linear-gradient(180deg,#e6c766,#c9a227);color:#2b1f04}
-  .btn-o{background:#fff;border:1.5px solid #ddd3b9;color:var(--emerald)}
-  .btn-o:hover{background:#f7f3e8}
-  .btn-d{background:#fbeceb;color:var(--bad);border:1.5px solid #ecc9c6}
-  .btn-sm{padding:7px 12px;font-size:13px;border-radius:9px}
-  .msg{border-radius:10px;padding:9px 12px;font-size:13px;margin-top:10px;display:none}
-  .msg.on{display:block}
-  .msg.e{background:#fbeceb;color:var(--bad);border:1px solid #ecc9c6}
-  .msg.s{background:#eaf5ef;color:var(--ok);border:1px solid #c3e2d2}
-  .lback{display:block;text-align:center;margin-top:16px;font-size:13px;color:#8a7a45;font-weight:700}
+/* شاشة الدخول */
+#login{position:fixed;inset:0;z-index:90;display:grid;place-items:center;padding:20px;
+  background:linear-gradient(160deg,#041a14,#0b3a2c);}
+#login .box{background:var(--paper);border-radius:20px;padding:30px 26px;max-width:400px;width:100%;
+  border:1px solid var(--gold);box-shadow:0 30px 80px rgba(0,0,0,.5);text-align:center}
+#login .mk{width:56px;height:56px;border-radius:16px;margin:0 auto 14px;display:grid;place-items:center;
+  background:rgba(14,70,54,.08);border:1px solid rgba(201,162,39,.5);color:#8a6f16}
+#login h1{font-size:21px;color:var(--em);margin-bottom:4px}
+#login p{font-size:13px;color:var(--muted);margin-bottom:18px}
+.fld{text-align:right;margin-bottom:11px}
+.fld label{display:block;font-size:12.5px;font-weight:700;color:#5c6f66;margin-bottom:4px}
+.fld input{width:100%;padding:11px 13px;border-radius:11px;border:1.5px solid #cfc3a1;background:#fffdf6}
+.fld input:focus{outline:none;border-color:var(--em);box-shadow:0 0 0 3px rgba(14,70,54,.13)}
+.btn{width:100%;padding:12px;border-radius:12px;background:linear-gradient(180deg,#17795c,#0b3d2e);
+  color:#fff;font-weight:700;font-size:15px;box-shadow:0 14px 30px rgba(11,61,46,.25)}
+.btn:hover{filter:brightness(1.08)}
+.err{color:#a8323c;font-size:12.5px;margin-top:9px;display:none}
+.err.on{display:block}
 
-  /* ========== الهيكل ========== */
-  #app{display:none}
-  header{position:sticky;top:0;z-index:60;background:rgba(7,40,31,.95);backdrop-filter:blur(14px);
-    border-bottom:1px solid rgba(201,162,39,.28)}
-  .hin{max-width:1280px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
-  .hin h1{flex:1;font-size:clamp(15px,2.2vw,19px);color:#fff;font-weight:700;min-width:150px}
-  .hb{display:flex;align-items:center;gap:7px;color:#d7e5dd;font-size:13.5px;padding:8px 13px;
-    border-radius:10px;border:1px solid rgba(255,255,255,.15);transition:.2s;white-space:nowrap}
-  .hb:hover{background:rgba(255,255,255,.12);color:#fff}
-  .hb.on{background:rgba(201,162,39,.2);border-color:rgba(201,162,39,.5);color:var(--gold-l)}
-  .hb svg{width:17px;height:17px}
-  @media(max-width:760px){.hin h1{order:-1;width:100%;flex-basis:100%}}
+/* الهيكل */
+header{position:sticky;top:0;z-index:40;background:rgba(7,40,31,.97);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(201,162,39,.3);color:#fff}
+.hin{max-width:1180px;margin:0 auto;padding:11px 18px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.hin .brand{display:flex;align-items:center;gap:9px;flex:1;min-width:150px}
+.hin .brand i{width:32px;height:32px;border-radius:9px;display:grid;place-items:center;
+  background:rgba(201,162,39,.18);border:1px solid rgba(201,162,39,.5);color:var(--goldl)}
+.hin .brand b{font-size:14.5px}
+.hin .brand span{font-size:11px;color:#a9c4b8;display:block;line-height:1.2}
+.hb{display:flex;align-items:center;gap:6px;padding:7px 12px;border-radius:9px;font-size:12.5px;
+  border:1px solid rgba(255,255,255,.18);color:#dbe8e1;transition:.2s;white-space:nowrap}
+.hb:hover{background:rgba(255,255,255,.12);color:#fff}
+nav{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:52px;z-index:35}
+.nin{max-width:1180px;margin:0 auto;padding:0 12px;display:flex;gap:4px;overflow-x:auto}
+nav button{padding:12px 14px;font-size:13px;font-weight:700;color:var(--muted);
+  border-bottom:3px solid transparent;white-space:nowrap;transition:.2s}
+nav button:hover{color:var(--em)}
+nav button.on{color:var(--em);border-bottom-color:var(--gold)}
 
-  .shell{max-width:1280px;margin:0 auto;padding:22px 20px 70px}
-  .pane{display:none}
-  .pane.on{display:block;animation:fade .3s ease}
-  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-  .phead{margin-bottom:16px}
-  .phead h2{font-size:clamp(18px,2.6vw,24px);color:var(--emerald);display:flex;align-items:center;gap:9px}
-  .phead p{font-size:13.5px;color:var(--muted);margin-top:3px}
+main{max-width:1180px;margin:0 auto;padding:20px 18px 70px}
+.pane{display:none}.pane.on{display:block}
+.ph{display:flex;align-items:center;gap:10px;margin-bottom:16px;flex-wrap:wrap}
+.ph h2{font-size:18px;color:var(--em)}
+.ph .ln{flex:1;height:1px;background:linear-gradient(90deg,var(--line),transparent)}
+.ph .hint{font-size:12px;color:var(--muted)}
 
-  .card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:var(--sh)}
-  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-  .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-  @media(max-width:900px){.grid3,.grid4{grid-template-columns:repeat(2,1fr)}}
-  @media(max-width:620px){.grid2,.grid3,.grid4{grid-template-columns:1fr}}
+/* بطاقات */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:11px;margin-bottom:20px}
+.card{background:#fff;border:1px solid #eae3d2;border-radius:15px;padding:14px 16px;box-shadow:var(--sh)}
+.card .l{font-size:11.5px;color:var(--muted);font-weight:700}
+.card .v{font-size:24px;font-weight:700;color:var(--em);line-height:1.25}
+.card .v small{font-size:12px;font-weight:400;color:var(--muted)}
 
-  .stat{background:#fff;border:1px solid var(--line);border-radius:14px;padding:15px 16px;
-    border-inline-start:4px solid var(--gold)}
-  .stat b{display:block;font-size:26px;color:var(--emerald);line-height:1.2}
-  .stat span{font-size:12.5px;color:var(--muted)}
+/* الدروس */
+.unit{background:#fff;border:1px solid #eae3d2;border-radius:16px;margin-bottom:12px;overflow:hidden}
+.uhead{display:flex;align-items:center;gap:12px;padding:13px 15px;cursor:pointer;transition:.2s}
+.uhead:hover{background:#fdfaf2}
+.uhead .un{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;flex-shrink:0;
+  background:rgba(14,70,54,.08);border:1px solid rgba(201,162,39,.45);color:#8a6f16;font-weight:700;font-size:14px}
+.uhead b{flex:1;font-size:14.5px;color:var(--em)}
+.uhead .chev{transition:.3s;color:var(--muted)}
+.unit.open .uhead .chev{transform:rotate(180deg)}
+.ubody{display:none;padding:0 11px 11px}
+.unit.open .ubody{display:block}
 
-  table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);
-    border-radius:14px;overflow:hidden;font-size:14px}
-  th{background:#f4f0e4;color:var(--emerald);padding:10px;text-align:right;font-size:13px;font-weight:700;
-    border-bottom:1px solid var(--line);white-space:nowrap}
-  td{padding:9px 10px;border-top:1px solid #f0ebdb;vertical-align:middle}
-  tbody tr:hover td{background:#fcfaf3}
-  .tag{display:inline-block;padding:2px 9px;border-radius:999px;font-size:11.5px;font-weight:700}
-  .tag.ok{background:#eaf5ef;color:var(--ok)}
-  .tag.no{background:#fbeceb;color:var(--bad)}
-  .tag.off{background:#f1eee6;color:#857f6d}
-  .tag.add{background:#eef3fb;color:#2c5aa0}
-  .bar{display:flex;gap:9px;flex-wrap:wrap;align-items:center;margin:14px 0}
-  .bar input[type=text],.bar select{padding:9px 12px;border-radius:10px;border:1.5px solid #d8cfb6;
-    background:#fff;font-size:13.5px;min-width:130px}
-  .bar input[type=text]:focus,.bar select:focus{outline:none;border-color:var(--emerald)}
-  .note{background:#fdf6e4;border:1px solid #ead9a8;border-radius:11px;padding:10px 13px;
-    font-size:13px;color:#7a6522;margin:12px 0;display:flex;gap:9px;align-items:flex-start}
-  .note svg{width:17px;height:17px;margin-top:2px;color:#b0902f}
+.lcard{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:12px;
+  border:1px solid #f0ebdc;background:#fffdf8;margin-bottom:8px;flex-wrap:wrap}
+.lcard.on{border-color:#bfe0cd;background:#f7fdfa}
+.lcard .no{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;flex-shrink:0;
+  background:#f2ede0;color:#7a6522;font-weight:700;font-size:12.5px}
+.lcard .tt{flex:1;min-width:130px}
+.lcard .tt b{display:block;font-size:13.5px;color:var(--em);line-height:1.5}
+.lcard .tt span{font-size:11px;color:var(--muted)}
 
-  .qbox{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px;margin-bottom:9px}
-  .qbox .qt{font-weight:700;margin-bottom:6px;font-size:14.5px}
-  .qbox .op{font-size:13.5px;color:#4d605a;margin:2px 0;display:flex;gap:7px}
-  .qbox .op.c{color:var(--ok);font-weight:700}
-  .qbox .ex{font-size:12.5px;color:var(--muted);margin-top:6px;border-top:1px dashed #ece5d4;padding-top:6px}
+/* مفتاح */
+.sw{display:inline-flex;align-items:center;gap:6px;padding:5px 9px;border-radius:8px;
+  font-size:11.5px;font-weight:700;border:1px solid #ddd4bc;background:#fff;color:var(--muted);
+  transition:.2s;cursor:pointer;user-select:none}
+.sw i{width:26px;height:15px;border-radius:999px;background:#d8d1bd;position:relative;transition:.2s;flex-shrink:0}
+.sw i::after{content:"";position:absolute;top:2px;width:11px;height:11px;border-radius:50%;background:#fff;
+  inset-inline-start:2px;transition:.2s}
+.sw.on{background:#eaf6ef;border-color:#bfe0cd;color:#0e6b45}
+.sw.on i{background:#1c8a5f}
+.sw.on i::after{inset-inline-start:13px}
+.sw.dis{opacity:.4;pointer-events:none}
 
-  /* رفع الصوت */
-  .drop{border:2px dashed #d6cbae;border-radius:14px;padding:22px;text-align:center;background:#fdfbf4;
-    transition:.2s}
-  .drop.over{border-color:var(--gold);background:#fdf6e4}
-  .wave{display:flex;gap:3px;align-items:flex-end;height:34px;justify-content:center;margin:10px 0}
-  .wave i{display:block;width:4px;background:var(--gold);border-radius:3px;opacity:.75;
-    animation:wv 1.1s ease-in-out infinite}
-  @keyframes wv{0%,100%{height:8px}50%{height:32px}}
-  input[type=range]{accent-color:var(--emerald)}
+.appr{padding:7px 14px;border-radius:9px;font-size:12.5px;font-weight:700;
+  background:#f2ede0;color:#7a6522;border:1px solid #e2d7b6;transition:.2s;white-space:nowrap}
+.appr:hover{background:#e9e0c6}
+.appr.on{background:linear-gradient(180deg,#17795c,#0b3d2e);color:#fff;border-color:#0b3d2e}
+.mini{display:flex;align-items:center;gap:5px;padding:6px 10px;border-radius:8px;font-size:11.5px;
+  font-weight:700;background:#f1ecdd;color:var(--em);white-space:nowrap}
+.mini:hover{background:#e5ddc7}
+.mini svg{width:13px;height:13px}
+
+/* جداول */
+table{width:100%;border-collapse:collapse;background:#fff;border-radius:14px;overflow:hidden;
+  border:1px solid #eae3d2;font-size:13px}
+th,td{padding:10px 12px;text-align:right;border-bottom:1px solid #f2ede0}
+th{background:#f7f3e7;color:#5c6f66;font-size:11.5px;font-weight:700}
+tr:last-child td{border-bottom:0}
+tbody tr:hover{background:#fdfaf2}
+.ok{color:#0e6b45;font-weight:700}.no{color:#a8323c;font-weight:700}
+.sc{font-weight:700;color:var(--em)}
+.bar{height:6px;border-radius:99px;background:#eee7d6;overflow:hidden;min-width:60px}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,#17795c,#c9a227)}
+.empty{background:#fff;border:1px dashed #ddd4bc;border-radius:14px;padding:26px;text-align:center;
+  color:var(--muted);font-size:13px}
+.tools{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.tools input,.tools select{padding:9px 12px;border-radius:10px;border:1px solid #ddd4bc;background:#fff;font-size:13px}
+.tools input:focus,.tools select:focus{outline:none;border-color:var(--em)}
+.toast{position:fixed;bottom:20px;inset-inline-start:20px;z-index:99;background:var(--em);color:#fff;
+  padding:11px 18px;border-radius:11px;font-size:13px;box-shadow:0 16px 40px rgba(0,0,0,.3);
+  opacity:0;transform:translateY(14px);transition:.3s;pointer-events:none}
+.toast.on{opacity:1;transform:none}
+.bulk{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:14px}
+.bulk button{padding:8px 13px;border-radius:9px;font-size:12px;font-weight:700;
+  background:#fff;border:1px solid #ddd4bc;color:var(--em)}
+.bulk button:hover{background:#f7f3e7}
+@media(max-width:640px){
+  .lcard .tt{min-width:100%}
+  .hin .brand span{display:none}
+  th,td{padding:8px 8px;font-size:12px}
+}
 </style>
 </head>
 <body>
 
-<!-- ==================== الدخول ==================== -->
 <div id="login">
-  <form class="lbox" id="lform">
-    <div class="mark"><svg viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg></div>
+  <form class="box" id="lf">
+    <div class="mk"><svg viewBox="0 0 24 24"><path d="M12 3l8 4v6c0 4.2-3.2 7.4-8 8-4.8-.6-8-3.8-8-8V7z"/><path d="M9.5 12l1.8 1.8L15 10"/></svg></div>
     <h1>لوحة المعلم</h1>
-    <p>القرآن الكريم وتفسيره ١ — إعداد: عمر العيسى</p>
+    <p>القرآن الكريم وتفسيره ١ — عمر العيسى</p>
     <div class="fld"><label>البريد الإلكتروني</label>
-      <input id="email" type="email" value="teacher@quran-tafsir.local" autocomplete="username"></div>
+      <input id="em" type="email" value="teacher@quran-tafsir.local" autocomplete="username"></div>
     <div class="fld"><label>كلمة المرور</label>
-      <input id="pass" type="password" placeholder="••••••••" autocomplete="current-password"></div>
-    <button class="btn btn-p" type="submit" id="lbtn">دخول</button>
-    <div class="msg" id="lmsg"></div>
-    <a class="lback" href="index.html">← العودة للرئيسية</a>
+      <input id="pw" type="password" autocomplete="current-password" placeholder="••••••••"></div>
+    <button class="btn" type="submit" id="lb">دخول</button>
+    <div class="err" id="le"></div>
+    <div style="margin-top:14px"><a href="index.html" style="font-size:12.5px;color:#7b6b3a;font-weight:700">← الرئيسية</a></div>
   </form>
 </div>
 
-<!-- ==================== اللوحة ==================== -->
-<div id="app">
-  <header>
-    <div class="hin">
-      <a class="hb" href="index.html"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg>الرئيسية</a>
-      <h1>لوحة المعلم — القرآن الكريم وتفسيره ١</h1>
-      <a class="hb" href="العروض.html"><svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 016.5 3H20v15H6.5A2.5 2.5 0 004 20.5z"/></svg>دروس المقرر</a>
-      <button class="hb" id="logout"><svg viewBox="0 0 24 24"><path d="M14 8V5H5v14h9v-3"/><path d="M10 12h9m0 0l-3-3m3 3l-3 3"/></svg>خروج</button>
+<header>
+  <div class="hin">
+    <div class="brand">
+      <i><svg viewBox="0 0 24 24"><path d="M12 3l8 4-8 4-8-4 8-4z"/><path d="M4 11v5c0 1.7 3.6 3 8 3s8-1.3 8-3v-5"/></svg></i>
+      <div><b>لوحة المعلم</b><span>القرآن الكريم وتفسيره ١</span></div>
     </div>
-  </header>
-
-  <div class="shell">
-    <div class="pane on" id="p-students">
-      <div class="phead"><h2>الطلاب</h2>
-        <p>الصف: أول ثانوي — الشعب 101 · 102 · 103. الأسماء تظهر للطالب في قائمة منسدلة.</p></div>
-
-      <div class="grid4" id="stStats"></div>
-
-      <div class="grid2" style="margin-top:16px">
-        <div class="card">
-          <div class="fld"><label>اسم الطالب</label>
-            <input id="sName" type="text" placeholder="الاسم الثلاثي"></div>
-          <div class="grid2">
-            <div class="fld"><label>الصف</label>
-              <select id="sClass"><option>أول ثانوي</option></select></div>
-            <div class="fld"><label>الشعبة</label>
-              <select id="sSec"><option>101</option><option>102</option><option>103</option></select></div>
-          </div>
-          <button class="btn btn-p" id="addStu" type="button">إضافة الطالب</button>
-          <div class="msg" id="sMsg"></div>
-        </div>
-        <div class="card">
-          <b style="color:var(--emerald);font-size:15px">إضافة جماعية</b>
-          <p style="font-size:13px;color:var(--muted);margin:5px 0 8px">الصق الأسماء، اسم في كل سطر — ستُضاف إلى الشعبة المختارة أعلاه.</p>
-          <div class="fld"><textarea id="bulk" rows="6" placeholder="محمد أحمد علي&#10;عبدالله سعد&#10;..."
-            style="width:100%;padding:10px 12px;border-radius:11px;border:1.5px solid #d8cfb6;background:#fffdf6;
-            font:inherit;font-size:14px;resize:vertical"></textarea></div>
-          <button class="btn btn-o" id="bulkBtn" type="button">إضافة القائمة</button>
-        </div>
-      </div>
-
-      <div class="bar">
-        <input id="qName" type="text" placeholder="بحث بالاسم أو الشعبة…">
-        <button class="btn btn-o btn-sm" id="reloadStu" type="button">تحديث</button>
-        <span class="tag off" id="stuCount">٠ طالب</span>
-      </div>
-      <div id="stuTable"></div>
-    </div>
-
-    <div class="pane" id="p-results">
-      <div class="phead"><h2>النتائج</h2>
-        <p>تُسجَّل النتيجة تلقائيًا عند إنهاء الطالب للعبة أو الاختبار من أي جهاز.</p></div>
-      <div class="grid4" id="resStats"></div>
-      <div class="bar">
-        <select id="fUnit"><option value="">كل الوحدات</option></select>
-        <select id="fKind"><option value="">الكل</option><option value="game">اللعبة</option><option value="exam">الاختبار</option></select>
-        <select id="fSec"><option value="">كل الشعب</option><option>101</option><option>102</option><option>103</option></select>
-        <button class="btn btn-o btn-sm" id="reloadRes" type="button">تحديث</button>
-        <button class="btn btn-g btn-sm" id="csv" type="button">تصدير CSV / Excel</button>
-        <button class="btn btn-o btn-sm" id="pushLocal" type="button">رفع نتائج هذا الجهاز</button>
-      </div>
-      <div id="resTable"></div>
-    </div>
-
-    <div class="pane" id="p-lessons">
-      <div class="phead"><h2>الدروس</h2>
-        <p>٢٥ درسًا تفاعليًا داخل المنصة (شرائح متحركة + تلاوة). هنا تضيف فيديو أو تُخفي الدرس.</p></div>
-      <div class="note"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v5m0 3h.01"/></svg>
-        <div>لتشغيل فيديو: ارفعه على Drive ثم الصق معرّف الملف (الجزء بين /d/ و /view). التغييرات تُحفظ على هذا الجهاز.</div></div>
-      <div id="lessonsTable"></div>
-    </div>
-
-    <div class="pane" id="p-sound">
-      <div class="phead"><h2>الصوت الخلفي للألعاب</h2>
-        <p>ارفع ملفًا صوتيًا من جهازك ليعمل كخلفية هادئة أثناء لعب الطالب — يُشغّل تلقائيًا مع أول نقرة.</p></div>
-      <div class="grid2">
-        <div class="card">
-          <b style="color:var(--emerald)">ملف الصوت</b>
-          <div class="drop" id="drop">
-            <svg viewBox="0 0 24 24" style="width:34px;height:34px;color:#b0902f;margin:0 auto 8px;display:block">
-              <path d="M12 16V4m0 0L8 8m4-4l4 4"/><path d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2"/></svg>
-            <div style="font-size:14px;font-weight:700;color:var(--emerald)">اسحب ملف MP3 هنا أو اختره</div>
-            <div style="font-size:12.5px;color:var(--muted);margin-top:4px">يُفضَّل أقل من ٥ ميجابايت</div>
-            <input id="file" type="file" accept="audio/*" style="display:none">
-            <button class="btn btn-o btn-sm" id="pick" type="button" style="margin-top:10px">اختيار ملف</button>
-          </div>
-          <div class="msg" id="aMsg"></div>
-        </div>
-
-        <div class="card">
-          <b style="color:var(--emerald)">الإعدادات</b>
-          <div class="wave" id="wave" style="display:none">
-            <i style="animation-delay:0s"></i><i style="animation-delay:.1s"></i><i style="animation-delay:.2s"></i>
-            <i style="animation-delay:.3s"></i><i style="animation-delay:.15s"></i><i style="animation-delay:.05s"></i>
-            <i style="animation-delay:.25s"></i>
-          </div>
-          <div class="fld" style="margin-top:12px">
-            <label>مستوى الصوت: <b id="volLbl">30%</b></label>
-            <input id="vol" type="range" min="0" max="100" value="30" style="width:100%">
-          </div>
-          <div class="fld">
-            <label style="display:flex;align-items:center;gap:8px;font-weight:700">
-              <input id="enabled" type="checkbox" style="width:auto"> تشغيل تلقائي أثناء الألعاب
-            </label>
-          </div>
-          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
-            <button class="btn btn-g btn-sm" id="testPlay" type="button">تجربة</button>
-            <button class="btn btn-o btn-sm" id="stopPlay" type="button">إيقاف</button>
-            <button class="btn btn-d btn-sm" id="clearAudio" type="button">حذف الملف</button>
-          </div>
-          <div class="note" style="margin-top:14px"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v5m0 3h.01"/></svg>
-            <div>المتصفحات تمنع تشغيل الصوت قبل تفاعل المستخدم؛ لذلك يبدأ الصوت مع أول نقرة داخل اللعبة.</div></div>
-        </div>
-      </div>
-      <div class="grid2" style="margin-top:16px">
-        <div class="card">
-          <b style="color:var(--emerald)">مؤثرات الإجابة</b>
-          <p style="font-size:13px;color:var(--muted);margin:5px 0 10px">نغمات مولَّدة داخل المتصفح: صحيحة، خاطئة، فوز.</p>
-          <div style="display:flex;gap:8px;flex-wrap:wrap">
-            <button class="btn btn-o btn-sm" data-sfx="correct" type="button">إجابة صحيحة</button>
-            <button class="btn btn-o btn-sm" data-sfx="wrong" type="button">إجابة خاطئة</button>
-            <button class="btn btn-o btn-sm" data-sfx="win" type="button">فوز</button>
-          </div>
-        </div>
-        <div class="card">
-          <b style="color:var(--emerald)">معاينة الشهادة</b>
-          <p style="font-size:13px;color:var(--muted);margin:5px 0 10px">توليد نموذج شهادة بالتصميم الجديد للطباعة.</p>
-          <button class="btn btn-g btn-sm" id="previewCert" type="button">معاينة وتحميل</button>
-        </div>
-      </div>
-      <script src="sfx.js"></script>
-      <script src="cert.js"></script>
-    </div>
-
-    <div class="pane" id="p-bank">
-      <div class="phead"><h2>بنك الأسئلة</h2>
-        <p>١٠ أسئلة لعبة و١٠ أسئلة اختبار لكل وحدة — ويمكنك إضافة أسئلة جديدة.</p></div>
-      <div class="bar">
-        <select id="bUnit"></select>
-        <select id="bKind"><option value="game">أسئلة اللعبة</option><option value="exam">أسئلة الاختبار</option></select>
-      </div>
-      <div id="bankList"></div>
-      <div class="card" style="margin-top:16px">
-        <b style="color:var(--emerald)">إضافة سؤال</b>
-        <div class="fld" style="margin-top:10px"><label>نص السؤال</label><input id="nqT" type="text"></div>
-        <div class="grid2">
-          <div class="fld"><label>الخيار ١</label><input id="nq1" type="text"></div>
-          <div class="fld"><label>الخيار ٢</label><input id="nq2" type="text"></div>
-          <div class="fld"><label>الخيار ٣</label><input id="nq3" type="text"></div>
-          <div class="fld"><label>الخيار ٤</label><input id="nq4" type="text"></div>
-        </div>
-        <div class="grid2">
-          <div class="fld"><label>الخيار الصحيح</label>
-            <select id="nqA"><option value="0">١</option><option value="1">٢</option><option value="2">٣</option><option value="3">٤</option></select></div>
-          <div class="fld"><label>يُضاف إلى</label>
-            <select id="nqK"><option value="game">اللعبة</option><option value="exam">الاختبار</option></select></div>
-        </div>
-        <div class="fld"><label>التفسير</label><input id="nqE" type="text"></div>
-        <button class="btn btn-p" id="addQ" type="button">حفظ السؤال</button>
-        <div class="msg" id="qMsg"></div>
-      </div>
-    </div>
-
-    <div class="pane" id="p-settings">
-      <div class="phead"><h2>الإعدادات</h2><p>اسم المدرسة واسم المعلم يظهران في الشهادات.</p></div>
-      <div class="grid2">
-        <div class="card">
-          <div class="fld"><label>اسم المدرسة</label><input id="setSchool" type="text"></div>
-          <div class="fld"><label>اسم المعلم</label><input id="setTeacher" type="text" value="عمر العيسى"></div>
-          <button class="btn btn-p" id="saveSet" type="button">حفظ</button>
-          <div class="msg" id="setMsg"></div>
-        </div>
-        <div class="card">
-          <b style="color:var(--emerald)">رابط الطالب</b>
-          <p style="font-size:13px;color:var(--muted);margin:5px 0 8px">شاركه مع الصف — بلا كلمة مرور.</p>
-          <input id="stuLink" type="text" readonly style="width:100%;padding:10px 12px;border-radius:10px;
-            border:1.5px solid #d8cfb6;background:#fffdf6;font-size:13px">
-          <div style="display:flex;gap:8px;margin-top:10px">
-            <button class="btn btn-g btn-sm" id="copyLink" type="button">نسخ</button>
-            <a class="btn btn-o btn-sm" href="دخول-الطالب.html" target="_blank">فتح</a>
-          </div>
-        </div>
-      </div>
-      <div class="card" style="margin-top:16px">
-        <b style="color:var(--emerald)">حساب المعلم</b>
-        <p style="font-size:13px;color:var(--muted);margin-top:5px">
-          البريد: <b>teacher@quran-tafsir.local</b> — يُنصح بتغيير كلمة المرور من لوحة Supabase بعد أول استخدام.</p>
-      </div>
-    </div>
+    <a class="hb" href="index.html">الرئيسية</a>
+    <button class="hb" id="btnOut">خروج</button>
   </div>
-</div>
+</header>
 
+<nav>
+  <div class="nin" id="nav">
+    <button data-p="lessons" class="on">الدروس والاعتماد</button>
+    <button data-p="results">نتائج الطلاب</button>
+    <button data-p="progress">إنجاز الطلاب</button>
+    <button data-p="students">الطلاب</button>
+    <button data-p="sound">الصوت والأصوات</button>
+  </div>
+</nav>
+
+<main>
+  <!-- الدروس -->
+  <section class="pane on" id="p-lessons">
+    <div class="ph"><h2>اعتماد الدروس ومفاتيحها</h2><div class="ln"></div>
+      <span class="hint">لا يرى الطالب الدرس حتى تعتمده وتفتح أجزاءه</span></div>
+
+    <div class="cards">
+      <div class="card"><div class="l">الدروس المعتمدة</div><div class="v" id="cApp">٠ <small>/ ٢٥</small></div></div>
+      <div class="card"><div class="l">دروس مغلقة</div><div class="v" id="cLock">٢٥</div></div>
+      <div class="card"><div class="l">مفاتيح مفتوحة</div><div class="v" id="cKeys">٠</div></div>
+      <div class="card"><div class="l">حالة الحفظ</div><div class="v" id="cSave" style="font-size:15px">—</div></div>
+    </div>
+
+    <div class="bulk">
+      <button id="bAllOpen">اعتماد الكل</button>
+      <button id="bAllClose">إغلاق الكل</button>
+      <button id="bUnit1">اعتماد الوحدة ١</button>
+      <button id="bUndo">تراجع عن آخر تغيير</button>
+    </div>
+
+    <div id="unitList"></div>
+  </section>
+
+  <!-- النتائج -->
+  <section class="pane" id="p-results">
+    <div class="ph"><h2>نتائج الطلاب</h2><div class="ln"></div>
+      <span class="hint">هذه الصفحة للمعلم فقط</span></div>
+    <div class="tools">
+      <select id="fUnit"><option value="">كل الوحدات</option></select>
+      <select id="fKind"><option value="">الكل</option><option value="game">الألعاب</option><option value="exam">الاختبارات</option></select>
+      <input id="fName" type="text" placeholder="ابحث باسم الطالب…">
+      <button class="mini" id="bCsv">تصدير CSV</button>
+      <button class="mini" id="bReload">تحديث</button>
+    </div>
+    <div id="resWrap"><div class="empty">جارٍ التحميل…</div></div>
+  </section>
+
+  <!-- الإنجاز -->
+  <section class="pane" id="p-progress">
+    <div class="ph"><h2>إنجاز الطلاب</h2><div class="ln"></div>
+      <span class="hint">نسبة إتمام كل طالب من الدروس المعتمدة</span></div>
+    <div class="cards">
+      <div class="card"><div class="l">طلاب مسجّلون</div><div class="v" id="gStu">٠</div></div>
+      <div class="card"><div class="l">متوسط الإنجاز</div><div class="v" id="gAvg">٠٪</div></div>
+      <div class="card"><div class="l">ألعاب مكتملة</div><div class="v" id="gGames">٠</div></div>
+      <div class="card"><div class="l">اختبارات مكتملة</div><div class="v" id="gExams">٠</div></div>
+    </div>
+    <div id="progWrap"><div class="empty">جارٍ التحميل…</div></div>
+  </section>
+
+  <!-- الطلاب -->
+  <section class="pane" id="p-students">
+    <div class="ph"><h2>قائمة الطلاب</h2><div class="ln"></div>
+      <span class="hint">تظهر هذه الأسماء في قائمة دخول الطالب</span></div>
+    <div class="tools">
+      <input id="nName" type="text" placeholder="اسم الطالب ثلاثي">
+      <select id="nSec"><option>101</option><option>102</option><option>103</option></select>
+      <button class="mini" id="bAdd">إضافة طالب</button>
+      <button class="mini" id="bStuReload">تحديث</button>
+    </div>
+    <div id="stuWrap"><div class="empty">جارٍ التحميل…</div></div>
+  </section>
+
+  <!-- الصوت -->
+  <section class="pane" id="p-sound">
+    <div class="ph"><h2>الصوت والأصوات</h2><div class="ln"></div></div>
+    <div class="card" style="max-width:560px">
+      <div class="l">صوت خلفية اللعبة (MP3)</div>
+      <p style="font-size:12.5px;color:var(--muted);margin:6px 0 10px">يُشغَّل للطالب عند بدء اللعب. رفع الملف من جهازك.</p>
+      <input type="file" id="fAudio" accept="audio/*" style="font-size:12.5px;margin-bottom:10px">
+      <label style="display:flex;align-items:center;gap:8px;font-size:13px;margin-bottom:10px;cursor:pointer">
+        <input type="checkbox" id="aOn" checked> تشغيل تلقائي للخلفية
+      </label>
+      <div style="font-size:12.5px;margin-bottom:10px">مستوى الصوت: <input type="range" id="aVol" min="0" max="100" value="45" style="vertical-align:middle"></div>
+      <button class="mini" id="aTest">تجربة</button>
+      <button class="mini" id="aStop">إيقاف</button>
+      <div style="font-size:12px;color:var(--muted);margin-top:10px">مؤثرات الإجابة الصحيحة/الخاطئة تعمل تلقائيًا في الألعاب والاختبارات.</div>
+    </div>
+  </section>
+</main>
+
+<div class="toast" id="toast"></div>
+
+<script src="sfx.js"></script>
 <script src="platform.js"></script>
 <script>
-var LESSONS = [{"n": 1, "t": "التعريف بعلم التفسير ونشأته", "u": 1, "ut": "مقدمة في التفسير"}, {"n": 2, "t": "أهمية علم التفسير وضوابطه", "u": 1, "ut": "مقدمة في التفسير"}, {"n": 3, "t": "أبرز المؤلفات الموثوقة في التفسير", "u": 1, "ut": "مقدمة في التفسير"}, {"n": 4, "t": "التقنية في خدمة القرآن الكريم وتفسيره", "u": 1, "ut": "مقدمة في التفسير"}, {"n": 5, "t": "تفسير سورة الفاتحة", "u": 2, "ut": "سورة الفاتحة"}, {"n": 6, "t": "تفسير سورة يونس (3-10)", "u": 3, "ut": "سورة يونس"}, {"n": 7, "t": "تفسير سورة يونس (26-33)", "u": 3, "ut": "سورة يونس"}, {"n": 8, "t": "تفسير سورة يونس (62-70)", "u": 3, "ut": "سورة يونس"}, {"n": 9, "t": "تفسير سورة هود (96-108)", "u": 4, "ut": "سورة هود"}, {"n": 10, "t": "تفسير سورة هود (112-123)", "u": 4, "ut": "سورة هود"}, {"n": 11, "t": "تفسير سورة يوسف (46-57)", "u": 5, "ut": "سورة يوسف"}, {"n": 12, "t": "تفسير سورة يوسف (102-111)", "u": 5, "ut": "سورة يوسف"}, {"n": 13, "t": "تفسير سورة الرعد (8-15)", "u": 6, "ut": "سورة الرعد"}, {"n": 14, "t": "تفسير سورة الرعد (19-29)", "u": 6, "ut": "سورة الرعد"}, {"n": 15, "t": "تفسير سورة إبراهيم (24-31)", "u": 7, "ut": "سورة إبراهيم"}, {"n": 16, "t": "تفسير سورة إبراهيم (42-52)", "u": 7, "ut": "سورة إبراهيم"}, {"n": 17, "t": "تفسير سورة الحجر (28-50)", "u": 8, "ut": "سورة الحجر"}, {"n": 18, "t": "تفسير سورة الحجر (85-99)", "u": 8, "ut": "سورة الحجر"}, {"n": 19, "t": "تفسير سورة النحل (10-18)", "u": 9, "ut": "سورة النحل"}, {"n": 20, "t": "تفسير سورة النحل (112-117)", "u": 9, "ut": "سورة النحل"}, {"n": 21, "t": "تفسير سورة النحل (120-128)", "u": 9, "ut": "سورة النحل"}, {"n": 22, "t": "تفسير سورة الإسراء (23-30)", "u": 10, "ut": "سورة الإسراء"}, {"n": 23, "t": "تفسير سورة الإسراء (31-39)", "u": 10, "ut": "سورة الإسراء"}, {"n": 24, "t": "تفسير سورة الإسراء (78-87)", "u": 10, "ut": "سورة الإسراء"}, {"n": 25, "t": "تفسير سورة الإسراء (105-111)", "u": 10, "ut": "سورة الإسراء"}];
-var BANK = {"2": {"game": [{"t": "أكمل: «إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ» — في الآية فائدتان بلاغيتان، هما:", "o": ["القصر والتقديم، وحصر العبادة والاستعانة بالله", "التشبيه والاستعارة", "الترخيم والحذف", "التكرار للتأكيد المجرد"], "a": 0, "e": "بالتقديم والقصر أفادت حصر العبادة والاستعانة بالله وحده، وهذه روح التوحيد."}, {"t": "«مَالِكِ يَوْمِ الدِّينِ» المالك في الحقيقة لكل شيء ولكنه كثر في حق يوم الدين لأنه:", "o": ["يوم لا ملك فيه إلا الله ولا يدّعي فيه أحد شيئًا", "يوم يملك فيه الناس أمورهم", "يوم يُعصى فيه الله", "يوم خاص بأهل الكتاب"], "a": 0, "e": "في يوم القيامة ينقطعن الأملاك والادعاءات، ويظهر انفراد الله بالملك والحكم."}, {"t": "«الدِّين» في «مالك يوم الدين» أُريد به:", "o": ["الحساب والجزاء", "المال والغنى", "العادة والتقليد", "الدَّيْن المالي"], "a": 0, "e": "الدين هنا: يوم الجزاء والحساب."}, {"t": "معنى «العبادة» الشرعي الذي تدل عليه السورة:", "o": ["اسم جامع لكل ما يحبه الله ويرضاه من قول وعمل ظاهر وباطن", "الصلاة وحدها", "العبادات المالية فقط", "الأذكار اللفظية فقط"], "a": 0, "e": "العبادة شاملة لكل ما يحبه الله ويرضاه، وهذا ما تقرره الآيات."}, {"t": "«اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ»: طلب الهداية هنا يشمل:", "o": ["هداية الدلالة فقط", "هداية التوفيق والتسديد والثبات على الحق", "هداية الدلالة والتوفيق معًا", "طلب البيان المجرد"], "a": 2, "e": "فيها سؤال الله هداية الدلالة والتوفيق والثبات، وهي حاجة المؤمن المتجددة."}, {"t": "الصراط المستقيم في هذه الآية فُسِّر بأنه:", "o": ["الإسلام والقرآن وطريق الهدى", "الطرق الظاهرة في المدينة", "مناهج الفلاسفة", "اجتهادات المفسرين المختلفة بلا ضابط"], "a": 0, "e": "فسّره جمهور أهل العلم بالإسلام والقرآن وطريق الهدى الذي جاء به النبي ﷺ."}, {"t": "«غَيْرِ الْمَغْضُوبِ عَلَيْهِمْ وَلَا الضَّالِّينَ»: مَن «الضالّون» في التفسير المشهور؟", "o": ["الذين عرفوا الحق فتركوه", "الذين عُلِم غضب الله عليهم من أهل الكتاب", "من لم تبلغه الدعوة", "المؤمنون المقصِّرون"], "a": 0, "e": "المشهور: المغضوب عليهم ممن عُلم غضب الله عليهم لِعنادهم والعلم بلا عمل، والضالّون ممن ضلّ عن الحق."}, {"t": "«الحمد لله»: لام التعريف والجمع أفادا:", "o": ["استغراق المحامد كلها لله واستحقاقه لجميعها", "حمدًا واحدًا محددًا", "حمد بعض الخلق", "اختصاص الحمد بالمؤمنين"], "a": 0, "e": "«الحمد لله» أفاده الاستغراق: أن جميع المحامد ثابتة لله تعالى."}, {"t": "سورة الفاتحة تُسمّى «أمّ الكتاب» لأنها:", "o": ["جمعت أصول المعاني والعبادات في سبع آيات", "أطول سور القرآن", "نزلت في المدينة", "خاصة بالقراءة في الصلاة الواحدة"], "a": 0, "e": "جمعت أصول التوحيد والعبادة والاستعانة والدعاء والجزاء."}, {"t": "استنباط: هل تُقرأ الفاتحة في كل ركعة من الصلوات الخمس؟", "o": ["نعم في كل ركعة", "في الركعة الأولى فقط", "في الفرض دون النفل", "في صلاة الليل فقط"], "a": 0, "e": "تجب قراءتها في كل ركعة عند الجمهور."}], "exam": [{"t": "سورة الفاتحة مكية وقيل مدنية.", "o": ["صح", "خطأ"], "a": 0, "e": "الخلاف مشهور والأقرب أنها مكية."}, {"t": "عدد آيات سورة الفاتحة سبع آيات.", "o": ["صح", "خطأ"], "a": 0, "e": "نعم بإجماع القراء."}, {"t": "«بسم الله الرحمن الرحيم» آية من الفاتحة عند جمهور القراء.", "o": ["صح", "خطأ"], "a": 0, "e": "نعم، وهو قول أهل مكة والكوفة وأكثر العلماء."}, {"t": "معنى «مالك يوم الدين» أن الملك يوم القيامة لغير الله أيضًا.", "o": ["صح", "خطأ"], "a": 1, "e": "بل ينفرد الله في ذلك اليوم بالملك."}, {"t": "«الصراط المستقيم» فُسِّر في تفسير الفاتحة بأنه:", "o": ["الإسلام", "الطريق الحسّي إلى مكة", "منهج أهل الكتاب", "الشريعة التي بدّلها الأحبار"], "a": 0, "e": "هو الإسلام وطريق الهدى."}, {"t": "«المغضوب عليهم» عند المفسرين:", "o": ["الجُهّال", "الذين عرفوا الحق وتركوه", "المؤمنون الضعفاء", "المستضعفون"], "a": 1, "e": "ممن عُلم غضب الله عليهم لِلعناد."}, {"t": "«وإياك نستعين» تُفيد:", "o": ["جواز الاستعانة بالأموات", "حصر الاستعانة بالله", "الاستعانة بالأسباب فقط", "الاستعانة بالجن"], "a": 1, "e": "تقدميُّ القصر يفيد الحصر."}, {"t": "الدعاء الوارد في الفاتحة هو:", "o": ["اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ", "ربِّ أعوذ بك من الهمّ", "ربنا لا تحملنا ما لا طاقة لنا به", "إنك سميع الدعاء"], "a": 0, "e": "الآية السادسة."}, {"t": "«العبادة» اسم جامع لكل ما يحبه الله ويرضاه من الأقوال والأعمال الظاهرة والباطنة.", "o": ["صح", "خطأ"], "a": 0, "e": "نعم، وهو تعريف أهل العلم."}, {"t": "قراءة الفاتحة في الصلاة تكون:", "o": ["في كل ركعة", "في الركعة الأولى فقط", "في الركعة الأخيرة فقط", "غير واجبة"], "a": 0, "e": "تنتبه فرادی."}]}, "9": {"game": [{"t": "«هُوَ الَّذِي أَنزَلَ مِنَ السَّمَاءِ مَاءً لَّكُم مِّنْهُ شَرَابٌ وَمِنْهُ شَجَرٌ فِيهِ تُسِيمُونَ» معنى «تسيمون»:", "o": ["ترعون الأنعام", "تسيرون في السير", "تتبخترون", "تزرعون"], "a": 0, "e": "«تسيمون» ترعون أنعامكم في النبات الذي ينبُت بالماء."}, {"t": "«يُنبِتُ لَكُم بِهِ الزَّرْعَ وَالزَّيْتُونَ وَالنَّخِيلَ وَالْأَعْنَابَ» في الآية تذكير بـ:", "o": ["نعمة الخلق والرزق والأشجار", "نعمة النبوة", "نعمة العلم", "نعمة الحكم"], "a": 0, "e": "استعراض نعم النبات والثمار."}, {"t": "«وَمَا ذَرَأَ لَكُمْ فِي الْأَرْضِ مُخْتَلِفًا أَلْوَانُهُ» معنى «ذرأ»:", "o": ["خَلَق وبَثّ", "جمع", "حصد", "باع"], "a": 0, "e": "ذرأ: خلق وبثّ."}, {"t": "«وَتَرَى الْفُلْكَ مَوَاخِرَ فِيهِ» معنى «مواخر»:", "o": ["تشقّ الماء بجؤجئها", "غارقة", "ساكنة", "مصنوعة من حديد"], "a": 0, "e": "المواخر: السفن تشق الماء بصدرها."}, {"t": "«إِنَّ اللَّهَ لَذُو فَضْلٍ عَلَى النَّاسِ وَلَٰكِنَّ أَكْثَرَهُمْ لَا يَشْكُرُونَ» هذا في سياق:", "o": ["تعداد النعم وتقرير وجوب الشكر", "النهي عن الشكر", "تقرير الكفر", "تعداد الأنبياء"], "a": 0, "e": "تكرارها في سياق النعم لبيان التقصير العام في الشكر."}, {"t": "«ضَرَبَ اللَّهُ مَثَلًا قَرْيَةً كَانَتْ آمِنَةً مُّطْمَئِنَّةً يَأْتِيهَا رِزْقُهَا رَغَدًا» ثم كفرت بـ:", "o": ["«فَأَذَاقَهَا اللَّهُ لِبَاسَ الْجُوعِ وَالْخَوْفِ بِمَا كَانُوا يَصْنَعُونَ»", "الهداية", "الشكر", "العبادة"], "a": 0, "e": "جزاء كفران النعم: الجوع والخوف بسبب صنيعهم."}, {"t": "مَثَل القرية الآمنة في السورة يقرّر أن:", "o": ["الكفران بالنعمة يقود إلى تبدل الأمن جوعًا وخوفًا", "الأمن دائم لكل أحد", "الشكر لا قيمة له", "العلم يُعوّض"], "a": 0, "e": "واقع سُنّة الله في النعمة والكفر."}, {"t": "«وَإِنَّ رَبَّكَ لَذُو مَغْفِرَةٍ لِّلنَّاسِ عَلَىٰ ظُلْمِهِمْ» تحمل:", "o": ["سعة رحمة الله مع تقرير العقوبة", "إبطال الجزاء", "الترخيص في الظلم", "إهمال التوبة"], "a": 0, "e": "الرحمة والعفو مع الغفران والجزاء."}, {"t": "«إِنَّ إِبْرَاهِيمَ كَانَ أُمَّةً قَانِتًا لِّلَّهِ حَنِيفًا» معنى «أُمَّة» في الآية:", "o": ["إمامًا جامعًا للخير مُعلّمًا ، أو مجمعًا للخصال الحميدة، ومفردًا على الحق", "كثرة الأتباع فقط", "الزهد في المال فقط", "العلم بالقرابة"], "a": 0, "e": "«أمة» إمام في الخير ومُقتدى، وقيل: متميزًا بالخصال الحميدة."}, {"t": "«وَهُدًى وَرَحْمَةً لِّقَوْمٍ يُؤْمِنُونَ» ختمت بها الآية الأخيرة في السورة، فدلّ على:", "o": ["القرآن هداية ورحمة للمؤمنين", "القرآن للعرب فقط", "القرآن للعلماء فقط", "الرحمة للجميع بالتساوي دون إيمان"], "a": 0, "e": "الانتظام: الهداية والرحمة تُنال بالإيمان والدعاء والاجتناب."}], "exam": [{"t": "معنى «تسيمون» ترعون الأنعام.", "o": ["صح", "خطأ"], "a": 0, "e": "الآية ١٠."}, {"t": "«مواخر» جمع مُخر، وهي السفن.", "o": ["صح", "خطأ"], "a": 1, "e": "مواخر: تشقّ الماء، من مَخَر لا مُخر."}, {"t": "من نعم الله المذكورة في الآية ١١: الزرع والزيتون والنخيل والأعناب.", "o": ["صح", "خطأ"], "a": 0, "e": "نص الآية."}, {"t": "من صفات إبراهيم في السورة أنه كان أمة قانتًا لله حنيفًا.", "o": ["صح", "خطأ"], "a": 0, "e": "الآية ١٢٠."}, {"t": "«إن الله يأمر بالعدل والإحسان» في هذه السورة تدعو إلى:", "o": ["العدل والإحسان وإيتاء ذي القربى", "الظلم", "الإمساك", "السكوت"], "a": 0, "e": "الآية ٩٠."}, {"t": "«إن الله لذو فضل على الناس ولكن أكثرهم لا يشكرون» يشير إلى:", "o": ["قلة الشكر مع عموم الفضل", "بطلان النعم", "سعة الشكر", "دوام الشكر"], "a": 0, "e": "تقرير النعمة والتقصير."}, {"t": "مثل القرية الآمنة في السورة يقرر أن:", "o": ["كفران النعمة يبدل الأمن بالجوع والخوف", "الأمن لا يزول", "الشكر للغني فقط", "الجوع بسبب الزلازل"], "a": 0, "e": "«بما كانوا يكفرون»."}, {"t": "«ادع إلى سبيل ربك بالحكمة والموعظة الحسنة» في السورة، تدعو إلى:", "o": ["حسن الدعوة بالحكمة", "العنف", "الإجبار", "الصمت"], "a": 0, "e": "الآية ١٢٥."}, {"t": "«وإن عاقبتم فعاقبوا بمثل ما عوقبتم به» في السورة تقدم:", "o": ["الصبر على المثل بالمعاملة الحسنة", "الغلظة", "ترك الحق", "عدم الرد"], "a": 0, "e": "الآية ١٢٦-١٢٧."}, {"t": "«وما أرسلنا من قبلك إلا رجالًا» يرد على من طلب الملائكة رسلًا.", "o": ["صح", "خطأ"], "a": 0, "e": "نعم في سياق ردّ الشبهة."}]}, "10": {"game": [{"t": "«وَقَضَى رَبُّكَ أَلَّا تَعْبُدُوا إِلَّا إِيَّاهُ وَبِالْوَالِدَيْنِ إِحْسَانًا» معنى «قضى»:", "o": ["أمر ووصّى وألزم", "حكم فقط بلا أمر", "نهى", "أباح"], "a": 0, "e": "«قضى» هنا: أمر وأوجب وأوصى بالإحسان."}, {"t": "«إِمَّا يَبْلُغَنَّ عِندَكَ الْكِبَرَ أَحَدُهُمَا أَوْ كِلَاهُمَا فَلَا تَقُل لَّهُمَا أُفٍّ» وجه النهي عن «أفّ»:", "o": ["أدنى كلمة تدل على التضجر فما فوقها أولى بالمنع", "لأنها كلمة كفر", "لأنها لا تُقال", "لأنها مشروعة"], "a": 0, "e": "«أفّ» أدنى ما يُظهر الضجر، والنهي عن الأدنى نهي عن الأعلى."}, {"t": "«وَقُلْ لَّهُمَا قَوْلًا كَرِيمًا» أي:", "o": ["قولًا حسنًا رقيقًا جميلًا", "صوتًا عاليًا", "قولًا مختصرًا", "قولًا صريحًا"], "a": 0, "e": "القول الكريم: الحسن الليّن مع البر والتوقير."}, {"t": "«وَلَا تَجْعَلْ يَدَكَ مَغْلُولَةً إِلَىٰ عُنُقِكَ وَلَا تَبْسُطْهَا كُلَّ الْبَسْطِ» في الآية:", "o": ["النهي عن البخل والإسراف؛ فالتوسط مطلوب", "النهي عن الإنفاق مطلقًا", "الأمر بالكنز", "إلغاء الصدقة"], "a": 0, "e": "الآية تنهى عن التقتير والتبذير، وتقرّر الاعتدال."}, {"t": "«وَلَا تَقْتُلُوا أَوْلَادَكُمْ خَشْيَةَ إِمْلَاقٍ» «إملاق»:", "o": ["الفقر", "المرض", "الجهل", "الضعف"], "a": 0, "e": "الإملاق: الفقر والفاقة."}, {"t": "«وَلَا تَقْرَبُوا الزِّنَىٰ إِنَّهُ كَانَ فَاحِشَةً وَسَاءَ سَبِيلًا» التعبير بـ«لا تقربوا» بدل «لا تفعلوا»:", "o": ["سدّ الذرائع ومنع ما يوصل إليه", "لأن الفعل جائز", "لأن الأمر تخييري", "لأنه للنبي فقط"], "a": 0, "e": "«لا تقربوا» أبلغ من «لا تفعلوا» في سدّ الأسباب والذرائع."}, {"t": "«وَلَا تَمْشِ فِي الْأَرْضِ مَرَحًا إِنَّكَ لَن تَخْرِقَ الْأَرْضَ وَلَن تَبْلُغَ الْجِبَالَ طُولًا» فيها:", "o": ["ذمّ الكِبر والخُيَلاء", "أمر بالخيلاء", "ذمّ المشي", "نهي عن العمل"], "a": 0, "e": "تقرير تذليلي لضعف الإنسان أمام عظمة الخلق."}, {"t": "«إِنَّ الْقُرْآنَ يَهْدِي لِلَّتِي هِيَ أَقْوَمُ» أي:", "o": ["للطريقة والسبيل الأعدل والأصح", "للكتب السابقة", "للقوة البدنية", "للتجارة"], "a": 0, "e": "يهدي للسبيل الأعدل والأحسن."}, {"t": "«وَنُنَزِّلُ مِنَ الْقُرْآنِ مَا هُوَ شِفَاءٌ وَرَحْمَةٌ لِّلْمُؤْمِنِينَ» الشفاء:", "o": ["شفاء القلوب من الشك والنفاق والأمراض", "الشفاء البدني فقط", "الشفاء للأغنياء", "الشفاء للجسد بلا قلب"], "a": 0, "e": "شفاء القلوب والأبدان بإذن الله، وأظهرُها شفاء القلب."}, {"t": "«وَلَا تَجْهَرْ بِصَلَاتِكَ وَلَا تُخَافِتْ بِهَا وَابْتَغِ بَيْنَ ذَٰلِكَ سَبِيلًا» أي:", "o": ["التوسط بين الجهر والإسرار", "الجهر دائمًا", "الإسرار دائمًا", "ترك الصلاة"], "a": 0, "e": "الاعتدال في الجهر بالقراءة في الصلاة."}], "exam": [{"t": "القضاء في أول الوصايا هو الأمر والوصية بلا إله إلا الله.", "o": ["صح", "خطأ"], "a": 0, "e": "«وقضى ربك ألا تعبدوا إلا إياه»."}, {"t": "الإحسان إلى الوالدين واجب في حال الكبر والصغر.", "o": ["صح", "خطأ"], "a": 0, "e": "«وبالوالدين إحسانًا»."}, {"t": "نهى الله في السورة عن البخل والإسراف ودعا إلى الاعتدال.", "o": ["صح", "خطأ"], "a": 0, "e": "آية الغلّ والبسط."}, {"t": "معنى «إملاق» الجهل.", "o": ["صح", "خطأ"], "a": 1, "e": "بل الفقر."}, {"t": "«ولا تقربوا الزنى» أبلغ من «لا تفعلوا» لسدّ الذرائع.", "o": ["صح", "خطأ"], "a": 0, "e": "نعم، وهو من أساليب القرآن."}, {"t": "«ولا تمش في الأرض مرحًا» فيها:", "o": ["ذم الكبر والخيلاء", "الأمر بالفخر", "ذم المشي الطبيعي والمهادنة", "إلغاء الحياء"], "a": 0, "e": "المرح: الكِبْر والخُيَلاء."}, {"t": "«القرآن يهدي للتي هي أقوم» أي:", "o": ["السبيل الأعدل والأصوب", "أقصر الطرق", "الطريق الحسّي", "الأصعب"], "a": 0, "e": "التفسير الشائع."}, {"t": "«شفاء ورحمة للمؤمنين» الشفاء يكون:", "o": ["لقلوب المؤمنين وأبدانهم بإذن الله", "لغير المؤمنين بالتساوي", "للأبدان فقط", "في الدواء فقط"], "a": 0, "e": "الآية ٨٢."}, {"t": "«ولا تجهر بصلاتك ولا تخافت بها» المراد التوسط في:", "o": ["القراءة في الصلاة", "الإنفاق", "الكلام", "العدد"], "a": 0, "e": "التوسط في الجهر بالقراءة."}, {"t": "خُتمت السورة بأمر النبي ﷺ بأن يسبّح ربه عند قيامه من النوم.", "o": ["صح", "خطأ"], "a": 1, "e": "الخاتمة: «وقل الحمد لله الذي لم يتخذ ولدًا»."}]}, "5": {"game": [{"t": "«أَفْتِنَا فِي سَبْعِ بَقَرَاتٍ سِمَانٍ يَأْكُلُهُنَّ سَبْعٌ عِجَافٌ» طلب الفتوى جاء من:", "o": ["الساقي وصاحبه الفتيان", "الملك نفسه", "امرأة العزيز", "إخوة يوسف"], "a": 0, "e": "جاء الساقي الممنوع من التعبير إلى يوسف في السجن."}, {"t": "«تَزْرَعُونَ سَبْعَ سِنِينَ دَأَبًا فَمَا حَصَدتُمُّ فَذَرُوهُ فِي سُنْبُلِهِ» التقدير كحكمة عملية يُفيد:", "o": ["الاستعداد لسنوات الشدة بالادخار", "الاستغناء عن الزراعة", "بيع المحاصيل كله", "ترك الأرض"], "a": 0, "e": "أمرهم بتخزين الحبوب في سنابلها للوقاية من التلف."}, {"t": "«ثُمَّ يَأْتِي مِنْ بَعْدِ ذَلِكَ عَامٌ فِيهِ يُغَاثُ النَّاسُ وَفِيهِ يَعْصِرُونَ» دلالة الآية:", "o": ["الفرج بعد الشدة ونزول الغيث", "استمرار الجدب", "ذهاب القحط لصلحهم", "البشرى بالملك"], "a": 0, "e": "آية تقرير نعمتين: الغيث والثمار (العصر)."}, {"t": "«قَالَ ارْجِعْ إِلَى رَبِّكَ فَاسْأَلْهُ مَا بَالُ النِّسْوَةِ اللَّاتِي قَطَّعْنَ أَيْدِيَهُنَّ» رفض يوسف الخروج قبل:", "o": ["إظهار براءته", "نيل المال", "سؤال الملك مباشرة", "بناء قصر"], "a": 0, "e": "أدب النزاهة: لم يخرج حتى تثبت براءته."}, {"t": "«أَنَا رَاوَدْتُهُ عَن نَّفْسِهِ وَإِنَّهُ لَمِنَ الصَّادِقِينَ» القائل:", "o": ["امرأة العزيز", "شاهد من أهلها", "الساقي", "صاحب السجن"], "a": 0, "e": "اعتراف امرأة العزيز بعد ظهور الحق: «الْآنَ حَصْحَصَ الْحَقُّ»."}, {"t": "«ذَلِكَ لِيَعْلَمَ أَنِّي لَمْ أَخُنْهُ بِالْغَيْبِ وَأَنَّ اللَّهَ لَا يَهْدِي كَيْدَ الْخَائِنِينَ» معنى «لا يهدي كيد الخائنين»:", "o": ["فضل الله", "بطلان كيد الخائنين وعدم توفيقه لغرضهم", "أن الكيد مشروع", "أن الخائن لا يُحاسب"], "a": 1, "e": "الآية تبين أن كيد الخائن لا يورث نجاحًا ولا يهديه الله إلى مراده."}, {"t": "«اجْعَلْنِي عَلَى خَزَائِنِ الْأَرْضِ إِنِّي حَفِيظٌ عَلِيمٌ» في طلب يوسف للولاية دليل على:", "o": ["جواز طلب الولاية الصالحة إذا تيقّن الأهلية والقدرة", "طلب الجاه والمال", "التكاثر بالمناصب", "الحرص على الملك"], "a": 0, "e": "طلب الإمارة للقيام بالمصلحة مع بيان الأمانة («أمين») والعلم («حفيظ عليم»)."}, {"t": "«وَلَا نُضِيعُ أَجْرَ الْمُحْسِنِينَ * وَلَأَجْرُ الْآخِرَةِ خَيْرٌ لِّلَّذِينَ آمَنُوا وَكَانُوا يَتَّقُونَ»:", "o": ["المؤمنون المتقون لهم خير الدنيا والآخرة", "الإحسان يُضيع", "الدنيا هي الغاية", "الأجر خاص بالأنبياء"], "a": 0, "e": "الآيةان تُثبتان جزاء الإحسان وتفضّل أجر الآخرة."}, {"t": "«قُلْ هَذِهِ سَبِيلِي أَدْعُو إِلَى اللَّهِ عَلَى بَصِيرَةٍ أَنَا وَمَنِ اتَّبَعَنِي» شرط الدعوة:", "o": ["العمل على العلم والبصيرة في الطريق", "الاجتهاد دون علم", "العدد الكبير", "المدح للنفس"], "a": 0, "e": "«على بصيرة»: دعوة على هدى وبرهان."}, {"t": "«لَقَدْ كَانَ فِي قَصَصِهِمْ عِبْرَةٌ لِأُولِي الْأَلْبَابِ» القصص القرآني:", "o": ["هدى وموعظة وتثبيت وليس حديثًا يُفترى", "أساطير الأولين", "أدب وترفيه فقط", "حصرًا في التاريخ"], "a": 0, "e": "«هدًى ورحمة لقوم يؤمنون»."}], "exam": [{"t": "قصص القرآن من أنباء الغيب التي أوحى الله بها لنبيه ﷺ.", "o": ["صح", "خطأ"], "a": 0, "e": "«ذلك من أنباء الغيب نوحيه إليك»."}, {"t": "كان النبي ﷺ حاضرًا مع إخوة يوسف حين مكروا به.", "o": ["صح", "خطأ"], "a": 1, "e": "بل «وما كنت لديهم إذ أجمعوا أمرهم»."}, {"t": "«وما أكثر الناس ولو حرصت بمؤمنين» فيها تسلية للنبي ﷺ.", "o": ["صح", "خطأ"], "a": 0, "e": "نعم، فالهداية بيد الله."}, {"t": "شروط الداعية أن يدعو على بصيرة ويعمل بها.", "o": ["صح", "خطأ"], "a": 0, "e": "«قل هذه سبيلي أدعو إلى الله على بصيرة»."}, {"t": "معنى «الزبدة» في الرؤيا في الآية ٤٦:", "o": ["سبع سنبلات خضر وأخر يابسات", "سبع بقرات عجاف", "سبع سنبلات يابسات", "سبع بقرات سمان"], "a": 0, "e": "ذكر الرؤيا للفتيّة: سبع بقرة سمان وسبع عجاف وسبع سنبلات."}, {"t": "«حفيظ عليم» في كلام يوسف تدل على:", "o": ["الأمانة والعلم", "الشجاعة", "الغنى", "القوة البدنية"], "a": 0, "e": "حفظ للأموال وعلم بالنظام."}, {"t": "«إن النفس لأمارة بالسوء إلا ما رحم ربي» قائلها:", "o": ["يوسف عليه السلام", "امرأة العزيز", "الملك", "الساقي"], "a": 1, "e": "في سياق اعتراف امرأة العزيز."}, {"t": "من فوائد قصة يوسف أن الجزاء من جنس العمل:", "o": ["صح", "خطأ"], "a": 0, "e": "نعم، فصبره وتمكّنه."}, {"t": "«وما أرسلنا من قبلك إلا رجالًا نوحي إليهم من أهل القرى» يُردّ على:", "o": ["من طلب ملائكة رسلًا", "الذين آمنوا", "الأنبياء", "العلماء"], "a": 0, "e": "بيان أن الرسل من البشر."}, {"t": "في قوله تعالى: «وَكَذَلِكَ مَكَّنَّا لِيُوسُفَ فِي الْأَرْضِ» التمكين جاء بعد:", "o": ["الصبر والتقوى والإحسان", "الطلاق والاستسلام", "التواكل", "التملك بالمال"], "a": 0, "e": "سبق التمكين ذكر إحسانه وتقواه: «ولا نضيع أجر المحسنين»."}]}, "3": {"game": [{"t": "«إِنَّ رَبَّكُمُ اللَّهُ الَّذِي خَلَقَ السَّمَاوَاتِ وَالْأَرْضَ فِي سِتَّةِ أَيَّامٍ»: دلالة الآية على توحيد:", "o": ["الربوبية", "الألوهية فقط", "العبادة فقط", "الأسماء الحسنى فقط"], "a": 0, "e": "الخلق والتدبير دليل على انفراد الله بالربوبية، ومنها يُستدل على وجوب إفراده بالعبادة."}, {"t": "«مَا مِن شَفِيعٍ إِلَّا مِن بَعْدِ إِذْنِهِ» في الآية بطلان:", "o": ["الشفاعة المطلقة مع الله", "الشفاعة المأذون بها", "الدعاء", "التوبة"], "a": 0, "e": "نفى أي شفاعة بغير إذن الله، وهذه واحدة من أعظم مسائل التوحيد."}, {"t": "«جَعَلَ الشَّمْسَ ضِيَاءً وَالْقَمَرَ نُورًا وَقَدَّرَهُ مَنَازِلَ» الغاية المصرّحة في الآية:", "o": ["لِتَعْلَمُوا عَدَدَ السِّنِينَ وَالْحِسَابَ", "لِتناموا مبكرين", "لِتعبدوا الكواكب", "لِتتنافسوا في الزينة"], "a": 0, "e": "صرّحت الآية بالحكمة: معرفة عدد السنين والحساب."}, {"t": "قال تعالى: «أُولَئِكَ مَأْوَاهُمُ النَّارُ» — المشار إليهم هم:", "o": ["الذين لا يرجون لقاء الله ورضوا بالدنيا", "الذين آمنوا وعملوا الصالحات", "المتقون", "المجاهدون في سبيل الله"], "a": 0, "e": "سياق الآية: الذين رضوا بالدنيا واطمأنوا بها وغفلوا عن الآيات."}, {"t": "«أحسنوا» في «وَٱلَّذِينَ أَحْسَنُوا۟ ٱلْحُسْنَىٰ وَزِيَادَةٌ» فُسِّرت «الزيادة» بـ:", "o": ["زيادة الرزق الدنيوي", "النظر إلى الله في الآخرة", "زيادة العمر", "التوفيق في التجارة"], "a": 1, "e": "تفسير «الزيادة» بالنظر إلى وجه الله يوم القيامة قول مشهور عن أهل العلم."}, {"t": "«سُبْحَانَكَ اللَّهُمَّ وَتَحِيَّتُهُمْ فِيهَا سَلَامٌ» هذه هي:", "o": ["دعواهم في الجنة", "دعاؤهم في الدنيا للخلق", "شعار أهل النار", "أذكار الوداع"], "a": 0, "e": "«دعواهم فيها سبحانك اللهم» أي أن ذلك ذكرهم في الجنة."}, {"t": "«أَلَا إِنَّ أَوْلِيَاءَ اللَّهِ لَا خَوْفٌ عَلَيْهِمْ وَلَا هُمْ يَحْزَنُونَ» ثم بيّن الآية بعدها صفتهم:", "o": ["الذين آمنوا وكانوا يتقون", "الذين كثُر مالهم", "الذين نُسبوا إلى قبيلة", "الذين اعتزلوا الناس"], "a": 0, "e": "«الَّذِينَ آمَنُوا وَكَانُوا يَتَّقُونَ» وهي الصفة المحددة للولاية."}, {"t": "«هُوَ الَّذِي جَعَلَ لَكُمُ اللَّيْلَ لِتَسْكُنُوا فِيهِ وَالنَّهَارَ مُبْصِرًا» فيها امتنان بـ:", "o": ["السكن في الليل والسعي المبصر في النهار", "نعمة المال", "نعمة الشهرة", "نعمة السلطان"], "a": 0, "e": "نعمة تذكيرية بآيات الله في الليل والنهار."}, {"t": "«قَالُوا اتَّخَذَ اللَّهُ وَلَدًا سُبْحَانَهُ» ردّ القرآن عليه بـ:", "o": ["الغِنى التام له عن الولد والملك المطلق لما في السماوات والأرض", "أن الولد ممكن", "أن الولد من الملائكة", "ترك الرد"], "a": 0, "e": "«هو الغني له ما في السماوات وما في الأرض» دليل بطلان الاحتجاج."}, {"t": "استنباط: «وَالَّذِينَ كَسَبُوا السَّيِّئَاتِ جَزَاءُ سَيِّئَةٍ بِمِثْلِهَا» فيها:", "o": ["فضل الله في أن السيئة لا تُضاعف جزاؤها", "تضعيف السيئات", "التسوية بين الحسنات والسيئات", "إبطال الجزاء"], "a": 0, "e": "الجزاء بمثل السيئة عدل، والحسنة تُضاعف بفضل الله."}], "exam": [{"t": "قوله تعالى: «في ستة أيام» دليل أن الله خلق السماوات والأرض في مدة محددة.", "o": ["صح", "خطأ"], "a": 0, "e": "نعم، صرّحت الآية بذلك."}, {"t": "معنى «يُدبِّر الأمر» أن الأمور تُدار بأمر من دون إذن الله.", "o": ["صح", "خطأ"], "a": 1, "e": "بل يدبّر الله الأمر وحده."}, {"t": "قوله: «من شفيع إلا من بعد إذنه» يفيد بطلان الشفاعة مطلقًا.", "o": ["صح", "خطأ"], "a": 1, "e": "بل يُثبت الشفاعة المأذون بها وينفي غيرها."}, {"t": "من صفات أولياء الله: الإيمان والتقوى.", "o": ["صح", "خطأ"], "a": 0, "e": "كما في الآية ٦٣."}, {"t": "«وَلَا يَرْهَقُ وُجُوهَهُمْ قَتَرٌ وَلَا ذِلَّةٌ» وصف لـ:", "o": ["أصحاب النار", "المحسنين وأهل الجنة", "الغافلين", "الكفار"], "a": 1, "e": "سياق الآية ٢٦."}, {"t": "«قَالُوا اتَّخَذَ اللَّهُ وَلَدًا» ردّ الله عليهم بقوله:", "o": ["هو الغني له ما في السماوات وما في الأرض", "فسبحان الله حين تمسون", "ولقد كرمنا بني آدم", "قل هل من شركائكم"], "a": 0, "e": "الغنى المطلق يمنع ادعاء الولد."}, {"t": "معنى «الضياء» في قوله: «الشمس ضياءً» أقوى من «نورًا» لأن ضوءها:", "o": ["ذو أثر مباشر وحرارة وليس مجرد كشف", "ضعيف", "مستعار", "من الخلق لا من الله"], "a": 0, "e": "الضياء مصدر أوضح، والنور أعم."}, {"t": "«فَكَفَى بِاللهِ شَهِيدًا بَيْنَنَا وَبَيْنَكُمْ» قاله:", "o": ["الشركاء الذين عبدوا من دون الله", "المؤمنون", "الملائكة", "الأنبياء"], "a": 0, "e": "حوار يوم القيامة في الآية ٢٩."}, {"t": "من التغيير دلائل اليوم الآخر أن الناس في الجنة:", "o": ["يتحياتون بالسلام ويدعون بالسبحان", "يبحثون عن الطعام", "يتنافسون في الزينة", "لا يذكرون الله"], "a": 0, "e": "الآية ١٠."}, {"t": "«إِنَّ فِي اخْتِلَافِ اللَّيْلِ وَالنَّهَارِ... لَآيَاتٍ لِقَوْمٍ يَتَّقُونَ» وجه الاستدلال:", "o": ["تغيّر الأحوال دليل على تدبير الله وقدرته", "دليل على تعاقب الفصول فقط", "دليل على العلم الفلكي فقط", "دليل على علم الحساب"], "a": 0, "e": "اختلاف الليل والنهار من أعظم دلائل التوحيد."}]}, "4": {"game": [{"t": "«أَرسَلْنَا مُوسَى بِآيَاتِنَا وَسُلْطَانٍ مُبِينٍ * إِلَى فِرْعَوْنَ وَمَلَئِهِ» مَن اتّبع أمر فرعون على رشاد:", "o": ["لا، بل ما أمر فرعون برشيد", "نعم، كانت خطة سليمة", "في أمور الإدارة فقط", "نعم في العسكرية"], "a": 0, "e": "«وَمَا أَمْرُ فِرْعَوْنَ بِرَشِيدٍ» أي ليس فيه حق ولا صلاح."}, {"t": "«يَقْدُمُ قَوْمَهُ يَوْمَ الْقِيَامَةِ فَأَوْرَدَهُمُ النَّارَ» هذا في:", "o": ["فرعون", "نوح", "صالح", "شعيب"], "a": 0, "e": "فرعون يقدّم قومه إلى النار كما قدّمهم إلى الكفر."}, {"t": "«ذَلِكَ مِنْ أَنبَاءِ الْقُرَى نَقُصُّهُ عَلَيْكَ» الآية تنتهي بكلمتي:", "o": ["«منها قائم وحصيد»", "«فما لها من قرار»", "«كانت آياتٍ للسائلين»", "«جاهد الكفار»"], "a": 0, "e": "«مِنْهَا قَائِمٌ وَحَصِيدٌ» أي بعضها باقٍ وبعضها هلك."}, {"t": "«إِنَّ أَخْذَهُ أَلِيمٌ شَدِيدٌ» سياقها يبيّن أن الله أخذ القرى وهي:", "o": ["ظالمة", "مستغفرة", "مهتدية", "صابرة"], "a": 0, "e": "«وَكَذَلِكَ أَخْذُ رَبِّكَ إِذَا أَخَذَ الْقُرَى وَهِيَ ظَالِمَةٌ»."}, {"t": "«وَمَا نُؤَخِّرُهُ إِلَّا لِأَجَلٍ مَعْدُودٍ» عن أي شيء تتحدث الآية؟", "o": ["عن يوم القيامة", "عن نزول الغيث", "عن هجرة النبي", "عن نزول العذاب بأمة واحدة"], "a": 0, "e": "تأخير يوم الحساب إلى أجل معدود."}, {"t": "«فَمِنْهُمْ شَقِيٌّ وَسَعِيدٌ» في الآية:", "o": ["الشقي هنا من شقّ في النار لا مجرد الشقاء ، والسعيد من سعد وليس مجرد الضحك", "كل واحد من المرسل إليهم مآله إما نعيم أو عذاب بحسب العمل", "كل الناس سعداء", "الشقاء لونٌ من ألوان الدنيا"], "a": 1, "e": "بيان قسمي المصير: سعيد في الجنة وشقي في النار."}, {"t": "«فَاسْتَقِمْ كَمَا أُمِرْتَ وَمَن تَابَ مَعَكَ وَلَا تَطْغَوْا» الاستقامة هنا تُحقّق بثلاثة:", "o": ["الاستقامة على الأمر، والصحبة الصالحة، وترك الطغيان", "الصوم والصلاة فقط", "التقوى والذكر فقط", "الاجتهاد والمال فقط"], "a": 0, "e": "جمعت الآية: الثبات على الأمر وصدق الصاحب وترك الطغيان."}, {"t": "«وَلَا تَرْكَنُوا إِلَى الَّذِينَ ظَلَمُوا فَتَمَسَّكُمُ النَّارُ» معنى «تركنوا»:", "o": ["تميلوا وتَمِيلوا إليهم", "تخالفونهم", "تقاتلونهم", "تعادونهم"], "a": 0, "e": "الركون: الميل والاطمئنان إلى الظالم وسلوك سبيله."}, {"t": "«إِنَّ الْحَسَنَاتِ يُذْهِبْنَ السَّيِّئَاتِ» هذه الجملة تأتي ضمن ذكر:", "o": ["أمر بإقامة الصلاة طرفي النهار وزلفًا من الليل", "أمر بالجهاد", "أمر بالهجرة", "أمر بالصدق في القول"], "a": 0, "e": "الآية ١١٤ في سياق الأمر بإقامة الصلاة."}, {"t": "«وَمَا كَانَ رَبُّكَ لِيُهْلِكَ الْقُرَى بِظُلْمٍ وَأَهْلُهَا مُصْلِحُونَ» دلالتها:", "o": ["أن الإصلاح سبب للنجاة، والهلاك يُسند إلى الظلم", "أن الظلم لا أثر له", "أن الإهلاك لا يتعلق بالأعمال", "أن الإصلاح غير مطلوب"], "a": 0, "e": "الآية تربط النجاة بالإصلاح وترفع الظلم عن الله."}], "exam": [{"t": "أرسل الله موسى إلى فرعون وملئه بآيات وسلطان مبين.", "o": ["صح", "خطأ"], "a": 0, "e": "نعم، نص الآية ٩٦."}, {"t": "أمر فرعون كان رشيدًا فيه هداية لقومه.", "o": ["صح", "خطأ"], "a": 1, "e": "بل «ما أمر فرعون برشيد»."}, {"t": "فرعون يقدم قومه يوم القيامة فأوردهم النار.", "o": ["صح", "خطأ"], "a": 0, "e": "نعم، الآية ٩٨."}, {"t": "«فاستقم كما أمرت» أمر للنبي ﷺ ولمن تاب معه.", "o": ["صح", "خطأ"], "a": 0, "e": "نعم، والضمير يعمّ أتباعه."}, {"t": "«الصلاة طرفي النهار وزلفًا من الليل» يؤدى فيها:", "o": ["الفجر والظهر والعصر والمغرب والعشاء", "الجمعة فقط", "الوتر فقط", "صلاة الليل فقط"], "a": 0, "e": "الطرفان الفجر والعصر، والزلف من الليل المغرب والعشاء."}, {"t": "«الحسنات يذهبن السيئات» أي:", "o": ["الصلاة والطاعات تكفّر الصغائر بإذن الله", "تُبطل التوبة", "تزيل الكبائر بلا توبة", "لا أثر لها"], "a": 0, "e": "تُذهب الصغائر مع اجتناب الكبائر."}, {"t": "من صفات المؤمنين في «فاستقم» أنهم:", "o": ["يتوبون إلى الله", "يعتزلون المجتمع", "يقاطعون الناس", "يأخذون بالعادات"], "a": 0, "e": "«ومن تاب معك»."}, {"t": "«ولله غيب السماوات والأرض» دعوة إلى:", "o": ["الاعتماد على الله في الغيب والتوكل عليه", "الاستعانة بالأسباب فقط", "التوكل مع ترك الأخذ بالأسباب", "الاعتماد على المنجّمين"], "a": 0, "e": "إيصال التوكل إلى الله."}, {"t": "«وما كان ربك ليهلك القرى بظلم وأهلها مصلحون» تدل على:", "o": ["أثر الإصلاح في بقاء الأمم", "إهلاك الأمم بلا سبب", "استحالة الإهلاك", "إلزام الله بالإصلاح"], "a": 0, "e": "سنّة الإصلاح."}, {"t": "«ولا تركنوا إلى الذين ظلموا» تفسير «الركون»:", "o": ["الميل والاعتماد", "الغلظة في القول", "الصبر", "الخروج من البلد"], "a": 0, "e": "الركون: الميل والاستكانة."}]}, "1": {"game": [{"t": "المصطلح: أيُّ العبارات التالية تصف التفسير اصطلاحًا عند العلماء؟", "o": ["بيان معاني القرآن الكريم وإيضاح مقاصده وما تسترشد به الأمة", "معرفة أحوال رواة الحديث وجرحهم وتعديلهم", "قراءة القرآن بالقراءات السبع المتواترة", "حفظ عدد آيات القرآن الكريم وترتيبها"], "a": 0, "e": "التفسير اصطلاحًا: بيان معاني القرآن الكريم وإيضاح المقاصد الشرعية، وهو ما وصفه ابن جرير الطبري وغيره."}, {"t": "دقّق الفرق: ما الفرق بين التفسير والتأويل عند كثير من المتقدمين؟", "o": ["لا فرق بينهما أصلًا في كل الاستعمالات", "التفسير بيان المراد المباشر للآية، والتأويل مآل الآية وما تؤول إليه", "التأويل خاص بالأحاديث، والتفسير خاص بالقرآن", "التأويل يُقبل من غير عالم، والتفسير لا يُقبل إلا من معصوم"], "a": 1, "e": "كثير من المتقدمين يفرّق بينهما: التفسير إيضاح المراد المباشر، والتأويل بيان المآل والمراد الذي تؤول إليه الآية."}, {"t": "النشأة: في أي عصر بدأ التدوين المنظّم لعلم التفسير على هيئة تصانيف مستقلة؟", "o": ["عصر النبي ﷺ", "عصر الصحابة", "القرن الثاني الهجري (عهد التابعين وأتباعهم)", "القرن الرابع عشر الهجري"], "a": 2, "e": "التفسير في عهد النبي ﷺ والصحابة كان نقلًا ورواية، ثم بدأ التصنيف والتدوين المنظّم في القرن الثاني الهجري على يد جماعة من الأئمة."}, {"t": "مَن من الصحابة اشتهر بلقب «ترجمان القرآن» وكثُرت عنه روايات التفسير؟", "o": ["أبو بكر الصديق رضي الله عنه", "عبد الله بن عباس رضي الله عنهما", "معاذ بن جبل رضي الله عنه", "أبو هريرة رضي الله عنه"], "a": 1, "e": "عبد الله بن عباس رضي الله عنهما لُقّب بترجمان القرآن لدعاء النبي ﷺ له وتكاثر روايات التفسير عنه."}, {"t": "الضوابط: أيُّ ما يلي ليس من ضوابط المفسر المعتبرة عند أهل العلم؟", "o": ["معرفة اللغة العربية وأساليبها", "معرفة أسباب النزول والناسخ والمنسوخ", "تقديم الرأي الشخصي والذوق الخاص على أقوال المفسرين", "معرفة أصول الفقه وقواعد الاستدلال"], "a": 2, "e": "أصول التفسير تُبنى على الضوابط لا على الذوق الشخصي؛ تقديم الرأي المجرّد من الضوابط يُوقع في التفسير بالهوى."}, {"t": "قال ﷺ: «من قال في القرآن برأيه فليتبوأ مقعده من النار»، ووجه الاستدلال: أن التفسير بهذه الصورة:", "o": ["محمود لأنه اجتهاد", "مذموم لأنه قول بغير علم", "جائز للعامّي فقط", "واجب على كل مسلم"], "a": 1, "e": "الحديث يذم القول في القرآن بمجرد الرأي والهوى دون علم، أما الاجتهاد الملتزم بضوابط العلم فهو اجتهاد معتبر."}, {"t": "المكتبة التفسيرية: أي وصف يطابق «جامع البيان» لابن جرير الطبري؟", "o": ["أشهر كتب التفسير بالمأثور، وذكره ابن تيمية بأنه أصح التفاسير", "تفسير مختصر يعتمد على اللغة فقط دون آثار", "كتاب في أسباب النزول فقط", "تفسير مقتصر على القراءات العشر"], "a": 0, "e": "جامع البيان للطبري من أوسع كتب التفسير بالمأثور وأصحها، ويثني عليه كثير من أهل العلم."}, {"t": "«أبرز المؤلفات الموثوقة»: الكتاب الذي يُعدّ مرجعًا في التفسير بالمأثور ويجمع بين الرواية والرأي بمنهجية، هو:", "o": ["معالم التنزيل للبغوي", "دلائل الإعجاز للجرجاني", "الموافقات للشاطبي", "الأمالي في اللغة"], "a": 0, "e": "«معالم التنزيل» للبغوي من التفاسير المعتمدة بالمأثور."}, {"t": "استنباط: لماذا يُشترط للمفسر معرفة أسباب النزول؟", "o": ["لأن معرفة سبب النزول تُعين على فهم المراد وتدفع الخطأ في التطبيق", "لأنها شرط في صحة الصلاة", "لأنها تُحدد عدد الآيات", "لأنها تُعين على الحفظ فقط"], "a": 0, "e": "سبب النزول قرينة تفسيرية مهمة، وإغفالها يُوقع في الفهم الخاطئ."}, {"t": "التقنية: أيُّ التصرفات أكثر تحقيقًا للضوابط عند استخدام تطبيق إلكتروني في التفسير؟", "o": ["الاعتماد على ترجمة التطبيق الرسمية دون مراجعة", "الرجوع إلى كتب التفسير المعتمدة والتحقق من مصدر التطبيق وسنده", "قبول كل ما ينشره المؤثرون في برامج التواصل", "الاكتفاء بترجمات آلية للآيات"], "a": 1, "e": "التقنية وسيلة مساعدة، والضابط: التحقق من المصدر والرجوع إلى كتب العلماء الموثوقة."}], "exam": [{"t": "التفسير هو بيان معاني القرآن الكريم وإيضاح مقاصده.", "o": ["صح", "خطأ"], "a": 0, "e": "نعم، هذا تعريفه اصطلاحًا عند العلماء."}, {"t": "أول عصور التفسير كان عصر التدوين المنظّم.", "o": ["صح", "خطأ"], "a": 1, "e": "لا، العصور الأولى كانت رواية ومشافهة، والتدوين المنظّم في القرن الثاني."}, {"t": "من ضوابط المفسر المعرفة بالناسخ والمنسوخ.", "o": ["صح", "خطأ"], "a": 0, "e": "نعم، فبها يُعرف ما حُكمه باقٍ وما نُسخ."}, {"t": "يجوز تفسير القرآن بالذوق الشخصي المجرّد عن ضوابط العلم.", "o": ["صح", "خطأ"], "a": 1, "e": "لا، وهو التفسير بالرأي المذموم."}, {"t": "مؤلف «جامع البيان في تفسير القرآن» هو:", "o": ["ابن كثير", "القرطبي", "ابن جرير الطبري", "البغوي"], "a": 2, "e": "للطبري، وهو من أوسع كتب التفسير بالمأثور وأصحها."}, {"t": "«تفسير القرآن العظيم» كتاب يمتاز بالعناية بالأحاديث والآثار ونقد الأسانيد، مؤلفه:", "o": ["ابن كثير", "السيوطي", "الطبري", "الزمخشري"], "a": 0, "e": "لابن كثير."}, {"t": "عُرف بكتابه «الجامع لأحكام القرآن» الذي يعتني بأحكام الفقه:", "o": ["القرطبي", "البيهقي", "النسائي", "أبو داود"], "a": 0, "e": "للقرطبي."}, {"t": "من أهم وسائل ضبط التفسير عند استخدام التطبيقات التقنية:", "o": ["مقارنة النص بكتب التفسير المعتمدة", "الاعتماد على عدد المشاهدات", "الأخذ بترجمات آلية بلا مراجعة", "الاعتماد على التعليقات"], "a": 0, "e": "التحقق بالمعتمد من كتب العلم هو الضابط."}, {"t": "الشيخ الذي قال: «أصح التفاسير تفسير ابن جرير» هو:", "o": ["ابن باز", "ابن تيمية", "الشنقيطي", "الألباني"], "a": 1, "e": "نسبته إلى ابن تيمية مشهورة."}, {"t": "من ثمار علم التفسير أنه يُخرِج المتعلم من الظلمة إلى النور في فهم مراد الله.", "o": ["صح", "خطأ"], "a": 0, "e": "نعم، فهو مفتاح التدبّر والعمل."}]}, "8": {"game": [{"t": "«وَإِذْ قَالَ رَبُّكَ لِلْمَلَائِكَةِ إِنِّي خَالِقٌ بَشَرًا مِنْ صَلْصَالٍ مِّنْ حَمَإٍ مَّسْنُونٍ» معنى «صلصال»:", "o": ["الطين اليابس", "الطين الرطب", "التراب", "الحجر"], "a": 0, "e": "الصلصال: الطين اليابس المصوّت، والحَمَأ: الطين الأسود المنتن."}, {"t": "«فَسَجَدَ الْمَلَائِكَةُ كُلُّهُمْ أَجْمَعُونَ» السجود لآدم كان:", "o": ["سجود تكريم وامتثالٍ لأمر الله", "سجود عبادة لآدم", "سجود إذلال للملائكة", "غير مأمورٍ به"], "a": 0, "e": "سجود تكريم وطاعة، والعبادة لله وحده."}, {"t": "«إِلَّا إِبْلِيسَ أَبَى أَن يَكُونَ مَعَ السَّاجِدِينَ» استكبر بـ:", "o": ["الأصل والخلقة («خلقتني من نار وخلقته من طين»)", "العلم", "المال", "القربة"], "a": 0, "e": "علّل إبليس الأمر بخلقته من نار، وهذا استكبار وجهالة."}, {"t": "«قَالَ فَاخْرُجْ مِنْهَا فَإِنَّكَ رَجِيمٌ» «رجيم»:", "o": ["ملعون مطرود", "قوي", "كريم", "مُخَلَّد في الجنة"], "a": 0, "e": "الرجيم: المطرود الملعون."}, {"t": "«وَلَقَدْ كَرَّمْنَا بَنِي آدَمَ» ليس في سورة الحجر بهذا اللفظ، لكن سياق الحجر يقرّر تكريم آدم بـ:", "o": ["الأمر بسجود الملائكة له", "إهلاك الكفار", "الأرض", "عبادته"], "a": 0, "e": "التكريم ظاهر في أمر السجود له وتعليم الأسماء في آيات مقابلة."}, {"t": "«إِنَّ الْمُتَّقِينَ فِي جَنَّاتٍ وَعُيُونٍ» وصف آخر نعيمهم:", "o": ["«ادخلوها بسلامٍ آمنين»", "«في ضلوعٍ»", "«خالدين في العذاب»", "«يدرؤون بالحسنة»"], "a": 0, "e": "الآية ٤٦: «ادخلوها بسلام آمنين»."}, {"t": "«وَنَزَعْنَا مَا فِي صُدُورِهِم مِّنْ غِلٍّ» هذا من نعيم:", "o": ["تطهير الجنان من الأحقاد والحسد", "الغنى الفائق", "بقاء النزاعات", "التوبة"], "a": 0, "e": "والغل: الحقد والحسد؛ ونزعه من نعم الجنة."}, {"t": "«فَوَرَبِّكَ لَنَسْأَلَنَّهُمْ أَجْمَعِينَ عَمَّا كَانُوا يَعْمَلُونَ» المقصود بسؤالهم هنا (عند بعض المحققين):", "o": ["سؤال التوبيخ لتبليغ الدعاة إلى الأمة", "سؤال تعليم", "سؤال دنيوي", "سؤال الأنبياء"], "a": 0, "e": "وعلى قول كثير من المفسرين: سؤال توبيخ لتبليغهم رسالة توحيد الله."}, {"t": "«فَاصْدَعْ بِمَا تُؤْمَرُ» معنى «اصدع»:", "o": ["أعلِن واجهر بالدعوة", "اكتم", "ارحل", "اصبر"], "a": 0, "e": "الصدع: الجهر بالحق وإظهار الدعوة."}, {"t": "«فَسَبِّحْ بِحَمْدِ رَبِّكَ وَكُن مِّنَ السَّاجِدِينَ» خُتمت بها السورة، دلالتها:", "o": ["الاستعانة بالذكر والصلاة على أعباء الدعوة", "ترك العمل", "العزلة", "الخوف"], "a": 0, "e": "تثبيت النبي ﷺ بالذكر والسجود عند اشتداد الأذى."}], "exam": [{"t": "خلق الله آدم من صلصال من حمأ مسنون.", "o": ["صح", "خطأ"], "a": 0, "e": "الآية ٢٦-٢٨."}, {"t": "سجد جميع الملائكة لآدم إلا إبليس.", "o": ["صح", "خطأ"], "a": 0, "e": "الآية ٣٠."}, {"t": "تعلّل إبليس بالسجود بحجة أن أصل آدم أقلّ من أصله من نار.", "o": ["صح", "خطأ"], "a": 0, "e": "«قال لم أكن لأسجد لبشر خلقتَه من صلصال»."}, {"t": "إبليس طرد من رحمة الله، وهو من الجنّ.", "o": ["صح", "خطأ"], "a": 0, "e": "القول الراجح: من الجن."}, {"t": "«إن المتقين في جنات وعيون» وصف حال:", "o": ["المتقين في الجنة", "الكفار", "المطففين", "الأنبياء فقط"], "a": 0, "e": "الآية ٤٥."}, {"t": "«ونزعنا ما في صدورهم من غل» معناه:", "o": ["إزالة الحقد والحسد", "زيادة المال", "إزالة النعيم", "بقاء العداوة"], "a": 0, "e": "من تفسير الآية ٤٧."}, {"t": "«فاصْدع بما تؤمر» أي:", "o": ["اجهر بالدعوة", "توقف عن الدعوة", "اخفِ الدعوة", "اهجر الناس"], "a": 0, "e": "الصدع: الإظهار والجهر."}, {"t": "خاتمة السورة بالأمر بالتسبيح، دلّ على:", "o": ["الثبات بالذكر عند الفتن", "ترك الأمر", "الفرح بالدنيا", "أهمية السفر"], "a": 0, "e": "«فسّبح بحمد ربك»."}, {"t": "«فأينما وليتم» في الآية ٤٩ في سياق تسبيح الأنبياء وتوحيده.", "o": ["صح", "خطأ"], "a": 0, "e": "«وإنا لنحن الصافون»."}, {"t": "سُمّيت سورة الحجر بهذا الاسم لذكر «أصحاب الحجر» وهم:", "o": ["قوم ثمود", "قوم لوط", "قوم نوح", "قوم عاد"], "a": 0, "e": "«أصحاب الحجر» قوم ثمود الذين كذّبوا رسلهم."}]}, "6": {"game": [{"t": "«اللَّهُ يَعْلَمُ مَا تَحْمِلُ كُلُّ أُنثَى وَمَا تَغِيضُ الْأَرْحَامُ وَمَا تَزْدَادُ» معنى «تغيض»:", "o": ["تنقص", "تزيد", "تنفتح", "تضم"], "a": 0, "e": "«تغيض» تنقص، و«تزداد» تزيد؛ وعلم الله محيط بذلك كله."}, {"t": "«وَكُلُّ شَيْءٍ عِندَهُ بِمِقْدَارٍ» تدل على:", "o": ["إحاطة القدرة والعلم فلا يقع شيء بغير تقدير", "أن الأشياء بغير تقدير", "أن العلم خاص بالمخلوق", "إبطال القضاء"], "a": 0, "e": "كل شيء مقدّر معلوم عند الله."}, {"t": "«سَوَاءٌ مِنكُم مَّنْ أَسَرَّ الْقَوْلَ وَمَن جَهَرَ بِهِ»:", "o": ["يُثبت إحاطة علم الله بالسر والعلن", "ينفي علم الله بالسر", "يُساوي بين المؤمن والكافر", "يدل على علم الإنسان بالغيب"], "a": 0, "e": "السر والجهر في علم الله سواء، وهذا من أدلة كمال العلم."}, {"t": "«لَهُ مُعَقِّبَاتٌ مِنْ بَيْنِ يَدَيْهِ وَمِنْ خَلْفِهِ يَحْفَظُونَهُ مِنْ أَمْرِ اللَّهِ» هم:", "o": ["الملائكة", "الأنبياء", "الصحابة", "الجنّ كلهم"], "a": 0, "e": "الملائكة الذين يحفظون الإنسان بأمر الله."}, {"t": "«إِنَّ اللَّهَ لَا يُغَيِّرُ مَا بِقَوْمٍ حَتَّى يُغَيِّرُوا مَا بِأَنفُسِهِمْ» دلالتها:", "o": ["أن تغيير الأحوال مرتبط بتغيير النفوس والقلوب والأعمال", "أن الإنسان مُسيَّر", "أن الأشياء تُغيّر بلا سبب", "إبطال الدعاء"], "a": 0, "e": "سنة قرآنية تربط النجاح والهزيمة بالحال الداخلي للإنسان."}, {"t": "«هُوَ الَّذِي يُرِيكُمُ الْبَرْقَ خَوْفًا وَطَمَعًا» الخوف والطمع هنا:", "o": ["الخوف من الصواعق والطمع في المطر", "الخوف من الظلام والطمع في الحر", "الخوف من الناس والطمع في الثمن", "التقوى والرجاء"], "a": 0, "e": "البرق باعث خوف (صلابته) وطمع (برحمته ومطره)."}, {"t": "«وَيُسَبِّحُ الرَّعْدُ بِحَمْدِهِ وَالْمَلَائِكَةُ مِنْ خِيفَتِهِ» يفيد:", "o": ["تسبيح المخلوقات وانقيادها لله", "أن الرعد معبود", "نفي تسبيح الملائكة", "أن الرعد سبب لا مسبب"], "a": 0, "e": "مخلوقات تسبح الله وتخشاه دليلًا على عظمته."}, {"t": "«وَالَّذِينَ يَصِلُونَ مَا أَمَرَ اللَّهُ بِهِ أَن يُوصَلَ» في الآيات التي وصف بها:", "o": ["أولو الألباب الذين يوفون بعهد الله", "الكفار", "المنافقون", "المفسدون"], "a": 0, "e": "من صفات أولي الألباب: وصل ما أمر الله بوصله."}, {"t": "«الَّذِينَ آمَنُوا وَتَطْمَئِنُّ قُلُوبُهُم بِذِكْرِ اللَّهِ» المصداق القرآني:", "o": ["«ألا بذكر الله تطمئن القلوب»", "«فليضحكوا قليلاً»", "«فزادتهم رجساً»", "«فما أغنى عنهم»"], "a": 0, "e": "تصريح الآية أن القلوب تطمئن بذكر الله."}, {"t": "«مَثَلُ» الذين يدعون من دون الله في الآية ١٤ كمبسوط كفّه إلى الماء:", "o": ["طلب ما لا يبلغ مع إتيان السبب صورةً لا حقيقة", "طلبُ جائز", "مَثَلٌ لطلبِ الرزق", "دعاء مشروع"], "a": 0, "e": "المثل: كمن يبسط يديه إلى الماء ليبلغ فاه ولا يصله، فكذلك دعاء الأصنام لا يصله."}], "exam": [{"t": "علم الله محيط بكل شيء، لا يعزب عنه مثقال ذرة.", "o": ["صح", "خطأ"], "a": 0, "e": "نعم، والآيات في ذلك."}, {"t": "تغيير حال الأمم لا علاقة له بأفعالهم.", "o": ["صح", "خطأ"], "a": 1, "e": "بل مرتبط بتغييرهم ما بأنفسهم."}, {"t": "الملائكة يحفظون الإنسان بأمر الله.", "o": ["صح", "خطأ"], "a": 0, "e": "«له معقبات... يحفظونه من أمر الله»."}, {"t": "السجود في الآية يشمل من في السماوات والأرض وطوعًا وكرهًا.", "o": ["صح", "خطأ"], "a": 0, "e": "«ولله يسجد من في السماوات والأرض طوعًا وكرهًا»."}, {"t": "«قلوب المؤمنين» تطمئن بـ:", "o": ["ذكر الله", "كثرة المال", "الشهرة", "الإفساد"], "a": 0, "e": "«ألا بذكر الله تطمئن القلوب»."}, {"t": "«أفمن يعلم أنما أنزل إليك من ربك الحق كمن هو أعمى» تُقابل بين:", "o": ["البصيرة العمياء والهداية الحقيقية", "العلم والجهل المُقِرّ بالحق", "الغني والفقير", "القوي والضعيف"], "a": 1, "e": "المقابلة بين من يعلم ومن هو أعمى عن الحق."}, {"t": "من صفات «أولي الألباب» في الآيات:", "o": ["إيفاء العهد ووصل ما أمر الله بوصله", "نقض العهد", "الإفساد في الأرض", "الاستكبار"], "a": 0, "e": "الآيات ٢٠-٢٢."}, {"t": "البرق باعث للخوف من الصواعق والطمع في المطر.", "o": ["صح", "خطأ"], "a": 0, "e": "في الآية ١٢."}, {"t": "«طوبى لهم وحسن مآب» وعد مؤكد لـ:", "o": ["المؤمنين الذين عملوا الصالحات", "الذين كفروا", "الذين نقضوا العهد", "الذين أجرموا"], "a": 0, "e": "الآية ٢٩."}, {"t": "«ويقدر» في الآية ٢٦ من معانيها:", "o": ["التضييق في الرزق", "التوسعة فقط", "الملك المطلق للغيب", "بطلان الجزاء"], "a": 0, "e": "«الله يبسط الرزق لمن يشاء ويقدر»."}]}, "7": {"game": [{"t": "«مَثَلًا كَلِمَةً طَيِّبَةً كَشَجَرَةٍ طَيِّبَةٍ أَصْلُهَا ثَابِتٌ وَفَرْعُهَا فِي السَّمَاءِ» الكلمة الطيبة:", "o": ["التوحيد والإيمان", "السؤال الكريم", "التنزه والدعاء فقط", "الذكر الجماعي"], "a": 0, "e": "المشهور أن الكلمة الطيبة: التوحيد والإيمان (لا إله إلا الله)."}, {"t": "«تُؤْتِي أُكُلَهَا كُلَّ حِينٍ بِإِذْنِ رَبِّهَا» تُشبه:", "o": ["ثمرة شجرةِ العمل والتوحيد المستمرة", "الثمر الدنيوي", "الحظ السعيد", "كثرة المال"], "a": 0, "e": "بيان عطاء كلمة التوحيد وجودها ثمرةً دائمة بإذن الله."}, {"t": "«وَمَثَلُ كَلِمَةٍ خَبِيثَةٍ كَشَجَرَةٍ خَبِيثَةٍ اجْتُثَّتْ مِن فَوْقِ الْأَرْضِ مَا لَهَا مِن قَرَارٍ» معنى «اجتُثّت»:", "o": ["اقتلعت من أصلها", "غُرِست", "نمت", "جُذّت من الأعلى"], "a": 0, "e": "اجتُثّت: اقتُلعت من أصلها فلا قرار لها، وهو مثل الباطل والكفر."}, {"t": "«يُثَبِّتُ اللَّهُ الَّذِينَ آمَنُوا بِالْقَوْلِ الثَّابِتِ فِي الْحَيَاةِ الدُّنْيَا وَفِي الْآخِرَةِ» القول الثابت:", "o": ["كلمة التوحيد", "كلمة الشعر", "كلمة المدح", "كلمة التوديع"], "a": 0, "e": "القول الثابت: «لا إله إلا الله»، وإبها فيه فتنة القبر."}, {"t": "«أَلَمْ تَرَ إِلَى الَّذِينَ بَدَّلُوا نِعْمَتَ اللَّهِ كُفْرًا» ما النعمة التي بدّلوها كفرًا؟", "o": ["نعمة التوحيد والإسلام وبعثة النبي ﷺ", "نعمة المال", "نعمة الأولاد", "نعمة الماء"], "a": 0, "e": "فسّرها أهل العلم: نعمة الإسلام والقرآن بالنبي ﷺ."}, {"t": "«وَجَعَلُوا اللَّهَ أَندَادًا لِّيُضِلُّوا عَن سَبِيلِهِ» «الأنداد»:", "o": ["الأمثال والأشباه في العبادة", "الزوجات", "الخلفاء", "الملائكة جميعًا"], "a": 0, "e": "الأنداد: الأشباه والأمثال الذين سوّوهم بالله في العبادة."}, {"t": "«قُل لِعِبَادِيَ الَّذِينَ آمَنُوا يُقِيمُوا الصَّلَاةَ وَيُنفِقُوا» دلالة تقديم:", "o": ["الجمع بين حق الله وحق العباد في الإنفاق سرًّا وعلانية", "الاقتصار على الصلاة", "إلغاء الزكاة", "الاستغناء عن الصلاة"], "a": 0, "e": "الآية تجمع الصلاة والإنفاق سرًّا وعلانية قبل يوم لا بيع فيه ولا خلال."}, {"t": "«وَلَا يَحْسَبَنَّ اللَّهَ غَافِلًا عَمَّا يَعْمَلُ الظَّالِمُونَ» في الآية:", "o": ["تسلية للمظلومين وإمهال للظالمين إلى يوم الحساب", "إعفاء الظالمين من الجزاء", "تحقير المظلومين", "النهي عن العدل"], "a": 0, "e": "الإمهال ليس إغفالاً، والجزاء في يوم تشخص فيه الأبصار."}, {"t": "صفة المحشورين في الآية ٤٣:", "o": ["«مهطعين مقنعي رءوسهم لا يرتد إليهم طرفهم»", "«ناعمين مسرورين»", "«متكئين على الأرائك»", "«يدعون ربهم»"], "a": 0, "e": "صور رهبانية في يوم الحساب تكشف هول الموقف."}, {"t": "«وَمَا اللَّهُ بِغَافِلٍ عَمَّا تَفْعَلُونَ» خاتمة الآية تقرّر:", "o": ["مراقبة الله وأثرها في العمل", "الخوف من الخلق", "الشفاعة", "رجاء الرحمة فقط"], "a": 0, "e": "تقرير إحاطة علمه سبحانه بأعمال العباد."}], "exam": [{"t": "الكلمة الطيبة كالشجرة الطيبة أصلها ثابت وفرعها في السماء.", "o": ["صح", "خطأ"], "a": 0, "e": "نص الآية ٢٤."}, {"t": "الكلمة الخبيثة كشجرة خبيثة اجتُثّت من فوق الأرض.", "o": ["صح", "خطأ"], "a": 0, "e": "الآية ٢٦."}, {"t": "من معاني القول الثابت: كلمة التوحيد.", "o": ["صح", "خطأ"], "a": 0, "e": "قول جمهور المفسرين."}, {"t": "المقصود بتثبيت الله المؤمنين في الآخرة يشمل سؤال الملكين.", "o": ["صح", "خطأ"], "a": 0, "e": "من معاني الآية ما ورد في التفاسير."}, {"t": "«ألم تر إلى الذين بدلوا نعمة الله كفراً» المراد بها:", "o": ["نعمة الإسلام والقرآن", "نعمة المال", "الزوجات", "الأولاد"], "a": 0, "e": "قول ابن كثير وغيره."}, {"t": "«جعلوا الله أنداداً» معناه:", "o": ["أشباهًا في العبادة", "أولادًا", "أزواجًا", "أموالًا"], "a": 0, "e": "الأنداد: أشباههم في العبادة."}, {"t": "الإنفاق في الآية ٣١ يكون:", "o": ["سرًّا وعلانية", "علانية فقط", "بعد الموت", "بالإكراه"], "a": 0, "e": "«سرًّا وعلانية»."}, {"t": "«وما الله بغافل عما يعمل الظالمون» فيها تسلية المظلوم.", "o": ["صح", "خطأ"], "a": 0, "e": "نعم، والقصاص في الآخرة."}, {"t": "«إلى الله يرجعكم جميعًا» أي محشورون يوم القيامة.", "o": ["صح", "خطأ"], "a": 0, "e": "نص الآية ٤٠."}, {"t": "تأجيل عذاب الظالمين يدل على عفو الله عنهم دائمًا.", "o": ["صح", "خطأ"], "a": 1, "e": "بل الإمهال رحمة واستدراج."}]}};
-document.addEventListener("DOMContentLoaded", function(){
-  var $ = function(s){ return document.querySelector(s); };
-  var $$ = function(s){ return [].slice.call(document.querySelectorAll(s)); };
-  var ar = PF.arNum;
+var UNITS = [{"u": 1, "name": "مقدمة في التفسير", "game": "لعبة-الوحدة-01-مقدمة-في-التفسير.html", "exam": "اختبار-الوحدة-01-مقدمة-في-التفسير.html", "lessons": [{"no": 1, "title": "التعريف بعلم التفسير ونشأته", "deck": "درس-01-التعريف-بعلم-التفسير-ونشأته.html"}, {"no": 2, "title": "أهمية علم التفسير وضوابطه", "deck": "درس-02-أهمية-علم-التفسير-وضوابطه.html"}, {"no": 3, "title": "أبرز المؤلفات الموثوقة في التفسير", "deck": "درس-03-أبرز-المؤلفات-الموثوقة-في-التفسير.html"}, {"no": 4, "title": "التقنية في خدمة القرآن الكريم وتفسيره", "deck": "درس-04-التقنية-في-خدمة-القرآن-الكريم-وتفسيره.html"}]}, {"u": 2, "name": "سورة الفاتحة", "game": "لعبة-الوحدة-02-سورة-الفاتحة.html", "exam": "اختبار-الوحدة-02-سورة-الفاتحة.html", "lessons": [{"no": 5, "title": "تفسير سورة الفاتحة", "deck": "درس-05-تفسير-سورة-الفاتحة.html"}]}, {"u": 3, "name": "سورة يونس", "game": "لعبة-الوحدة-03-سورة-يونس.html", "exam": "اختبار-الوحدة-03-سورة-يونس.html", "lessons": [{"no": 6, "title": "تفسير سورة يونس (3-10)", "deck": "درس-06-تفسير-سورة-يونس-3-10.html"}, {"no": 7, "title": "تفسير سورة يونس (26-33)", "deck": "درس-07-تفسير-سورة-يونس-26-33.html"}, {"no": 8, "title": "تفسير سورة يونس (62-70)", "deck": "درس-08-تفسير-سورة-يونس-62-70.html"}]}, {"u": 4, "name": "سورة هود", "game": "لعبة-الوحدة-04-سورة-هود.html", "exam": "اختبار-الوحدة-04-سورة-هود.html", "lessons": [{"no": 9, "title": "تفسير سورة هود (96-108)", "deck": "درس-09-تفسير-سورة-هود-96-108.html"}, {"no": 10, "title": "تفسير سورة هود (112-123)", "deck": "درس-10-تفسير-سورة-هود-112-123.html"}]}, {"u": 5, "name": "سورة يوسف", "game": "لعبة-الوحدة-05-سورة-يوسف.html", "exam": "اختبار-الوحدة-05-سورة-يوسف.html", "lessons": [{"no": 11, "title": "تفسير سورة يوسف (46-57)", "deck": "درس-11-تفسير-سورة-يوسف-46-57.html"}, {"no": 12, "title": "تفسير سورة يوسف (102-111)", "deck": "درس-12-تفسير-سورة-يوسف-102-111.html"}]}, {"u": 6, "name": "سورة الرعد", "game": "لعبة-الوحدة-06-سورة-الرعد.html", "exam": "اختبار-الوحدة-06-سورة-الرعد.html", "lessons": [{"no": 13, "title": "تفسير سورة الرعد (8-15)", "deck": "درس-13-تفسير-سورة-الرعد-8-15.html"}, {"no": 14, "title": "تفسير سورة الرعد (19-29)", "deck": "درس-14-تفسير-سورة-الرعد-19-29.html"}]}, {"u": 7, "name": "سورة إبراهيم", "game": "لعبة-الوحدة-07-سورة-إبراهيم.html", "exam": "اختبار-الوحدة-07-سورة-إبراهيم.html", "lessons": [{"no": 15, "title": "تفسير سورة إبراهيم (24-31)", "deck": "درس-15-تفسير-سورة-إبراهيم-24-31.html"}, {"no": 16, "title": "تفسير سورة إبراهيم (42-52)", "deck": "درس-16-تفسير-سورة-إبراهيم-42-52.html"}]}, {"u": 8, "name": "سورة الحجر", "game": "لعبة-الوحدة-08-سورة-الحجر.html", "exam": "اختبار-الوحدة-08-سورة-الحجر.html", "lessons": [{"no": 17, "title": "تفسير سورة الحجر (28-50)", "deck": "درس-17-تفسير-سورة-الحجر-28-50.html"}, {"no": 18, "title": "تفسير سورة الحجر (85-99)", "deck": "درس-18-تفسير-سورة-الحجر-85-99.html"}]}, {"u": 9, "name": "سورة النحل", "game": "لعبة-الوحدة-09-سورة-النحل.html", "exam": "اختبار-الوحدة-09-سورة-النحل.html", "lessons": [{"no": 19, "title": "تفسير سورة النحل (10-18)", "deck": "درس-19-تفسير-سورة-النحل-10-18.html"}, {"no": 20, "title": "تفسير سورة النحل (112-117)", "deck": "درس-20-تفسير-سورة-النحل-112-117.html"}, {"no": 21, "title": "تفسير سورة النحل (120-128)", "deck": "درس-21-تفسير-سورة-النحل-120-128.html"}]}, {"u": 10, "name": "سورة الإسراء", "game": "لعبة-الوحدة-10-سورة-الإسراء.html", "exam": "اختبار-الوحدة-10-سورة-الإسراء.html", "lessons": [{"no": 22, "title": "تفسير سورة الإسراء (23-30)", "deck": "درس-22-تفسير-سورة-الإسراء-23-30.html"}, {"no": 23, "title": "تفسير سورة الإسراء (31-39)", "deck": "درس-23-تفسير-سورة-الإسراء-31-39.html"}, {"no": 24, "title": "تفسير سورة الإسراء (78-87)", "deck": "درس-24-تفسير-سورة-الإسراء-78-87.html"}, {"no": 25, "title": "تفسير سورة الإسراء (105-111)", "deck": "درس-25-تفسير-سورة-الإسراء-105-111.html"}]}];
+(function(){
+  var $=function(s){return document.querySelector(s)};
+  var ar=PF.arNum;
   function esc(t){ return String(t==null?"":t).replace(/[&<>"']/g,function(c){
     return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]; }); }
+  function toast(m){ var t=$("#toast"); t.textContent=m; t.classList.add('on');
+    clearTimeout(t._x); t._x=setTimeout(function(){t.classList.remove('on')},2200); }
 
-  /* ------- دخول ------- */
-  function showApp(){ $("#login").style.display="none"; $("#app").style.display="block"; boot(); }
-  $("#lform").addEventListener("submit", function(e){
+  var IC = {
+    play:'<svg viewBox="0 0 24 24"><path d="M7 4l12 8-12 8z"/></svg>',
+    chev:'<svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>'
+  };
+
+  /* ---------- الدخول ---------- */
+  if (PF.isTeacher()) $("#login").style.display='none';
+  $("#lf").addEventListener('submit', function(e){
     e.preventDefault();
-    var b=$("#lbtn"); b.disabled=true; b.textContent="جارٍ الدخول…";
-    PF.login($("#email").value.trim(), $("#pass").value)
-      .then(function(){ showApp(); })
-      .catch(function(err){
-        b.disabled=false; b.textContent="دخول";
-        var m=$("#lmsg"); m.className="msg on e";
-        m.textContent="تعذّر الدخول: " + err.message;
-      });
+    var b=$("#lb"); b.textContent='جارٍ الدخول…'; b.disabled=true;
+    PF.login($("#em").value.trim(), $("#pw").value).then(function(){
+      $("#login").style.display='none'; boot();
+    }).catch(function(err){
+      b.textContent='دخول'; b.disabled=false;
+      var x=$("#le"); x.classList.add('on'); x.textContent='بيانات غير صحيحة — '+err.message;
+    });
   });
-  $("#logout").addEventListener("click", function(){ PF.logout().then(function(){ location.reload(); }); });
-  if (PF.isTeacher()) showApp();
+  $("#btnOut").onclick=function(){ PF.logout().then(function(){ location.href='index.html'; }); };
 
-  /* ------- تبويبات ------- */
-  $$(".hb[data-p]").forEach(function(b){
-    b.addEventListener("click", function(){ go(b.dataset.p); });
+  /* ---------- التبويبات ---------- */
+  $("#nav").addEventListener('click', function(e){
+    var b=e.target.closest('button[data-p]'); if(!b) return;
+    document.querySelectorAll('#nav button').forEach(function(x){ x.classList.toggle('on', x===b); });
+    document.querySelectorAll('.pane').forEach(function(p){ p.classList.toggle('on', p.id==='p-'+b.dataset.p); });
+    if (b.dataset.p==='results') loadResults();
+    if (b.dataset.p==='progress') loadProgress();
+    if (b.dataset.p==='students') loadStudents();
   });
-  function go(p){
-    $$(".pane").forEach(function(x){ x.classList.remove("on"); });
-    $("#p-"+p).classList.add("on");
-    $$(".hb[data-p]").forEach(function(x){ x.classList.toggle("on", x.dataset.p===p); });
+
+  /* ---------- الدروس ---------- */
+  var L = {};        // no → row
+  var history = [];
+
+  function swHTML(no, key, on){
+    return '<span class="sw'+(on?' on':'')+'" data-sw="'+key+'" data-no="'+no+'">'+
+      '<i></i>'+({slides:'الشرح',video:'الفيديو',game:'اللعبة',exam:'الاختبار'}[key])+'</span>';
   }
-  window.__go = go;
 
-  /* ================= الطلاب ================= */
-  var STU = [];
-  function mset(el, txt, ok){ el.className="msg on "+(ok?"s":"e"); el.textContent=txt; }
-  function renderStu(){
-    var q=($("#qName").value||"").trim();
-    var rows=STU.filter(function(s){ return !q || s.name.indexOf(q)>=0 || String(s.section).indexOf(q)>=0; });
-    $("#stuCount").textContent = ar(rows.length)+" طالب";
-    var secs={101:0,102:0,103:0}; STU.forEach(function(s){ secs[s.section]=(secs[s.section]||0)+1; });
-    $("#stStats").innerHTML =
-      '<div class="stat"><b>'+ar(STU.length)+'</b><span>إجمالي الطلاب</span></div>'+
-      '<div class="stat"><b>'+ar(secs[101]||0)+'</b><span>شعبة 101</span></div>'+
-      '<div class="stat"><b>'+ar(secs[102]||0)+'</b><span>شعبة 102</span></div>'+
-      '<div class="stat"><b>'+ar(secs[103]||0)+'</b><span>شعبة 103</span></div>';
-    if (!rows.length){
-      $("#stuTable").innerHTML='<div class="note">لا يوجد طلاب بعد — أضف أول اسم من الأعلى.</div>'; return;
+  function renderUnits(){
+    var host=$("#unitList"), html='', appr=0, keys=0;
+    UNITS.forEach(function(u){
+      html += '<div class="unit"><div class="uhead"><div class="un">'+ar(u.u)+'</div>'+
+        '<b>'+esc(u.name)+'</b>'+
+        '<span class="hint" style="font-size:11.5px">'+ar(u.lessons.length)+' درسًا</span>'+
+        '<span class="chev">'+IC.chev+'</span></div><div class="ubody">';
+      u.lessons.forEach(function(ls){
+        var row = L[ls.no] || {approved:false, parts:{slides:true,video:true,game:true,exam:true}};
+        var p = row.parts || {};
+        if (row.approved) appr++;
+        ['slides','video','game','exam'].forEach(function(k){ if(row.approved && p[k]!==false) keys++; });
+        html += '<div class="lcard'+(row.approved?' on':'')+'" data-no="'+ls.no+'">'+
+          '<div class="no">'+ar(ls.no)+'</div>'+
+          '<div class="tt"><b>'+esc(ls.title)+'</b><span>'+
+            (row.approved?'معتمد — الطالب يراه':'مغلق — الطالب لا يراه')+'</span></div>'+
+          '<div style="display:flex;gap:5px;flex-wrap:wrap">'+
+            swHTML(ls.no,'slides',p.slides!==false)+
+            swHTML(ls.no,'video',p.video!==false)+
+            swHTML(ls.no,'game',p.game!==false)+
+            swHTML(ls.no,'exam',p.exam!==false)+
+          '</div>'+
+          '<a class="mini" href="'+esc(ls.deck)+'" target="_blank" rel="noopener">'+IC.play+'معاينة</a>'+
+          '<button class="appr'+(row.approved?' on':'')+'" data-appr="'+ls.no+'">'+
+            (row.approved?'معتمد':'اعتماد')+'</button>'+
+        '</div>';
+      });
+      html += '</div></div>';
+    });
+    host.innerHTML = html;
+    $("#cApp").innerHTML = ar(appr)+' <small>/ ٢٥</small>';
+    $("#cLock").textContent = ar(25-appr);
+    $("#cKeys").textContent = ar(keys);
+    // تحديث حالة المفاتيح (معطّلة إن لم يُعتمد الدرس)
+    document.querySelectorAll('.lcard').forEach(function(c){
+      var on = c.classList.contains('on');
+      c.querySelectorAll('.sw').forEach(function(s){ s.classList.toggle('dis', !on); });
+    });
+  }
+
+  function save(){
+    var rows = Object.keys(L).map(function(no){
+      var r=L[no];
+      return {no:+no, approved:!!r.approved, parts:r.parts||{slides:true,video:true,game:true,exam:true}};
+    });
+    $("#cSave").textContent='جارٍ الحفظ…';
+    return PF.saveLessons(rows).then(function(){
+      $("#cSave").textContent='محفوظ'; 
+      setTimeout(function(){ var c=$("#cSave"); if(c) c.textContent='محفوظ'; },1500);
+    }).catch(function(e){
+      $("#cSave").textContent='فشل الحفظ';
+      toast('تعذّر الحفظ: '+e.message);
+    });
+  }
+
+  $("#unitList").addEventListener('click', function(e){
+    var h=e.target.closest('.uhead');
+    if(h){ h.parentNode.classList.toggle('open'); return; }
+
+    var sw=e.target.closest('[data-sw]');
+    if(sw && !sw.classList.contains('dis')){
+      var no=+sw.dataset.no, k=sw.dataset.sw;
+      var r=L[no]; if(!r) return;
+      history.push(JSON.parse(JSON.stringify(r)));
+      r.parts = r.parts || {};
+      r.parts[k] = (r.parts[k]===false);
+      sw.classList.toggle('on', r.parts[k]!==false);
+      save();
+      return;
     }
-    var h='<table><thead><tr><th>#</th><th>الاسم</th><th>الشعبة</th><th>الحالة</th><th>إجراء</th></tr></thead><tbody>';
-    rows.forEach(function(s,i){
-      h+='<tr><td>'+ar(i+1)+'</td><td>'+esc(s.name)+'</td><td>'+esc(s.section)+'</td>'+
-         '<td><span class="tag '+(s.active?"ok":"off")+'">'+(s.active?"ظاهر":"مخفي")+'</span></td>'+
-         '<td><button class="btn btn-o btn-sm" data-tog="'+s.id+'">'+(s.active?"إخفاء":"إظهار")+'</button> '+
-         '<button class="btn btn-d btn-sm" data-del="'+s.id+'">حذف</button></td></tr>';
-    });
-    $("#stuTable").innerHTML=h+'</tbody></table>';
-    $$("#stuTable [data-tog]").forEach(function(b){
-      b.addEventListener("click", function(){
-        var s=STU.find(function(x){return x.id===b.dataset.tog;});
-        PF.updateStudent(s.id,{active:!s.active}).then(loadStu);
-      });
-    });
-    $$("#stuTable [data-del]").forEach(function(b){
-      b.addEventListener("click", function(){
-        if (!confirm("حذف هذا الطالب؟")) return;
-        PF.deleteStudent(b.dataset.del).then(loadStu);
-      });
-    });
-  }
-  function loadStu(){
-    PF.listStudents().then(function(d){ STU=d||[]; renderStu(); })
-      .catch(function(e){ $("#stuTable").innerHTML='<div class="note">'+esc(e.message)+'</div>'; });
-  }
-  $("#addStu").addEventListener("click", function(){
-    var n=$("#sName").value.trim();
-    if (n.length<3){ mset($("#sMsg"),"اكتب الاسم الثلاثي",false); return; }
-    PF.addStudent(n,$("#sClass").value,$("#sSec").value).then(function(){
-      $("#sName").value=""; mset($("#sMsg"),"تمت الإضافة: "+n,true); loadStu();
-    }).catch(function(e){ mset($("#sMsg"),"خطأ: "+e.message,false); });
+    var ap=e.target.closest('[data-appr]');
+    if(ap){
+      var n=+ap.dataset.appr, row=L[n]; if(!row) return;
+      history.push(JSON.parse(JSON.stringify(row)));
+      row.approved=!row.approved;
+      if(row.approved){ SFX && SFX.correct && SFX.correct(); } else { SFX && SFX.wrong && SFX.wrong(); }
+      renderUnits(); save();
+      toast(row.approved? 'تم اعتماد الدرس وظهر للطلاب' : 'أُغلق الدرس عن الطلاب');
+    }
   });
-  $("#bulkBtn").addEventListener("click", function(){
-    var names=$("#bulk").value.split(/\n+/).map(function(x){return x.trim();})
-      .filter(function(x){return x.length>=3;});
-    if(!names.length){ mset($("#sMsg"),"لا توجد أسماء صالحة",false); return; }
-    var sec=$("#sSec").value, done=0, chain=Promise.resolve();
-    names.forEach(function(n){
-      chain=chain.then(function(){ return PF.addStudent(n,"أول ثانوي",sec).then(function(){done++;}).catch(function(){}); });
-    });
-    chain.then(function(){
-      $("#bulk").value=""; mset($("#sMsg"),"أُضيف "+ar(done)+" طالبًا إلى شعبة "+sec,true); loadStu();
-    });
-  });
-  $("#reloadStu").addEventListener("click", loadStu);
-  $("#qName").addEventListener("input", renderStu);
 
-  /* ================= النتائج ================= */
+  function setAll(v, onlyUnit){
+    Object.keys(L).forEach(function(no){
+      var r=L[no];
+      if(onlyUnit && r.unit!==onlyUnit) return;
+      r.approved=v;
+    });
+    renderUnits(); save();
+    toast(v?'تم اعتماد الدروس':'تم إغلاق الدروس');
+  }
+  $("#bAllOpen").onclick=function(){ setAll(true); };
+  $("#bAllClose").onclick=function(){ setAll(false); };
+  $("#bUnit1").onclick=function(){ setAll(true, 1); };
+  $("#bUndo").onclick=function(){
+    var h=history.pop(); if(!h){ toast('لا يوجد تغيير للتراجع'); return; }
+    L[h.no]=h; renderUnits(); save(); toast('تم التراجع');
+  };
+
+  /* ---------- النتائج ---------- */
   var RES=[];
-  function loadRes(){
-    var f=[];
-    if($("#fUnit").value) f.push("unit_no=eq."+$("#fUnit").value);
-    if($("#fKind").value) f.push("kind=eq."+$("#fKind").value);
-    if($("#fSec").value) f.push("section=eq."+encodeURIComponent($("#fSec").value));
-    PF.rest("/rest/v1/results?select=*&order=created_at.desc&limit=600"+(f.length?"&"+f.join("&"):""))
-      .then(function(d){ RES=d||[]; renderRes(); })
-      .catch(function(e){ $("#resTable").innerHTML='<div class="note">'+esc(e.message)+'</div>'; });
-  }
-  function renderRes(){
-    var n=RES.length, pass=RES.filter(function(r){return r.passed;}).length;
-    var avg=n?Math.round(RES.reduce(function(a,r){return a+(r.total?r.score/r.total*100:0);},0)/n):0;
-    var names={}; RES.forEach(function(r){ names[r.student_name]=1; });
-    $("#resStats").innerHTML =
-      '<div class="stat"><b>'+ar(n)+'</b><span>نتيجة مسجلة</span></div>'+
-      '<div class="stat"><b>'+ar(Object.keys(names).length)+'</b><span>طالب مشارك</span></div>'+
-      '<div class="stat"><b>'+ar(pass)+'</b><span>اجتياز</span></div>'+
-      '<div class="stat"><b>'+ar(avg)+'%</b><span>المتوسط</span></div>';
-    if(!n){ $("#resTable").innerHTML='<div class="note">لا توجد نتائج بعد.</div>'; return; }
-    var h='<table><thead><tr><th>#</th><th>الطالب</th><th>الشعبة</th><th>الوحدة</th><th>النوع</th>'+
-          '<th>الدرجة</th><th>النتيجة</th><th>التاريخ</th></tr></thead><tbody>';
-    RES.forEach(function(r,i){
-      var d=r.created_at?new Date(r.created_at):null;
-      var ds=d?d.toLocaleDateString("ar-SA")+" "+d.toLocaleTimeString("ar-SA",{hour:"2-digit",minute:"2-digit"}):"—";
-      h+='<tr><td>'+ar(i+1)+'</td><td>'+esc(r.student_name)+'</td><td>'+esc(r.section)+'</td>'+
-         '<td>'+ar(r.unit_no)+'</td><td>'+(r.kind==="game"?"لعبة":"اختبار")+'</td>'+
-         '<td><b>'+ar(r.score)+'</b>/'+ar(r.total)+'</td>'+
-         '<td><span class="tag '+(r.passed?"ok":"no")+'">'+(r.passed?"اجتياز":"دون الاجتياز")+'</span></td>'+
-         '<td style="font-size:12px;color:#7a8a82;white-space:nowrap">'+ds+'</td></tr>';
+  function loadResults(){
+    PF.allResults().then(function(rows){
+      RES=rows||[];
+      var u=$("#fUnit");
+      if(u.options.length<=1){
+        UNITS.forEach(function(x){ var o=document.createElement('option'); o.value=x.u; o.textContent='الوحدة '+x.u+' — '+x.name; u.appendChild(o); });
+      }
+      drawResults();
+    }).catch(function(e){
+      $("#resWrap").innerHTML='<div class="empty">تعذّر التحميل: '+esc(e.message)+'</div>';
     });
-    $("#resTable").innerHTML=h+'</tbody></table>';
   }
-  ["#fUnit","#fKind","#fSec"].forEach(function(s){ $(s).addEventListener("change", loadRes); });
-  $("#reloadRes").addEventListener("click", loadRes);
-  $("#csv").addEventListener("click", function(){
-    if(!RES.length){ alert("لا توجد نتائج للتصدير."); return; }
-    var L=["الطالب,الشعبة,الوحدة,النوع,الدرجة,الكل,النسبة,النتيجة,التاريخ"];
+  function drawResults(){
+    var u=$("#fUnit").value, k=$("#fKind").value, nm=($("#fName").value||'').trim();
+    var rows=RES.filter(function(r){
+      if(u && String(r.unit_no)!==u) return false;
+      if(k && r.kind!==k) return false;
+      if(nm && (r.student_name||'').indexOf(nm)<0) return false;
+      return true;
+    });
+    if(!rows.length){ $("#resWrap").innerHTML='<div class="empty">لا نتائج مطابقة بعد. تظهر النتائج بعد أن يكمل الطلاب لعبة أو اختبارًا معتمدًا.</div>'; return; }
+    var html='<table><thead><tr><th>الطالب</th><th>الشعبة</th><th>الوحدة</th><th>النوع</th><th>الدرجة</th><th>النسبة</th><th>النتيجة</th><th>التاريخ</th></tr></thead><tbody>';
+    rows.forEach(function(r){
+      var pct = r.total? Math.round(r.score/r.total*100):0;
+      html+='<tr><td>'+esc(r.student_name)+'</td><td>'+ar(r.section||'')+'</td>'+
+        '<td>'+esc(r.unit_name||('الوحدة '+r.unit_no))+'</td>'+
+        '<td>'+(r.kind==='exam'?'اختبار':'لعبة')+'</td>'+
+        '<td class="sc">'+ar(r.score)+'/'+ar(r.total)+'</td>'+
+        '<td><div class="bar"><i style="width:'+pct+'%"></i></div><span style="font-size:11px">'+ar(pct)+'٪</span></td>'+
+        '<td>'+(r.passed?'<span class="ok">ناجح</span>':'<span class="no">لم يجتز</span>')+'</td>'+
+        '<td style="font-size:11.5px">'+ar((r.created_at||'').slice(0,10))+'</td></tr>';
+    });
+    $("#resWrap").innerHTML=html+'</tbody></table>';
+  }
+  $("#fUnit").onchange=$("#fKind").onchange=drawResults;
+  $("#fName").oninput=drawResults;
+  $("#bReload").onclick=loadResults;
+  $("#bCsv").onclick=function(){
+    var rows=[["الطالب","الشعبة","الوحدة","النوع","الدرجة","الكل","النسبة","النتيجة","التاريخ"]];
     RES.forEach(function(r){
-      L.push([r.student_name,r.section,r.unit_no,r.kind==="game"?"لعبة":"اختبار",r.score,r.total,
-        (r.total?Math.round(r.score/r.total*100):0)+"%",r.passed?"اجتياز":"دون الاجتياز",
-        r.created_at?new Date(r.created_at).toISOString().slice(0,16).replace("T"," "):""].join(","));
+      var pct = r.total? Math.round(r.score/r.total*100):0;
+      rows.push([r.student_name,r.section||'',r.unit_name||'',r.kind==='exam'?'اختبار':'لعبة',r.score,r.total,pct+'%',r.passed?'ناجح':'لم يجتز',(r.created_at||'').slice(0,10)]);
     });
-    var b=new Blob(["\ufeff"+L.join("\n")],{type:"text/csv;charset=utf-8"});
-    var a=document.createElement("a"); a.href=URL.createObjectURL(b); a.download="نتائج-الطلاب.csv"; a.click();
-  });
-  $("#pushLocal").addEventListener("click", function(){
-    var snap=PF.snapshots();
-    if(!snap.length){ alert("لا نتائج محفوظة على هذا الجهاز."); return; }
-    var ok=0, chain=Promise.resolve();
-    snap.forEach(function(r){
-      chain=chain.then(function(){
-        return PF.saveResult({student_name:r.name,"class":r.klass||"أول ثانوي",section:r.section||"101",
-          kind:r.kind,unit_no:r.unit,unit_name:r.unitName||"",score:r.score,total:r.total,
-          passed:!!r.pass,secs:r.secs||0,detail:r.detail||null})
-          .then(function(){ok++;}).catch(function(){});
-      });
-    });
-    chain.then(function(){ alert("تم رفع "+ok+" نتيجة."); loadRes(); });
-  });
+    var csv='\ufeff'+rows.map(function(x){ return x.map(function(c){ return '"'+String(c).replace(/"/g,'""')+'"'; }).join(','); }).join('\n');
+    var a=document.createElement('a');
+    a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));
+    a.download='نتائج-الطلاب.csv'; a.click();
+    toast('تم تصدير CSV');
+  };
 
-  /* ================= الدروس ================= */
-  function decks(){ return PF.lsJson("qpt_decks")||{}; }
-  function renderLessons(){
-    var c=decks();
-    var h='<table><thead><tr><th>#</th><th>الدرس</th><th>الوحدة</th><th>فيديو (معرّف Drive)</th><th>الحالة</th><th></th></tr></thead><tbody>';
-    LESSONS.forEach(function(l){
-      var cf=c[l.n]||{};
-      h+='<tr><td>'+ar(l.n)+'</td><td>'+esc(l.t)+'</td><td>'+ar(l.u)+'</td>'+
-         '<td><input type="text" data-vid="'+l.n+'" value="'+esc(cf.video||"")+
-         '" placeholder="1O8tnsy…" style="width:100%;min-width:130px;padding:7px 10px;border-radius:8px;'+
-         'border:1.5px solid #ddd3b9;background:#fffdf6;font-size:13px"></td>'+
-         '<td><span class="tag '+(cf.video?"ok":"off")+'">'+(cf.video?"فيديو مفعّل":"عرض فقط")+'</span></td>'+
-         '<td><button class="btn btn-o btn-sm" data-save="'+l.n+'">حفظ</button></td></tr>';
-    });
-    $("#lessonsTable").innerHTML=h+'</tbody></table>';
-    $$("#lessonsTable [data-save]").forEach(function(b){
-      b.addEventListener("click", function(){
-        var id=b.dataset.save, v=document.querySelector('input[data-vid="'+id+'"]').value.trim();
-        var c2=decks(); c2[id]=c2[id]||{};
-        if(v) c2[id].video=v; else delete c2[id].video;
-        PF.lsJson("qpt_decks",c2); renderLessons();
+  /* ---------- الإنجاز ---------- */
+  function loadProgress(){
+    Promise.all([PF.listStudents(), PF.allResults()]).then(function(res){
+      var students=res[0]||[], results=res[1]||[];
+      var approved=Object.keys(L).filter(function(n){ return L[n].approved; }).length;
+      if(!students.length){
+        $("#progWrap").innerHTML='<div class="empty">أضف طلابًا أولًا من تبويب «الطلاب».</div>';
+        $("#gStu").textContent='٠'; return;
+      }
+      var by={};
+      results.forEach(function(r){
+        var n=(r.student_name||'').trim();
+        by[n]=by[n]||{game:0,exam:0,last:''};
+        if(r.kind==='exam') by[n].exam++; else by[n].game++;
+        if((r.created_at||'')>by[n].last) by[n].last=r.created_at;
       });
+      var total=0, done=0, g=0, e=0;
+      var html='<table><thead><tr><th>الطالب</th><th>الشعبة</th><th>ألعاب</th><th>اختبارات</th><th>الإنجاز</th><th>آخر نشاط</th></tr></thead><tbody>';
+      students.forEach(function(s){
+        var b=by[s.name]||{game:0,exam:0,last:''};
+        var att=b.game+b.exam;
+        var pct = approved? Math.min(100, Math.round(att/(approved*2)*100)) : 0;
+        total+=pct; done++;
+        g+=b.game; e+=b.exam;
+        html+='<tr><td>'+esc(s.name)+'</td><td>'+ar(s.section||'')+'</td>'+
+          '<td>'+ar(b.game)+'</td><td>'+ar(b.exam)+'</td>'+
+          '<td><div class="bar"><i style="width:'+pct+'%"></i></div><span style="font-size:11px">'+ar(pct)+'٪</span></td>'+
+          '<td style="font-size:11.5px">'+(b.last? ar(b.last.slice(0,10)) : '—')+'</td></tr>';
+      });
+      $("#progWrap").innerHTML=html+'</tbody></table>'+
+        '<div style="font-size:11.5px;color:var(--muted);margin-top:9px">يُحسب الإنجاز من عدد المحاولات ÷ (عدد الدروس المعتمدة × ٢).</div>';
+      $("#gStu").textContent=ar(done);
+      $("#gAvg").textContent=ar(done? Math.round(total/done):0)+'٪';
+      $("#gGames").textContent=ar(g);
+      $("#gExams").textContent=ar(e);
+    }).catch(function(err){
+      $("#progWrap").innerHTML='<div class="empty">تعذّر التحميل: '+esc(err.message)+'</div>';
     });
   }
 
-  /* ================= بنك الأسئلة ================= */
-  function extra(){ return PF.lsJson("qpt_bank_add")||{}; }
-  function renderBank(){
-    var u=$("#bUnit").value, k=$("#bKind").value;
-    var base=(BANK[u]&&BANK[u][k])||[], ex=(extra()[u+"-"+k])||[];
-    var all=base.concat(ex);
-    var h="";
-    all.forEach(function(q,i){
-      var isNew=i>=base.length;
-      h+='<div class="qbox"><div class="qt">'+ar(i+1)+") "+esc(q.t)+
-         (isNew?' <span class="tag add">مضاف</span>':"")+'</div>';
-      (q.o||[]).forEach(function(o,k2){
-        h+='<div class="op'+(k2===q.a?" c":"")+'">'+(k2===q.a?"✓":"•")+" "+esc(o)+'</div>';
+  /* ---------- الطلاب ---------- */
+  function loadStudents(){
+    PF.listStudents().then(function(rows){
+      rows=rows||[];
+      if(!rows.length){ $("#stuWrap").innerHTML='<div class="empty">لا طلاب بعد. أضف أول طالب من الأعلى.</div>'; return; }
+      var html='<table><thead><tr><th>الاسم</th><th>الصف</th><th>الشعبة</th><th>الحالة</th><th></th></tr></thead><tbody>';
+      rows.forEach(function(s){
+        html+='<tr><td>'+esc(s.name)+'</td><td>'+esc(s['class'])+'</td><td>'+ar(s.section)+'</td>'+
+          '<td>'+(s.active?'<span class="ok">نشط</span>':'<span class="no">موقوف</span>')+'</td>'+
+          '<td><button class="mini" data-tog="'+s.id+'" data-v="'+(s.active?0:1)+'">'+(s.active?'إيقاف':'تنشيط')+'</button> '+
+          '<button class="mini" data-del="'+s.id+'">حذف</button></td></tr>';
       });
-      if(q.e) h+='<div class="ex">'+esc(q.e)+'</div>';
-      if(isNew) h+='<div style="margin-top:6px"><button class="btn btn-d btn-sm" data-dq="'+(i-base.length)+'">حذف</button></div>';
-      h+='</div>';
-    });
-    $("#bankList").innerHTML=h||'<div class="note">لا أسئلة.</div>';
-    $$("#bankList [data-dq]").forEach(function(b){
-      b.addEventListener("click", function(){
-        var eb=extra(), key=u+"-"+k; eb[key].splice(+b.dataset.dq,1);
-        PF.lsJson("qpt_bank_add",eb); renderBank();
-      });
-    });
+      $("#stuWrap").innerHTML=html+'</tbody></table>';
+    }).catch(function(e){ $("#stuWrap").innerHTML='<div class="empty">'+esc(e.message)+'</div>'; });
   }
-  $("#addQ").addEventListener("click", function(){
-    var t=$("#nqT").value.trim();
-    var opts=["#nq1","#nq2","#nq3","#nq4"].map(function(s){return $(s).value.trim();}).filter(Boolean);
-    if(t.length<5){ mset($("#qMsg"),"اكتب نص السؤال",false); return; }
-    if(opts.length<2){ mset($("#qMsg"),"أدخل خيارين على الأقل",false); return; }
-    var u=$("#bUnit").value, k=$("#nqK").value, key=u+"-"+k;
-    var eb=extra(); eb[key]=eb[key]||[];
-    eb[key].push({t:t,o:opts,a:Math.min(+$("#nqA").value,opts.length-1),e:$("#nqE").value.trim()});
-    PF.lsJson("qpt_bank_add",eb);
-    mset($("#qMsg"),"تم الحفظ في الوحدة "+ar(u),true);
-    ["#nqT","#nq1","#nq2","#nq3","#nq4","#nqE"].forEach(function(s){$(s).value="";});
-    $("#bKind").value=k; renderBank();
+  $("#bAdd").onclick=function(){
+    var n=$("#nName").value.trim();
+    if(n.length<3){ toast('اكتب الاسم أولًا'); return; }
+    PF.addStudent(n, PF.CLASSES[0], $("#nSec").value).then(function(){
+      $("#nName").value=''; toast('أُضيف الطالب'); loadStudents();
+    }).catch(function(e){ toast('تعذّر: '+e.message); });
+  };
+  $("#bStuReload").onclick=loadStudents;
+  $("#stuWrap").addEventListener('click', function(e){
+    var t=e.target.closest('[data-tog]');
+    if(t){ PF.updateStudent(t.dataset.tog,{active:t.dataset.v==='1'}).then(loadStudents); return; }
+    var d=e.target.closest('[data-del]');
+    if(d && confirm('حذف الطالب نهائيًا؟')){ PF.deleteStudent(d.dataset.del).then(loadStudents); }
   });
-  $("#bUnit").addEventListener("change", renderBank);
-  $("#bKind").addEventListener("change", renderBank);
 
-  /* ================= الصوت ================= */
-  function audioCfg(){ return PF.lsJson("qpt_audio")||{}; }
-  function saveAudio(c){ PF.lsJson("qpt_audio",c); }
-  function refreshAudioUI(){
-    var c=audioCfg();
-    var has=!!c.url;
-    $("#wave").style.display=has&&c.enabled?"flex":"none";
-    $("#vol").value=Math.round((c.vol!=null?c.vol:0.3)*100);
-    $("#volLbl").textContent=$("#vol").value+"%";
-    $("#enabled").checked=!!c.enabled;
-    if(has) mset($("#aMsg"),"ملف محفوظ: "+c.name+" ("+Math.round(c.size/1024)+" ك.ب)",true);
-    else { $("#aMsg").className="msg"; $("#aMsg").textContent=""; }
-  }
-  $("#pick").addEventListener("click", function(){ $("#file").click(); });
-  $("#drop").addEventListener("click", function(e){ if(e.target.id!=="pick") $("#file").click(); });
-  $("#drop").addEventListener("dragover", function(e){ e.preventDefault(); $("#drop").classList.add("over"); });
-  $("#drop").addEventListener("dragleave", function(){ $("#drop").classList.remove("over"); });
-  $("#drop").addEventListener("drop", function(e){
-    e.preventDefault(); $("#drop").classList.remove("over");
-    if(e.dataTransfer.files[0]) readAudio(e.dataTransfer.files[0]);
-  });
-  $("#file").addEventListener("change", function(e){ if(e.target.files[0]) readAudio(e.target.files[0]); });
-  function readAudio(f){
-    if (!/^audio\//.test(f.type)){ mset($("#aMsg"),"اختر ملفًا صوتيًا (MP3 أو M4A)",false); return; }
-    if (f.size > 5*1024*1024){ mset($("#aMsg"),"الملف أكبر من ٥ ميجابايت — اختر ملفًا أصغر",false); return; }
-    var r=new FileReader();
-    r.onload=function(){
-      var c=audioCfg();
-      c.url=r.result; c.name=f.name; c.size=f.size;
-      c.vol=c.vol!=null?c.vol:0.3; c.enabled=true;
-      try{ saveAudio(c); }catch(err){ mset($("#aMsg"),"تعذّر الحفظ (المساحة ممتلئة)",false); return; }
-      refreshAudioUI();
-      mset($("#aMsg"),"تم رفع «"+f.name+"» وتفعيله",true);
+  /* ---------- الصوت ---------- */
+  (function(){
+    var st = PF.lsJson('qpt_audio') || {};
+    if(st.vol!=null) $("#aVol").value = Math.round(st.vol*100);
+    if(st.enabled===false) $("#aOn").checked=false;
+    $("#fAudio").onchange=function(){
+      var f=this.files&&this.files[0]; if(!f) return;
+      if(f.size > 3.5*1024*1024){ toast('الملف كبير — الأفضل أقل من ٣ ميجا'); }
+      var fr=new FileReader();
+      fr.onload=function(){
+        var o={url:fr.result, vol:(+$("#aVol").value)/100, enabled:$("#aOn").checked};
+        PF.lsJson('qpt_audio', o); toast('حُفظ الصوت الخلفي');
+      };
+      fr.readAsDataURL(f);
     };
-    r.readAsDataURL(f);
-  }
-  $("#vol").addEventListener("input", function(){
-    var c=audioCfg(); c.vol=+$("#vol").value/100; saveAudio(c);
-    $("#volLbl").textContent=$("#vol").value+"%";
-    if(window.SFX) SFX.startBg(c.url, c.vol);
-  });
-  $("#enabled").addEventListener("change", function(){
-    var c=audioCfg(); c.enabled=$("#enabled").checked; saveAudio(c); refreshAudioUI();
-  });
-  $("#testPlay").addEventListener("click", function(){
-    var c=audioCfg();
-    if(!c.url){ mset($("#aMsg"),"ارفع ملفًا أولًا",false); return; }
-    if(window.SFX) SFX.startBg(c.url,c.vol);
-  });
-  $("#stopPlay").addEventListener("click", function(){ if(window.SFX) SFX.stopBg(); });
-  $("#clearAudio").addEventListener("click", function(){
-    if(!confirm("حذف الملف الصوتي؟")) return;
-    saveAudio({}); refreshAudioUI();
-  });
-  $$("[data-sfx]").forEach(function(b){
-    b.addEventListener("click", function(){
-      if(!window.SFX) return;
-      var k=b.dataset.sfx; SFX[k] && SFX[k]();
-    });
-  });
-  $("#previewCert").addEventListener("click", function(){
-    if(!window.QCert){ alert("جارٍ تحميل مولّد الشهادة…"); return; }
-    var cv=document.createElement("canvas");
-    var box=document.createElement("div");
-    QCert.load().then(function(){
-      QCert.draw(cv,{
-        name:"محمد بن أحمد العيسى", klass:"أول ثانوي", section:"102",
-        school:PF.school()||"ثانوية الموهوبين", unitName:"سورة يونس", unitNo:3,
-        score:9, total:10, pct:90, pass:true, kind:"game", secs:143,
-        date:new Date().toISOString().slice(0,10), teacher:PF.ls("qpt_teacher")||"عمر العيسى",
-        certNo:"QT03-000000-00000", qrCanvas:null
-      });
-      var a=document.createElement("a");
-      a.download="نموذج-شهادة.png"; a.href=cv.toDataURL("image/png"); a.click();
-    });
-  });
+    $("#aOn").onchange=$("#aVol").onchange=function(){
+      var o=PF.lsJson('qpt_audio')||{};
+      o.vol=(+$("#aVol").value)/100; o.enabled=$("#aOn").checked;
+      PF.lsJson('qpt_audio', o);
+    };
+    $("#aTest").onclick=function(){
+      var o=PF.lsJson('qpt_audio');
+      if(!o||!o.url){ toast('ارفع ملفًا أولًا'); return; }
+      var a=new Audio(o.url); a.volume=(+$("#aVol").value)/100; a.play();
+      window._ta=a;
+    };
+    $("#aStop").onclick=function(){ if(window._ta){ window._ta.pause(); } };
+  })();
 
-  /* ================= الإعدادات ================= */
-  $("#setSchool").value=PF.school()||"";
-  $("#setTeacher").value=PF.ls("qpt_teacher")||"عمر العيسى";
-  $("#stuLink").value=location.href.replace(/صفحة-المعلم\.html.*$/,"دخول-الطالب.html");
-  $("#copyLink").addEventListener("click", function(){
-    var v=$("#stuLink").value;
-    if(navigator.clipboard) navigator.clipboard.writeText(v).then(function(){ alert("تم النسخ"); });
-    else { $("#stuLink").select(); document.execCommand("copy"); }
-  });
-  $("#saveSet").addEventListener("click", function(){
-    PF.school($("#setSchool").value.trim());
-    PF.ls("qpt_teacher",$("#setTeacher").value.trim());
-    mset($("#setMsg"),"تم الحفظ",true);
-  });
-
-  /* ================= تشغيل ================= */
+  /* ---------- التشغيل ---------- */
   function boot(){
-    var uo='<option value="">كل الوحدات</option>', bu="";
-    for(var i=1;i<=10;i++){
-      uo+='<option value="'+i+'">الوحدة '+i+'</option>';
-      bu+='<option value="'+i+'">الوحدة '+i+' — '+(BANK[i]?BANK[i].game.unitName:"")+'</option>';
-    }
-    $("#fUnit").innerHTML=uo; $("#bUnit").innerHTML=bu;
-    loadStu(); loadRes(); renderLessons(); renderBank(); refreshAudioUI();
+    PF.lessons().then(function(rows){
+      (rows||[]).forEach(function(r){ L[r.no]={no:r.no, unit:r.unit, approved:r.approved, parts:r.parts||{slides:true,video:true,game:true,exam:true}}; });
+      UNITS.forEach(function(u){ u.lessons.forEach(function(ls){
+        if(!L[ls.no]) L[ls.no]={no:ls.no, unit:u.u, approved:false, parts:{slides:true,video:true,game:true,exam:true}};
+        L[ls.no].unit=u.u;
+      }); });
+      renderUnits();
+      $("#cSave").textContent='محفوظ';
+    }).catch(function(e){
+      // بلا اتصال
+      (PF.lessonsCached()||[]).forEach(function(r){ L[r.no]={no:r.no,unit:r.unit,approved:r.approved,parts:r.parts||{}}; });
+      UNITS.forEach(function(u){ u.lessons.forEach(function(ls){
+        if(!L[ls.no]) L[ls.no]={no:ls.no,unit:u.u,approved:false,parts:{slides:true,video:true,game:true,exam:true}};
+        L[ls.no].unit=u.u;
+      }); });
+      renderUnits();
+      $("#cSave").textContent='غير متصل';
+    });
   }
-});
+  if (PF.isTeacher()) boot();
+})();
 </script>
 </body>
 </html>

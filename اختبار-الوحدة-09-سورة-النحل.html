@@ -115,6 +115,8 @@ a{color:#f0d99b}
 
 </head>
 <body>
+<script src="gate.js" data-unit="9" data-part="exam"></script>
+
 <div class="wrap">
 
   <!-- ===== المقدمة ===== -->
@@ -584,6 +586,64 @@ function audioPlay(src){ try{ new Audio(src).play(); }catch(e){} }
       try{ if (window.APP && APP.result) window.drawCert(); }catch(e){}
     }
   });
+})();
+</script>
+
+
+<script>
+/* ---- مُسجّل النتائج إلى قاعدة البيانات (منصة القرآن وتفسيره ١) ---- */
+(function(){
+  var URL="https://evggbiwxlmxydoqqkmyh.supabase.co", KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV2Z2diaXd4bG14eWRvcXFrbXloIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTQ0Njk1NjYsImV4cCI6MjExMDA0NTU2Nn0.U1hZp-ffuLHf7okveSeiwUAvCS4a3P7GXALYnOmCiB0";
+  var done=false;
+  function g(k){ try{ return localStorage.getItem(k)||""; }catch(e){ return ""; } }
+  function sNum(v){ var n=parseInt(String(v).replace(/[٠-٩]/g,function(d){return "٠١٢٣٤٥٦٧٨٩".indexOf(d)}),10); return isNaN(n)?null:n; }
+  function post(row){
+    fetch(URL+"/rest/v1/results",{method:"POST",
+      headers:{"apikey":KEY,"Authorization":"Bearer "+KEY,"Content-Type":"application/json","Prefer":"return=minimal"},
+      body:JSON.stringify([row])}).catch(function(){});
+  }
+  function collect(){
+    if (done) return;
+    var name="", sec="", cls="", unit=null, kind="game", score=null, total=null, passed=null, secs=null, detail=null;
+
+    if (window.APP && APP.result) {                    /* الاختبار */
+      var r=APP.result, st=APP.student||{};
+      name=(st.name||"").trim(); sec=(st.section||"").trim(); cls=(st["class"]||"").trim();
+      unit=APP.unitNo!=null? +APP.unitNo : null;
+      kind="exam";
+      score=r.got; total=r.max; passed=!!r.passed; secs=r.secs||null;
+      detail={answers:(r.answers||[]).length};
+    } else if (window.S && S.result) {                 /* اللعبة */
+      var sm=S.result;
+      try {
+        name=(document.getElementById("stuName").value||"").trim();
+        sec=(document.getElementById("stuSec").value||"").trim();
+        cls=(document.getElementById("stuClass").value||"").trim();
+      } catch(e){}
+      unit=(window.DATA && DATA.unitNo!=null)? +DATA.unitNo : null;
+      kind=(sm.mode==="exam")?"exam":"game";
+      score=sm.ok; total=sm.max; passed=!!sm.pass; secs=sm.secs||null;
+      detail={lives:sm.lives};
+    } else return;
+
+    if (!name) name=(g("qpt_student")||"").trim();
+    if (!sec)  sec=(g("qpt_section")||"").trim();
+    if (!cls)  cls=(g("qpt_class")||"").trim();
+    if (score==null || total==null) return;
+
+    var unitName = (window.DATA && DATA.unitName) || (window.APP && APP.unitName) || "";
+    post({student_name:name||"غير معروف","class":cls||"أول ثانوي",section:sec||null,
+          kind:kind,unit_no:unit,unit_name:unitName,score:+score,total:+total,
+          passed:!!passed,secs:secs,detail:detail});
+    done=true;
+  }
+  /* يُستدعى بعد ظهور النتيجة */
+  if (document.readyState==="loading") document.addEventListener("DOMContentLoaded", function(){
+    var res=document.getElementById("result")||document.getElementById("endView");
+    if (!res) { setTimeout(collect, 1500); return; }
+    new MutationObserver(function(){ collect(); }).observe(res,{attributes:true,attributeFilter:["class","style"]});
+  });
+  window.addEventListener("pagehide", collect);
 })();
 </script>
 
